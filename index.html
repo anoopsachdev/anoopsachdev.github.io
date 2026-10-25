@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anoop Singh Sachdev — Data Science, ML &amp; Cloud</title>
+  <meta name="description" content="Anoop Singh Sachdev — final-year Computer Engineering student at Thapar Institute working across data science, machine learning, cloud and software engineering.">
+  <meta property="og:title" content="Anoop Singh Sachdev — Data Science, ML &amp; Cloud">
+  <meta property="og:description" content="Final-year Computer Engineering student at Thapar Institute. I build ML models, evaluate them carefully, and ship them on Google Cloud.">
+  <meta property="og:image" content="assets/img/anoop-boat.jpg">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23161513'/><text x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-size='30' fill='%23f2a93b'>AS</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=4">
+</head>
+<body>
+  <header class="nav">
+    <a class="nav__brand" href="#top">Anoop<span>.</span></a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#journey">Journey</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z"/></svg>
+    </button>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero__text">
+        <p class="eyebrow"><span class="dot"></span> Open to data science, ML &amp; SWE roles · 2026–27</p>
+        <h1>Anoop Singh Sachdev</h1>
+        <p class="hero__lede">
+          Final-year Computer Engineering student at <strong>Thapar Institute</strong>, working where
+          <strong>data science</strong> meets <strong>engineering</strong>. I frame the question, build and
+          evaluate the model, then ship it as a tested service on <strong>Google Cloud</strong>.
+        </p>
+        <div class="hero__cta">
+          <a class="btn btn--solid" href="assets/Anoop-Singh-Sachdev-Resume.pdf" target="_blank" rel="noopener">Résumé ↗</a>
+          <a class="btn" href="#work">See my work</a>
+        </div>
+        <ul class="socials" aria-label="Profiles">
+          <li><a href="https://github.com/anoopsachdev" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/anoop-sachdev/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="mailto:anoopsinghsachdev@gmail.com">Email</a></li>
+        </ul>
+      </div>
+      <figure class="hero__photo">
+        <img src="assets/img/anoop-boat.jpg" alt="Anoop smiling on a boat with sea cliffs behind him" width="900" height="1200">
+        <figcaption>Muscat, Oman</figcaption>
+      </figure>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats" aria-label="Highlights">
+      <div><b>69.5%</b><span>precision vs a 40.9% base rate, predicting unanswered questions</span></div>
+      <div><b>0.722</b><span>PR-AUC for student dropout early warning, with a fairness audit</span></div>
+      <div><b>+0.106</b><span>NDCG@10 from hybrid search and re-ranking over BM25</span></div>
+      <div><b>153</b><span>pytest tests behind a FastAPI service on Cloud Run</span></div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section about">
+      <div class="section__head">
+        <p class="kicker">01 — About</p>
+        <h2>Data science, with an engineer's habits.</h2>
+      </div>
+      <div class="about__grid">
+        <img class="about__photo" src="assets/img/anoop-portrait.jpg" alt="Portrait of Anoop at a restaurant table" loading="lazy">
+        <div class="about__body">
+          <p>
+            I grew up in the UAE and finished school at Delhi Private School, Sharjah, before moving to India for
+            a B.E. in Computer Engineering at Thapar Institute of Engineering &amp; Technology, Patiala.
+          </p>
+          <p>
+            My work sits across four areas: <strong>data science</strong>, <strong>machine learning</strong>,
+            <strong>cloud</strong> and <strong>software engineering</strong>. I like problems where a model has to earn
+            its place. That means leakage-safe features, time-based splits, calibration and fairness checks,
+            and A/B tests designed before anything is claimed.
+          </p>
+          <p>
+            I also care about what happens after the notebook. In ShopSense I kept a Gemini re-ranker off the
+            default path because it cost about 80× the latency for a 0.035 NDCG gain, and shipped the
+            cross-encoder instead as a FastAPI service on Cloud Run with Docker and 153 tests. On the
+            software side I build with React, Node and Express, and I use Claude Code and Cursor daily.
+          </p>
+          <dl class="facts">
+            <div><dt>Graduating</dt><dd>May 2027</dd></div>
+            <div><dt>CGPA</dt><dd>7.6 / 10</dd></div>
+            <div><dt>Based in</dt><dd>New Delhi, India</dd></div>
+            <div><dt>Focus</dt><dd>Data Science · ML · Cloud</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work" class="section">
+      <div class="section__head">
+        <p class="kicker">02 — Selected work</p>
+        <h2>Models, measured, then shipped.</h2>
+      </div>
+
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="ds" aria-pressed="false">Data science</button>
+        <button type="button" data-filter="ml" aria-pressed="false">Machine learning</button>
+        <button type="button" data-filter="cloud" aria-pressed="false">Cloud</button>
+        <button type="button" data-filter="swe" aria-pressed="false">Software engineering</button>
+      </div>
+
+      <div class="projects">
+        <article class="project project--feature" data-tags="ml cloud swe">
+          <div class="project__meta">
+            <span class="tag">ML · Cloud · SWE</span>
+            <span class="stack">Python · FastAPI · Vertex AI · Docker · Cloud Run</span>
+          </div>
+          <h3>ShopSense <em>LLM-assisted product search</em></h3>
+          <p>Hybrid retrieval over 48,862 products from Amazon's ESCI dataset: BM25 plus semantic embeddings, reciprocal rank fusion and a cross-encoder re-ranker, evaluated on 500 held-out queries with human relevance labels.</p>
+          <ul class="bullets">
+            <li>NDCG@10 up from <b>0.468</b> to <b>0.574</b> over the BM25 baseline.</li>
+            <li>Gemini re-ranking reached 0.600 but took ~50 s/query and $1.14 per 1K queries, so the 0.6 s cross-encoder stayed the default.</li>
+            <li>Shipped on Cloud Run with rate limiting and 153 pytest tests.</li>
+          </ul>
+          <div class="project__links"><a href="https://github.com/anoopsachdev/shopsense" target="_blank" rel="noopener">Code ↗</a></div>
+        </article>
+
+        <article class="project" data-tags="ds ml">
+          <div class="project__meta"><span class="tag">Data science · ML</span><span class="stack">Python · SQL · statsmodels · scikit-learn</span></div>
+          <h3>Answer Gap <em>Predicting unanswered questions</em></h3>
+          <p>Predicts which new Stack Overflow questions go unanswered for 24 hours, using 1.26M questions and leakage-safe SQL features. The title-word model ranks a 5% review queue at <b>69.5% precision</b> against a 40.9% base rate. The project also includes hypothesis tests and a designed follow-up A/B test.</p>
+          <div class="project__links"><a href="https://github.com/anoopsachdev/answer-gap-24h" target="_blank" rel="noopener">Code ↗</a></div>
+        </article>
+
+        <article class="project" data-tags="ds ml">
+          <div class="project__meta"><span class="tag">Data science · ML</span><span class="stack">Pandas · LightGBM · SHAP</span></div>
+          <h3>Dropout Early-Warning <em>with a fairness audit</em></h3>
+          <p>A pipeline over 32,593 registrations and 10.6M platform records. LightGBM on a time-based split reached <b>0.722 PR-AUC</b> and 35.5% recall within a 20% outreach budget. A SHAP audit of false-negative rates across demographic groups found a 0.13 socioeconomic gap.</p>
+          <div class="project__links"><a href="https://github.com/anoopsachdev/student-dropout-early-warning" target="_blank" rel="noopener">Code ↗</a></div>
+        </article>
+
+        <article class="project" data-tags="ml cloud">
+          <div class="project__meta"><span class="tag">Deep learning · Cloud</span><span class="stack">PyTorch · EfficientNet · YOLOv8</span></div>
+          <h3>BeanSight <em>Coffee-bean defect detection</em></h3>
+          <p>A computer-vision tool that helps coffee roasters spot bean defects and classify roast levels. It is deployed as a web app on Cloud Run.</p>
+          <div class="project__links">
+            <a href="https://coffee-bean-analyzer-876034946934.us-central1.run.app" target="_blank" rel="noopener">Live ↗</a>
+            <a href="https://github.com/anoopsachdev/BeanSight" target="_blank" rel="noopener">Code ↗</a>
+          </div>
+        </article>
+
+        <article class="project" data-tags="swe">
+          <div class="project__meta"><span class="tag">Software engineering</span><span class="stack">React · Node · Express · MongoDB</span></div>
+          <h3>Project Camp <em>Collaborative Kanban</em></h3>
+          <p>A team project-management app with Kanban boards, shared notes and role-based access control. Includes JWT access and refresh tokens, email verification and password reset via Nodemailer, plus Cloudinary file storage.</p>
+          <div class="project__links">
+            <a href="https://project-camp-kanban.vercel.app" target="_blank" rel="noopener">Live ↗</a>
+            <a href="https://github.com/anoopsachdev/Project-Camp" target="_blank" rel="noopener">Code ↗</a>
+          </div>
+        </article>
+      </div>
+
+      <h3 class="subhead">More on GitHub</h3>
+      <ul class="mini">
+        <li><a href="https://github.com/anoopsachdev/URL-Shortener" target="_blank" rel="noopener"><b>URL Shortener</b><span>Node.js · Redis · MongoDB backend, built during Xebia's full-stack bootcamp</span></a></li>
+        <li><a href="https://louie-and-lunas-cafe.vercel.app" target="_blank" rel="noopener"><b>Louie &amp; Luna's</b><span>Marketing site for a Parisian-style café in New Delhi, in TypeScript</span></a></li>
+        <li><a href="https://github.com/anoopsachdev?tab=repositories" target="_blank" rel="noopener"><b>All repositories →</b><span>github.com/anoopsachdev</span></a></li>
+      </ul>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section">
+      <div class="section__head">
+        <p class="kicker">03 — Toolkit</p>
+        <h2>What I work with.</h2>
+      </div>
+      <div class="skills">
+        <div><h4>Data science</h4><p>Python · SQL · Pandas · NumPy · statsmodels · hypothesis testing · A/B test design</p></div>
+        <div><h4>Machine learning</h4><p>scikit-learn · LightGBM · PyTorch · TensorFlow · Keras · SHAP · ONNX</p></div>
+        <div><h4>Cloud &amp; DevOps</h4><p>GCP (Cloud Run, Compute Engine, BigQuery, Cloud Storage, Vertex AI) · Docker · GitHub Actions · Linux</p></div>
+        <div><h4>Software engineering</h4><p>FastAPI · REST APIs · React · Node.js · Express · JWT auth · C++ · JavaScript</p></div>
+        <div><h4>Data systems</h4><p>MySQL · MongoDB · Redis · Apache Kafka</p></div>
+        <div><h4>Testing &amp; tools</h4><p>pytest · Git · Postman · Selenium · TestNG · Claude Code · Cursor</p></div>
+      </div>
+      <p class="coursework"><span>Coursework</span> Machine Learning · Artificial Intelligence · Cloud &amp; DevOps · DBMS · Data Structures · Algorithms · Software Engineering · Operating Systems · OOP</p>
+    </section>
+
+    <!-- JOURNEY -->
+    <section id="journey" class="section">
+      <div class="section__head">
+        <p class="kicker">04 — Journey</p>
+        <h2>From the Gulf to Punjab.</h2>
+      </div>
+
+      <div class="gallery">
+        <figure class="g3"><img src="assets/img/thapar-main.jpg" alt="Main building of Thapar Institute of Engineering and Technology with a fountain in front" loading="lazy"><figcaption>Thapar Institute, Patiala</figcaption></figure>
+        <figure class="g4"><img src="assets/img/thapar-library.jpg" alt="Multi-level atrium of the Thapar library with glass roof and staircases" loading="lazy"><figcaption>The library</figcaption></figure>
+        <figure class="g5"><img src="assets/img/thapar-campus.jpg" alt="Red sandstone campus buildings at Thapar at dusk" loading="lazy"><figcaption>Around campus</figcaption></figure>
+        <figure class="g1"><img src="assets/img/dps-sharjah.jpg" alt="Front of Delhi Private School, Sharjah, with school buses parked outside" loading="lazy"><figcaption>Delhi Private School, Sharjah</figcaption></figure>
+        <figure class="g2"><img src="assets/img/dps-sharjah-entrance.jpg" alt="Entrance of Delhi Private School with its name in English and Arabic" loading="lazy"><figcaption>Class X &amp; XII, 2021–23</figcaption></figure>
+      </div>
+
+      <ol class="timeline">
+        <li>
+          <span class="when">2023 — May 2027</span>
+          <div><h4>B.E. Computer Engineering</h4><p>Thapar Institute of Engineering &amp; Technology, Patiala · CGPA 7.6</p></div>
+        </li>
+        <li>
+          <span class="when">2022 — 2023</span>
+          <div><h4>Class XII (SSCE) · 93.6%</h4><p>Delhi Private School, Sharjah, UAE</p></div>
+        </li>
+        <li>
+          <span class="when">2020 — 2021</span>
+          <div><h4>Class X (SSE) · 94.8%</h4><p>Delhi Private School, Sharjah, UAE</p></div>
+        </li>
+      </ol>
+
+      <h3 class="subhead">Certifications</h3>
+      <ul class="certs">
+        <li><a href="https://coursera.org/verify/1NGWO32B0FDM" target="_blank" rel="noopener"><b>Neural Networks and Deep Learning</b><span>DeepLearning.AI · Coursera ↗</span></a></li>
+        <li><div><b>Convolutional Neural Networks</b><span>DeepLearning.AI · Coursera · in progress</span></div></li>
+        <li><a href="https://www.udemy.com/certificate/UC-4f95b709-dbf7-4164-8b1e-97ff9b09f874/" target="_blank" rel="noopener"><b>Complete Web Development Course</b><span>Udemy ↗</span></a></li>
+      </ul>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section contact">
+      <p class="kicker">05 — Contact</p>
+      <h2>Let's work together.</h2>
+      <p>I'm looking for data science, machine learning, cloud and software engineering internships and new-grad roles. The fastest way to reach me is email.</p>
+      <a class="contact__mail" href="mailto:anoopsinghsachdev@gmail.com">anoopsinghsachdev@gmail.com</a>
+      <ul class="socials socials--center">
+        <li><a href="https://www.linkedin.com/in/anoop-sachdev/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://github.com/anoopsachdev" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="assets/Anoop-Singh-Sachdev-Resume.pdf" target="_blank" rel="noopener">Résumé</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Anoop Singh Sachdev</p>
+    <nav class="footer__links" aria-label="Footer">
+      <a href="https://github.com/anoopsachdev" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/anoop-sachdev/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:anoopsinghsachdev@gmail.com">Email</a>
+      <a href="#top">Back to top ↑</a>
+    </nav>
+  </footer>
+
+  <script src="script.js?v=4"></script>
+</body>
+</html>
