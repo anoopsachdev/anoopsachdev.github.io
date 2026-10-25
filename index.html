@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
   <header class="nav">
@@ -66,9 +66,17 @@
 
     <!-- NOW -->
     <section class="now" aria-label="Currently">
-      <p class="kicker"><span class="dot"></span> Currently · Xebia</p>
+      <div class="now__top">
+        <p class="kicker"><span class="dot"></span> Currently · Xebia</p>
+        <span class="now__badge">Cohort of 30 · placement track</span>
+      </div>
       <h2>Forward Deployed Engineer Launchpad</h2>
-      <p class="now__lede">One of 30 students selected. I'm deploying containerised FastAPI services on AWS with Docker, ECR, EC2 and auto scaling.</p>
+      <p class="now__lede">Xebia's programme for taking engineers from <em>“can code”</em> to <em>“can ship”</em>: building, deploying and defending a real AI-powered product, the way Xebia's Forward Deployed Engineers do for clients.</p>
+      <ol class="track" aria-label="Programme progress">
+        <li class="is-now"><span>Month 1 · now</span><b>Code to cloud</b><small>FastAPI on AWS: Docker, ECR, EC2, auto scaling</small></li>
+        <li><span>Month 2</span><b>AI engineering</b><small>RAG, agents, evals and guardrails</small></li>
+        <li><span>Month 3</span><b>Production &amp; capstone</b><small>Hardening, monitoring, panel defence</small></li>
+      </ol>
     </section>
 
     <!-- ABOUT -->
