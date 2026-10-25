@@ -25,7 +25,7 @@ filterButtons.forEach((btn) => btn.addEventListener("click", () => {
 }));
 
 // Fade sections in as they scroll into view
-const revealables = document.querySelectorAll(".section__head, .project, .about__grid, .skills, .gallery, .timeline, .stats");
+const revealables = document.querySelectorAll(".now, .section__head, .project, .about__grid, .skills, .gallery, .timeline, .stats");
 const io = new IntersectionObserver((entries) => {
   for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
 }, { threshold: 0.12 });
