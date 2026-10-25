@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=7">
+  <link rel="stylesheet" href="styles.css?v=12">
 </head>
 <body>
   <header class="nav">
@@ -50,9 +50,11 @@
           <li><a href="mailto:anoopsinghsachdev@gmail.com">Email</a></li>
         </ul>
       </div>
-      <figure class="hero__photo">
-        <img src="assets/img/anoop-boat.jpg" alt="Anoop smiling on a boat with sea cliffs behind him" width="900" height="1200">
-        <figcaption>Muscat, Oman</figcaption>
+      <figure class="hero__photo stack">
+        <button class="stack__deck" type="button" aria-label="Show next photo" title="Next photo">
+          <img class="stack__card" data-pos="0" style="--focus: 30% 72%" src="assets/img/anoop-boat.jpg" alt="Anoop smiling on a boat off the coast of Muscat, Oman" width="900" height="1200">
+          <img class="stack__card" data-pos="1" style="--focus: 55% 42%" src="assets/img/anoop-dubai.jpg" alt="Anoop in a white turban at a restaurant in Dubai, UAE" width="1000" height="978">
+        </button>
       </figure>
     </section>
 
@@ -270,6 +272,6 @@
     </nav>
   </footer>
 
-  <script src="script.js?v=5"></script>
+  <script src="script.js?v=11"></script>
 </body>
 </html>

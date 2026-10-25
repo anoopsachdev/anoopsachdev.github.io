@@ -24,6 +24,15 @@ filterButtons.forEach((btn) => btn.addEventListener("click", () => {
   projects.forEach((p) => { p.hidden = f !== "all" && !p.dataset.tags.split(" ").includes(f); });
 }));
 
+// Hero photo stack: clicking brings the back photo forward
+const deck = document.querySelector(".stack__deck");
+if (deck) {
+  const cards = [...deck.querySelectorAll(".stack__card")];
+  deck.addEventListener("click", () => {
+    cards.forEach((c) => { c.dataset.pos = (Number(c.dataset.pos) + cards.length - 1) % cards.length; });
+  });
+}
+
 // Fade sections in as they scroll into view
 const revealables = document.querySelectorAll(".now, .section__head, .project, .about__grid, .skills, .gallery, .timeline, .stats");
 const io = new IntersectionObserver((entries) => {
