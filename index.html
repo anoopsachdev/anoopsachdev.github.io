@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=12">
+  <link rel="stylesheet" href="styles.css?v=17">
 </head>
 <body>
   <header class="nav">
@@ -88,7 +88,15 @@
         <h2>Data science, with an engineer's habits.</h2>
       </div>
       <div class="about__grid">
-        <img class="about__photo" src="assets/img/anoop-portrait.jpg" alt="Portrait of Anoop at a restaurant table" loading="lazy">
+        <aside class="profile" aria-label="Quick facts">
+          <img class="profile__photo" src="assets/img/anoop-portrait.jpg" alt="Portrait of Anoop at a restaurant table" loading="lazy">
+          <dl class="facts">
+            <div><dt>Graduating</dt><dd>May 2027</dd></div>
+            <div><dt>CGPA</dt><dd>7.6 / 10</dd></div>
+            <div><dt>Based in</dt><dd>New Delhi, India</dd></div>
+            <div><dt>Focus</dt><dd>Data Science · ML · Cloud</dd></div>
+          </dl>
+        </aside>
         <div class="about__body">
           <p>
             I grew up in the UAE and finished school at Delhi Private School, Sharjah, before moving to India for
@@ -104,14 +112,10 @@
             I also care about what happens after the notebook. In ShopSense I kept a Gemini re-ranker off the
             default path because it cost about 80× the latency for a 0.035 NDCG gain, and shipped the
             cross-encoder instead as a FastAPI service on Cloud Run with Docker and 153 tests. On the
-            software side I build with React, Node and Express, and I use Claude Code and Cursor daily.
+            software side I build with React, Node and Express, and I work AI-assisted: Claude Code and Cursor
+            help me scaffold services, extend test suites and trace bugs faster, and I review every change
+            before it ships.
           </p>
-          <dl class="facts">
-            <div><dt>Graduating</dt><dd>May 2027</dd></div>
-            <div><dt>CGPA</dt><dd>7.6 / 10</dd></div>
-            <div><dt>Based in</dt><dd>New Delhi, India</dd></div>
-            <div><dt>Focus</dt><dd>Data Science · ML · Cloud</dd></div>
-          </dl>
         </div>
       </div>
     </section>
