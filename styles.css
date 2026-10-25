@@ -168,11 +168,11 @@ p, dd, .skills p { text-wrap: pretty; }
 .profile {
   position: sticky; top: 96px; padding: 10px; border-radius: 18px;
   background:
-    radial-gradient(120% 70% at 0% 0%, color-mix(in srgb, var(--accent) 30%, transparent), transparent 62%),
-    radial-gradient(90% 60% at 100% 100%, color-mix(in srgb, #f2a93b 26%, transparent), transparent 65%),
+    radial-gradient(120% 70% at 0% 0%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 60%),
+    radial-gradient(90% 60% at 100% 100%, color-mix(in srgb, #f2a93b 12%, transparent), transparent 62%),
     var(--surface);
-  border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--line));
-  box-shadow: 0 28px 56px -34px color-mix(in srgb, var(--accent) 55%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 12%, var(--line));
+  box-shadow: 0 24px 48px -34px color-mix(in srgb, var(--accent) 30%, transparent);
 }
 .profile__photo { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; object-position: 50% 22%; border-radius: 12px; }
 .profile .facts { grid-template-columns: 1fr 1fr; gap: 0 14px; margin: 6px 6px 0; border-top: 0; }
