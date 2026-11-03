@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=21">
+  <link rel="stylesheet" href="styles.css?v=23">
 </head>
 <body>
   <header class="nav">
@@ -81,36 +81,6 @@
       </ol>
     </section>
 
-    <!-- RESEARCH -->
-    <section class="research" aria-label="Capstone research">
-      <div class="research__text">
-        <div class="research__top">
-          <p class="kicker"><span class="dot"></span> Capstone research · Thapar Institute</p>
-          <span class="research__badge">Team of 5 · faculty-advised</span>
-        </div>
-        <h2>Do vision-language models see the same thing from orbit and from a drone?</h2>
-        <p class="research__lede">We measured how CLIP-style image embeddings drift between satellite and drone imagery across six object categories, and whether less drift actually means better recognition.</p>
-        <ul class="research__stats">
-          <li><b>14 / 14</b><span>category and model pairs drifted significantly (p &lt; 0.001)</span></li>
-          <li><b>12–30%</b><span>less raw drift with RemoteCLIP than with CLIP</span></li>
-          <li><b>60.2% vs 51.8%</b><span>drone-image accuracy: CLIP still beat RemoteCLIP, so less drift ≠ better recognition</span></li>
-        </ul>
-        <p class="research__stack">CLIP · RemoteCLIP · fine-tuned CLIP · PyTorch · OpenCLIP · DOTA · xView · VisDrone · UAVid</p>
-      </div>
-      <figure class="research__figure">
-        <svg class="research__viz" viewBox="0 0 260 190" role="img" aria-label="Diagram: embeddings of the same category from satellite and drone images form two clusters; the distance between their centres is the drift.">
-          <g class="viz-over"><rect x="41.5" y="114.0" width="8" height="8" rx="1.5"/><rect x="85.9" y="99.8" width="8" height="8" rx="1.5"/><rect x="39.4" y="107.0" width="8" height="8" rx="1.5"/><rect x="75.6" y="125.6" width="8" height="8" rx="1.5"/><rect x="41.7" y="87.3" width="8" height="8" rx="1.5"/><rect x="80.1" y="115.6" width="8" height="8" rx="1.5"/><rect x="96.7" y="123.7" width="8" height="8" rx="1.5"/><rect x="64.0" y="103.6" width="8" height="8" rx="1.5"/><rect x="117.4" y="103.4" width="8" height="8" rx="1.5"/><rect x="50.3" y="89.8" width="8" height="8" rx="1.5"/><rect x="67.9" y="110.3" width="8" height="8" rx="1.5"/><rect x="59.1" y="107.0" width="8" height="8" rx="1.5"/><rect x="71.5" y="119.1" width="8" height="8" rx="1.5"/><rect x="87.9" y="111.4" width="8" height="8" rx="1.5"/><rect x="30.200000000000003" y="119.2" width="8" height="8" rx="1.5"/><rect x="37.6" y="105.3" width="8" height="8" rx="1.5"/><rect x="36.5" y="108.0" width="8" height="8" rx="1.5"/><rect x="50.4" y="111.4" width="8" height="8" rx="1.5"/><rect x="132.0" y="107.2" width="8" height="8" rx="1.5"/><rect x="82.8" y="86.8" width="8" height="8" rx="1.5"/><rect x="60.2" y="118.6" width="8" height="8" rx="1.5"/><rect x="64.1" y="113.9" width="8" height="8" rx="1.5"/></g>
-          <g class="viz-uav"><circle cx="194.0" cy="54.9" r="4.2"/><circle cx="202.7" cy="57.8" r="4.2"/><circle cx="227.6" cy="62.4" r="4.2"/><circle cx="205.0" cy="70.0" r="4.2"/><circle cx="210.1" cy="61.0" r="4.2"/><circle cx="211.0" cy="68.1" r="4.2"/><circle cx="216.0" cy="79.4" r="4.2"/><circle cx="194.7" cy="58.3" r="4.2"/><circle cx="206.6" cy="77.0" r="4.2"/><circle cx="223.2" cy="64.3" r="4.2"/><circle cx="202.5" cy="77.6" r="4.2"/><circle cx="197.4" cy="73.1" r="4.2"/><circle cx="195.5" cy="61.0" r="4.2"/><circle cx="172.7" cy="64.1" r="4.2"/><circle cx="203.2" cy="92.7" r="4.2"/><circle cx="210.6" cy="85.8" r="4.2"/><circle cx="206.8" cy="80.5" r="4.2"/><circle cx="195.5" cy="81.6" r="4.2"/><circle cx="225.7" cy="65.1" r="4.2"/><circle cx="178.8" cy="99.4" r="4.2"/><circle cx="196.6" cy="84.6" r="4.2"/><circle cx="208.6" cy="53.0" r="4.2"/></g>
-          <circle class="viz-centroid viz-centroid--over" cx="70" cy="112" r="10"/>
-          <circle class="viz-centroid viz-centroid--uav" cx="192" cy="70" r="10"/>
-          <line class="viz-drift" x1="82" y1="108" x2="180" y2="74"/>
-          <text class="viz-label" x="122" y="78" text-anchor="middle" transform="rotate(-19 122 78)">drift</text>
-          <text class="viz-caption" x="70" y="178" text-anchor="middle">Satellite</text>
-          <text class="viz-caption" x="192" y="178" text-anchor="middle">Drone (UAV)</text>
-        </svg>
-      </figure>
-    </section>
-
     <!-- ABOUT -->
     <section id="about" class="section about">
       <div class="section__head">
@@ -155,6 +125,36 @@
         <p class="kicker">02 — Selected work</p>
         <h2>Models, measured, then shipped.</h2>
       </div>
+
+      <!-- Capstone research -->
+      <article class="research" aria-label="Capstone research">
+        <div class="research__text">
+          <div class="research__top">
+            <p class="kicker"><span class="dot"></span> Capstone research · Thapar Institute</p>
+            <span class="research__badge">Team of 5 · faculty-advised</span>
+          </div>
+          <h3>Do vision-language models see the same thing from orbit and from a drone?</h3>
+          <p class="research__lede">We measured how CLIP-style image embeddings drift between satellite and drone imagery across six object categories, and whether less drift actually means better recognition.</p>
+          <ul class="research__stats">
+            <li><b>14 / 14</b><span>category and model pairs drifted significantly (p &lt; 0.001)</span></li>
+            <li><b>12–30%</b><span>less raw drift with RemoteCLIP than with CLIP</span></li>
+            <li><b>60.2% vs 51.8%</b><span>drone-image accuracy: CLIP still beat RemoteCLIP, so less drift ≠ better recognition</span></li>
+          </ul>
+          <p class="research__stack">CLIP · RemoteCLIP · fine-tuned CLIP · PyTorch · OpenCLIP · DOTA · xView · VisDrone · UAVid</p>
+        </div>
+        <figure class="research__figure">
+          <svg class="research__viz" viewBox="0 0 260 190" role="img" aria-label="Diagram: embeddings of the same category from satellite and drone images form two clusters; the distance between their centres is the drift.">
+            <g class="viz-over"><rect x="41.5" y="114.0" width="8" height="8" rx="1.5"/><rect x="85.9" y="99.8" width="8" height="8" rx="1.5"/><rect x="39.4" y="107.0" width="8" height="8" rx="1.5"/><rect x="75.6" y="125.6" width="8" height="8" rx="1.5"/><rect x="41.7" y="87.3" width="8" height="8" rx="1.5"/><rect x="80.1" y="115.6" width="8" height="8" rx="1.5"/><rect x="96.7" y="123.7" width="8" height="8" rx="1.5"/><rect x="64.0" y="103.6" width="8" height="8" rx="1.5"/><rect x="117.4" y="103.4" width="8" height="8" rx="1.5"/><rect x="50.3" y="89.8" width="8" height="8" rx="1.5"/><rect x="67.9" y="110.3" width="8" height="8" rx="1.5"/><rect x="59.1" y="107.0" width="8" height="8" rx="1.5"/><rect x="71.5" y="119.1" width="8" height="8" rx="1.5"/><rect x="87.9" y="111.4" width="8" height="8" rx="1.5"/><rect x="30.200000000000003" y="119.2" width="8" height="8" rx="1.5"/><rect x="37.6" y="105.3" width="8" height="8" rx="1.5"/><rect x="36.5" y="108.0" width="8" height="8" rx="1.5"/><rect x="50.4" y="111.4" width="8" height="8" rx="1.5"/><rect x="132.0" y="107.2" width="8" height="8" rx="1.5"/><rect x="82.8" y="86.8" width="8" height="8" rx="1.5"/><rect x="60.2" y="118.6" width="8" height="8" rx="1.5"/><rect x="64.1" y="113.9" width="8" height="8" rx="1.5"/></g>
+            <g class="viz-uav"><circle cx="194.0" cy="54.9" r="4.2"/><circle cx="202.7" cy="57.8" r="4.2"/><circle cx="227.6" cy="62.4" r="4.2"/><circle cx="205.0" cy="70.0" r="4.2"/><circle cx="210.1" cy="61.0" r="4.2"/><circle cx="211.0" cy="68.1" r="4.2"/><circle cx="216.0" cy="79.4" r="4.2"/><circle cx="194.7" cy="58.3" r="4.2"/><circle cx="206.6" cy="77.0" r="4.2"/><circle cx="223.2" cy="64.3" r="4.2"/><circle cx="202.5" cy="77.6" r="4.2"/><circle cx="197.4" cy="73.1" r="4.2"/><circle cx="195.5" cy="61.0" r="4.2"/><circle cx="172.7" cy="64.1" r="4.2"/><circle cx="203.2" cy="92.7" r="4.2"/><circle cx="210.6" cy="85.8" r="4.2"/><circle cx="206.8" cy="80.5" r="4.2"/><circle cx="195.5" cy="81.6" r="4.2"/><circle cx="225.7" cy="65.1" r="4.2"/><circle cx="178.8" cy="99.4" r="4.2"/><circle cx="196.6" cy="84.6" r="4.2"/><circle cx="208.6" cy="53.0" r="4.2"/></g>
+            <circle class="viz-centroid viz-centroid--over" cx="70" cy="112" r="10"/>
+            <circle class="viz-centroid viz-centroid--uav" cx="192" cy="70" r="10"/>
+            <line class="viz-drift" x1="82" y1="108" x2="180" y2="74"/>
+            <text class="viz-label" x="122" y="78" text-anchor="middle" transform="rotate(-19 122 78)">drift</text>
+            <text class="viz-caption" x="70" y="178" text-anchor="middle">Satellite</text>
+            <text class="viz-caption" x="192" y="178" text-anchor="middle">Drone (UAV)</text>
+          </svg>
+        </figure>
+      </article>
 
       <div class="filters" role="group" aria-label="Filter projects">
         <button type="button" data-filter="all" aria-pressed="true">All</button>
