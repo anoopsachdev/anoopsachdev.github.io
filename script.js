@@ -106,12 +106,12 @@ document.querySelectorAll(".project").forEach((card) => {
 });
 
 // Xebia track: hovering a month plays its scene below, leaving the card closes it,
-// and a click or tap always toggles. Hover only opens while the months sit side by side,
+// and a click or tap always toggles. With a mouse the scene always opens below every month,
 // so an opening scene never pushes a month out from under the cursor.
 const now = document.querySelector(".now");
 if (now) {
   const monthBtns = [...now.querySelectorAll(".track__btn")];
-  const sideBySide = matchMedia("(hover: hover) and (min-width: 901px)");
+  const canHover = matchMedia("(hover: hover)");
   let current = null, timer;
   const show = (id) => {
     current = id;
@@ -121,14 +121,22 @@ if (now) {
     now.querySelectorAll(".scene").forEach((s) => s.classList.toggle("is-on", s.id === id));
   };
   const after = (ms, fn) => { clearTimeout(timer); timer = setTimeout(fn, ms); };
+  let shutByClick = null;
   monthBtns.forEach((b) => {
     const id = b.getAttribute("aria-controls");
-    b.addEventListener("mouseenter", () => { if (sideBySide.matches) after(120, () => show(id)); });
-    b.addEventListener("mouseleave", () => { if (current !== id) clearTimeout(timer); });
-    b.addEventListener("click", () => { clearTimeout(timer); show(current === id ? null : id); });
+    // Opens once the pointer rests on a month, so gliding past one on the way to the scene doesn't switch it
+    const rest = () => { if (canHover.matches && current !== id && shutByClick !== id) after(140, () => show(id)); };
+    b.addEventListener("mouseenter", rest);
+    b.addEventListener("mousemove", rest);
+    b.addEventListener("mouseleave", () => { shutByClick = null; if (current !== id) clearTimeout(timer); });
+    b.addEventListener("click", () => {
+      clearTimeout(timer);
+      shutByClick = current === id ? id : null;
+      show(current === id ? null : id);
+    });
   });
   now.addEventListener("mouseenter", () => clearTimeout(timer));
-  now.addEventListener("mouseleave", () => { if (sideBySide.matches) after(250, () => show(null)); });
+  now.addEventListener("mouseleave", () => { if (canHover.matches) after(250, () => show(null)); });
 }
 
 // Fade sections in as they scroll into view
