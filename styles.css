@@ -136,20 +136,68 @@ p, dd, .skills p { text-wrap: pretty; }
 .now__lede em { font-style: normal; color: var(--ink); font-weight: 500; }
 
 .track { list-style: none; margin: 22px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.track li { position: relative; padding-top: 16px; border-top: 2px solid var(--line); }
-.track li.is-now, .track li.is-done { border-image: var(--x-grad) 1; }
-.track li.is-now::before {
+.track > li { position: relative; padding-top: 16px; border-top: 2px solid var(--line); }
+.track > li.is-now, .track > li.is-done { border-image: var(--x-grad) 1; }
+.track > li.is-now::before {
   content: ""; position: absolute; top: -7px; left: 0; width: 12px; height: 12px; border-radius: 50%;
   background: #e05bef; box-shadow: 0 0 0 4px color-mix(in srgb, #e05bef 25%, transparent);
   animation: now-pulse 2.4s ease-in-out infinite;
 }
-.track span { display: block; font: 500 11px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
-.track li.is-now span { color: var(--x-ink); }
+.track > li > span { display: block; font: 500 11px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.track > li.is-now > span { color: var(--x-ink); }
 .track b { display: block; font: 400 19px/1.25 var(--serif); margin-top: 4px; }
 .track small { display: block; font-size: 13.5px; color: var(--muted); margin-top: 2px; }
-.track li:not(.is-now):not(.is-done) b { color: var(--muted); }
+.track > li:not(.is-now):not(.is-done) b { color: var(--muted); }
 @keyframes now-pulse { 50% { box-shadow: 0 0 0 8px color-mix(in srgb, #e05bef 0%, transparent); } }
-@media (prefers-reduced-motion: reduce) { .track li.is-now::before { animation: none; } }
+.track__did { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 5px; }
+.track__did li { position: relative; padding-left: 18px; font-size: 13.5px; line-height: 1.45; color: var(--muted); }
+.track__did li::before { content: "✓"; position: absolute; left: 0; top: 0; font-size: 12px; font-weight: 600; color: var(--x-ink); }
+.is-now .track__did li::before { content: ""; top: .55em; left: 3px; width: 6px; height: 6px; border-radius: 50%; background: var(--x-ink); }
+
+/* The November pitch, set like a ticket stub torn from the track */
+.pitch {
+  display: grid; grid-template-columns: 112px 1fr; margin-top: 24px; border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--x-ink) 26%, var(--line));
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+}
+.pitch__stamp {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 18px 10px;
+  border-right: 2px dashed color-mix(in srgb, var(--x-ink) 30%, transparent);
+  background: color-mix(in srgb, var(--x-ink) 7%, transparent); border-radius: 14px 0 0 14px;
+}
+.pitch__stamp b { font: 400 26px/1 var(--serif); color: var(--x-ink); }
+.pitch__stamp span { font: 500 10.5px var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.pitch__body { padding: 20px 24px 18px; }
+.pitch__kicker { margin: 0 0 4px; font: 500 11px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--x-ink); }
+.pitch h3 { margin: 0; font: 400 24px/1.25 var(--serif); }
+.pitch h3 em { display: block; font: italic 400 16px/1.4 var(--serif); color: var(--muted); }
+.pitch__body > p:not([class]) { margin: 10px 0 0; font-size: 14.5px; color: var(--muted); max-width: 60em; }
+.pitch__flow {
+  list-style: none; margin: 18px 0 4px; padding: 14px 0 0; position: relative;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+}
+.pitch__flow::before {
+  content: ""; position: absolute; top: 0; left: 5px; right: 5px; height: 2px; background: var(--x-grad);
+  transform-origin: left; transform: scaleX(0); transition: transform .9s cubic-bezier(.22,1,.36,1) .25s;
+}
+.pitch__flow li { position: relative; font-size: 13px; line-height: 1.4; color: var(--muted); opacity: 0; transform: translateY(6px); transition: opacity .5s ease, transform .5s ease; }
+.pitch__flow li::before {
+  content: ""; position: absolute; top: -19px; left: 0; width: 12px; height: 12px; border-radius: 50%;
+  background: var(--surface); border: 2px solid #e05bef;
+}
+.pitch__flow b { display: block; font: 500 11.5px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--x-ink); margin-bottom: 2px; }
+.now.in .pitch__flow::before { transform: scaleX(1); }
+.now.in .pitch__flow li { opacity: 1; transform: none; }
+.now.in .pitch__flow li:nth-child(1) { transition-delay: .35s; }
+.now.in .pitch__flow li:nth-child(2) { transition-delay: .5s; }
+.now.in .pitch__flow li:nth-child(3) { transition-delay: .65s; }
+.now.in .pitch__flow li:nth-child(4) { transition-delay: .8s; }
+.pitch__foot { margin: 14px 0 0; font-size: 13.5px; color: var(--muted); }
+.pitch__foot q { font: italic 400 15.5px var(--serif); color: var(--ink); quotes: "“" "”"; margin-right: 4px; }
+@media (prefers-reduced-motion: reduce) {
+  .track > li.is-now::before { animation: none; }
+  .pitch__flow::before, .pitch__flow li { transform: none; opacity: 1; transition: none; }
+}
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .now { --x-ink: #ee83e3; --x-tint: #370038; }
 }
@@ -475,6 +523,14 @@ html.study-open { overflow: hidden; }
 }
 @media (max-width: 600px) {
   .research { grid-template-columns: 1fr; }
+  .pitch { grid-template-columns: 1fr; }
+  .pitch__stamp { flex-direction: row; justify-content: flex-start; gap: 10px; padding: 12px 20px; border-right: 0; border-bottom: 2px dashed color-mix(in srgb, var(--x-ink) 30%, transparent); border-radius: 14px 14px 0 0; }
+  .pitch__stamp b { font-size: 20px; }
+  .pitch__body { padding: 16px 20px; }
+  .pitch__flow { grid-template-columns: 1fr 1fr; row-gap: 30px; }
+  .pitch__flow::before { display: none; }
+  .pitch__flow li { padding-top: 14px; border-top: 2px solid color-mix(in srgb, var(--x-ink) 35%, transparent); }
+  .pitch__flow li::before { top: -7px; }
   .research__visual { max-width: 210px; }
   .panel { width: 100vw; max-height: 92vh; margin: auto 0 0; padding: 26px 18px 22px; border-radius: 18px 18px 0 0; }
   .steps { grid-template-columns: 1fr; }

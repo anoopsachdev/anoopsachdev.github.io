@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=35">
+  <link rel="stylesheet" href="styles.css?v=36">
 </head>
 <body>
   <header class="nav">
@@ -75,10 +75,40 @@
       <h2>Forward Deployed Engineer Launchpad</h2>
       <p class="now__lede">Xebia's programme for taking engineers from <em>“can code”</em> to <em>“can ship”</em>: building, deploying and defending a real AI-powered product, the way Xebia's Forward Deployed Engineers do for clients.</p>
       <ol class="track" aria-label="Programme progress">
-        <li class="is-done"><span>October · done</span><b>Code to cloud</b><small>FastAPI on AWS: Docker, ECR, EC2, auto scaling</small></li>
-        <li class="is-now"><span>November · now</span><b>AI engineering</b><small>RAG, agents, evals and guardrails</small></li>
+        <li class="is-done">
+          <span>October · done</span><b>Code to cloud, then APIs</b>
+          <ul class="track__did">
+            <li>FastAPI on AWS: Docker, ECR, EC2, auto scaling</li>
+            <li>REST APIs: GET and POST, JSON parsing, error handling</li>
+            <li>LLM APIs: Gemini integrated with managed API keys</li>
+          </ul>
+        </li>
+        <li class="is-now">
+          <span>November · now</span><b>Client brief to MVP</b>
+          <ul class="track__did">
+            <li>Users, pain points and assumptions from a client brief</li>
+            <li>User stories with acceptance criteria</li>
+            <li>MVP priorities, user flow and solution architecture</li>
+          </ul>
+        </li>
         <li><span>December</span><b>Production &amp; capstone</b><small>Hardening, monitoring, panel defence</small></li>
       </ol>
+
+      <div class="pitch">
+        <div class="pitch__stamp"><b>3 Nov</b><span>MVP pitch</span></div>
+        <div class="pitch__body">
+          <p class="pitch__kicker">Presented to Xebia mentors and leadership</p>
+          <h3>Chowki <em>a smart chowkidar for NRIs' vacant homes in India</em></h3>
+          <p>Owners abroad worry about squatters and illegal construction, and CCTV with no one watching doesn't help. I scoped an MVP that lets them see, lock and respond from anywhere, with AI that ranks and explains each alert while a person makes the call.</p>
+          <ol class="pitch__flow" aria-label="MVP scope">
+            <li><b>See</b>Cameras and sensors on 4G backup</li>
+            <li><b>Lock</b>Smart lock, time-limited codes</li>
+            <li><b>Alert</b>Vision and anomaly alerts</li>
+            <li><b>Respond</b>On-call guard, photo report</li>
+          </ol>
+          <p class="pitch__foot"><q>CCTV records. Chowki proves.</q> A time-stamped proof-of-possession log. Live Q&amp;A on audience, revenue model and MVP scope.</p>
+        </div>
+      </div>
     </section>
 
     <!-- ABOUT -->
