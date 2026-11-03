@@ -185,15 +185,6 @@ p, dd, .skills p { text-wrap: pretty; }
   background: color-mix(in srgb, var(--x-ink) 5%, var(--surface));
   border: 1px solid color-mix(in srgb, var(--x-ink) 16%, var(--line));
 }
-/* A small tab clipped to the visual's top edge says which month you're looking at */
-.scene__frame { position: relative; }
-.scene .scene__tab {
-  position: absolute; margin: 0; top: -9px; left: 16px; z-index: 1; padding: 2px 10px; border-radius: 999px;
-  font: 500 10.5px/1.5 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--x-ink);
-  background: var(--surface); border: 1px solid color-mix(in srgb, var(--x-ink) 28%, var(--line));
-}
-.scene.is-on .scene__tab { animation: tab-in .5s cubic-bezier(.22,1,.36,1) .25s backwards; }
-@keyframes tab-in { from { opacity: 0; transform: translateY(6px); } }
 .scene figcaption { margin: 0; font: 16px/1.65 var(--sans); }
 .scene figcaption ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .scene figcaption li { position: relative; padding-left: 16px; font-size: 14px; line-height: 1.45; color: var(--ink); }
