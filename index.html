@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=23">
+  <link rel="stylesheet" href="styles.css?v=26">
 </head>
 <body>
   <header class="nav">
@@ -81,6 +81,42 @@
       </ol>
     </section>
 
+    <!-- RESEARCH -->
+    <section class="research" aria-label="Capstone research">
+      <div class="research__text">
+        <div class="research__top">
+          <p class="kicker"><span class="dot"></span> Capstone research · Thapar Institute</p>
+          <span class="research__badge">Ongoing · team of 5</span>
+        </div>
+        <h2>Do vision-language models see the same thing from orbit and from a drone?</h2>
+        <p class="research__summary">Satellites and drones photograph the same objects from very different heights. We test whether AI vision models like CLIP still recognise them consistently, and found that a model drifting less doesn't mean it recognises better.</p>
+        <details class="expand">
+          <summary><span class="expand__more">See the findings</span><span class="expand__less">Show less</span></summary>
+          <div class="expand__body">
+          <p class="research__lede">We compared CLIP, RemoteCLIP and a fine-tuned CLIP on 300 image crops per category from four public aerial datasets, measuring how far each category's embeddings move between the two views.</p>
+          <ul class="research__stats">
+            <li><b>14 / 14</b><span>category and model pairs drifted significantly (p &lt; 0.001)</span></li>
+            <li><b>12–30%</b><span>less raw drift with RemoteCLIP than with CLIP</span></li>
+            <li><b>60.2% vs 51.8%</b><span>drone-image accuracy: CLIP still beat RemoteCLIP, so less drift ≠ better recognition</span></li>
+          </ul>
+          <p class="research__stack">CLIP · RemoteCLIP · fine-tuned CLIP · PyTorch · OpenCLIP · DOTA · xView · VisDrone · UAVid</p>
+          </div>
+        </details>
+      </div>
+      <figure class="research__figure">
+        <svg class="research__viz" viewBox="0 0 260 190" role="img" aria-label="Diagram: embeddings of the same category from satellite and drone images form two clusters; the distance between their centres is the drift.">
+            <g class="viz-over"><rect x="41.5" y="114.0" width="8" height="8" rx="1.5"/><rect x="85.9" y="99.8" width="8" height="8" rx="1.5"/><rect x="39.4" y="107.0" width="8" height="8" rx="1.5"/><rect x="75.6" y="125.6" width="8" height="8" rx="1.5"/><rect x="41.7" y="87.3" width="8" height="8" rx="1.5"/><rect x="80.1" y="115.6" width="8" height="8" rx="1.5"/><rect x="96.7" y="123.7" width="8" height="8" rx="1.5"/><rect x="64.0" y="103.6" width="8" height="8" rx="1.5"/><rect x="117.4" y="103.4" width="8" height="8" rx="1.5"/><rect x="50.3" y="89.8" width="8" height="8" rx="1.5"/><rect x="67.9" y="110.3" width="8" height="8" rx="1.5"/><rect x="59.1" y="107.0" width="8" height="8" rx="1.5"/><rect x="71.5" y="119.1" width="8" height="8" rx="1.5"/><rect x="87.9" y="111.4" width="8" height="8" rx="1.5"/><rect x="30.200000000000003" y="119.2" width="8" height="8" rx="1.5"/><rect x="37.6" y="105.3" width="8" height="8" rx="1.5"/><rect x="36.5" y="108.0" width="8" height="8" rx="1.5"/><rect x="50.4" y="111.4" width="8" height="8" rx="1.5"/><rect x="132.0" y="107.2" width="8" height="8" rx="1.5"/><rect x="82.8" y="86.8" width="8" height="8" rx="1.5"/><rect x="60.2" y="118.6" width="8" height="8" rx="1.5"/><rect x="64.1" y="113.9" width="8" height="8" rx="1.5"/></g>
+            <g class="viz-uav"><circle cx="194.0" cy="54.9" r="4.2"/><circle cx="202.7" cy="57.8" r="4.2"/><circle cx="227.6" cy="62.4" r="4.2"/><circle cx="205.0" cy="70.0" r="4.2"/><circle cx="210.1" cy="61.0" r="4.2"/><circle cx="211.0" cy="68.1" r="4.2"/><circle cx="216.0" cy="79.4" r="4.2"/><circle cx="194.7" cy="58.3" r="4.2"/><circle cx="206.6" cy="77.0" r="4.2"/><circle cx="223.2" cy="64.3" r="4.2"/><circle cx="202.5" cy="77.6" r="4.2"/><circle cx="197.4" cy="73.1" r="4.2"/><circle cx="195.5" cy="61.0" r="4.2"/><circle cx="172.7" cy="64.1" r="4.2"/><circle cx="203.2" cy="92.7" r="4.2"/><circle cx="210.6" cy="85.8" r="4.2"/><circle cx="206.8" cy="80.5" r="4.2"/><circle cx="195.5" cy="81.6" r="4.2"/><circle cx="225.7" cy="65.1" r="4.2"/><circle cx="178.8" cy="99.4" r="4.2"/><circle cx="196.6" cy="84.6" r="4.2"/><circle cx="208.6" cy="53.0" r="4.2"/></g>
+            <circle class="viz-centroid viz-centroid--over" cx="70" cy="112" r="10"/>
+            <circle class="viz-centroid viz-centroid--uav" cx="192" cy="70" r="10"/>
+            <line class="viz-drift" x1="82" y1="108" x2="180" y2="74"/>
+            <text class="viz-label" x="122" y="78" text-anchor="middle" transform="rotate(-19 122 78)">drift</text>
+            <text class="viz-caption" x="70" y="178" text-anchor="middle">Satellite</text>
+            <text class="viz-caption" x="192" y="178" text-anchor="middle">Drone (UAV)</text>
+          </svg>
+      </figure>
+    </section>
+
     <!-- ABOUT -->
     <section id="about" class="section about">
       <div class="section__head">
@@ -123,38 +159,8 @@
     <section id="work" class="section">
       <div class="section__head">
         <p class="kicker">02 — Selected work</p>
-        <h2>Models, measured, then shipped.</h2>
+        <h2>Built, measured, shipped.</h2>
       </div>
-
-      <!-- Capstone research -->
-      <article class="research" aria-label="Capstone research">
-        <div class="research__text">
-          <div class="research__top">
-            <p class="kicker"><span class="dot"></span> Capstone research · Thapar Institute</p>
-            <span class="research__badge">Team of 5 · faculty-advised</span>
-          </div>
-          <h3>Do vision-language models see the same thing from orbit and from a drone?</h3>
-          <p class="research__lede">We measured how CLIP-style image embeddings drift between satellite and drone imagery across six object categories, and whether less drift actually means better recognition.</p>
-          <ul class="research__stats">
-            <li><b>14 / 14</b><span>category and model pairs drifted significantly (p &lt; 0.001)</span></li>
-            <li><b>12–30%</b><span>less raw drift with RemoteCLIP than with CLIP</span></li>
-            <li><b>60.2% vs 51.8%</b><span>drone-image accuracy: CLIP still beat RemoteCLIP, so less drift ≠ better recognition</span></li>
-          </ul>
-          <p class="research__stack">CLIP · RemoteCLIP · fine-tuned CLIP · PyTorch · OpenCLIP · DOTA · xView · VisDrone · UAVid</p>
-        </div>
-        <figure class="research__figure">
-          <svg class="research__viz" viewBox="0 0 260 190" role="img" aria-label="Diagram: embeddings of the same category from satellite and drone images form two clusters; the distance between their centres is the drift.">
-            <g class="viz-over"><rect x="41.5" y="114.0" width="8" height="8" rx="1.5"/><rect x="85.9" y="99.8" width="8" height="8" rx="1.5"/><rect x="39.4" y="107.0" width="8" height="8" rx="1.5"/><rect x="75.6" y="125.6" width="8" height="8" rx="1.5"/><rect x="41.7" y="87.3" width="8" height="8" rx="1.5"/><rect x="80.1" y="115.6" width="8" height="8" rx="1.5"/><rect x="96.7" y="123.7" width="8" height="8" rx="1.5"/><rect x="64.0" y="103.6" width="8" height="8" rx="1.5"/><rect x="117.4" y="103.4" width="8" height="8" rx="1.5"/><rect x="50.3" y="89.8" width="8" height="8" rx="1.5"/><rect x="67.9" y="110.3" width="8" height="8" rx="1.5"/><rect x="59.1" y="107.0" width="8" height="8" rx="1.5"/><rect x="71.5" y="119.1" width="8" height="8" rx="1.5"/><rect x="87.9" y="111.4" width="8" height="8" rx="1.5"/><rect x="30.200000000000003" y="119.2" width="8" height="8" rx="1.5"/><rect x="37.6" y="105.3" width="8" height="8" rx="1.5"/><rect x="36.5" y="108.0" width="8" height="8" rx="1.5"/><rect x="50.4" y="111.4" width="8" height="8" rx="1.5"/><rect x="132.0" y="107.2" width="8" height="8" rx="1.5"/><rect x="82.8" y="86.8" width="8" height="8" rx="1.5"/><rect x="60.2" y="118.6" width="8" height="8" rx="1.5"/><rect x="64.1" y="113.9" width="8" height="8" rx="1.5"/></g>
-            <g class="viz-uav"><circle cx="194.0" cy="54.9" r="4.2"/><circle cx="202.7" cy="57.8" r="4.2"/><circle cx="227.6" cy="62.4" r="4.2"/><circle cx="205.0" cy="70.0" r="4.2"/><circle cx="210.1" cy="61.0" r="4.2"/><circle cx="211.0" cy="68.1" r="4.2"/><circle cx="216.0" cy="79.4" r="4.2"/><circle cx="194.7" cy="58.3" r="4.2"/><circle cx="206.6" cy="77.0" r="4.2"/><circle cx="223.2" cy="64.3" r="4.2"/><circle cx="202.5" cy="77.6" r="4.2"/><circle cx="197.4" cy="73.1" r="4.2"/><circle cx="195.5" cy="61.0" r="4.2"/><circle cx="172.7" cy="64.1" r="4.2"/><circle cx="203.2" cy="92.7" r="4.2"/><circle cx="210.6" cy="85.8" r="4.2"/><circle cx="206.8" cy="80.5" r="4.2"/><circle cx="195.5" cy="81.6" r="4.2"/><circle cx="225.7" cy="65.1" r="4.2"/><circle cx="178.8" cy="99.4" r="4.2"/><circle cx="196.6" cy="84.6" r="4.2"/><circle cx="208.6" cy="53.0" r="4.2"/></g>
-            <circle class="viz-centroid viz-centroid--over" cx="70" cy="112" r="10"/>
-            <circle class="viz-centroid viz-centroid--uav" cx="192" cy="70" r="10"/>
-            <line class="viz-drift" x1="82" y1="108" x2="180" y2="74"/>
-            <text class="viz-label" x="122" y="78" text-anchor="middle" transform="rotate(-19 122 78)">drift</text>
-            <text class="viz-caption" x="70" y="178" text-anchor="middle">Satellite</text>
-            <text class="viz-caption" x="192" y="178" text-anchor="middle">Drone (UAV)</text>
-          </svg>
-        </figure>
-      </article>
 
       <div class="filters" role="group" aria-label="Filter projects">
         <button type="button" data-filter="all" aria-pressed="true">All</button>
@@ -166,17 +172,19 @@
 
       <div class="projects">
         <article class="project project--feature" data-tags="ml cloud swe">
-          <div class="project__meta">
-            <span class="tag">ML · Cloud · SWE</span>
-            <span class="stack">Python · FastAPI · Vertex AI · Docker · Cloud Run</span>
-          </div>
-          <h3>ShopSense <em>LLM-assisted product search</em></h3>
-          <p>Hybrid retrieval over 48,862 products from Amazon's ESCI dataset: BM25 plus semantic embeddings, reciprocal rank fusion and a cross-encoder re-ranker, evaluated on 500 held-out queries with human relevance labels.</p>
-          <ul class="bullets">
-            <li>NDCG@10 up from <b>0.468</b> to <b>0.574</b> over the BM25 baseline.</li>
-            <li>Gemini re-ranking reached 0.600 but took ~50 s/query and $1.14 per 1K queries, so the 0.6 s cross-encoder stayed the default.</li>
-            <li>Shipped on Cloud Run with rate limiting and 189 pytest tests.</li>
-          </ul>
+          <div class="project__meta"><span class="tag">ML · Cloud · SWE</span><span class="stack">Python · FastAPI · Vertex AI · Docker · Cloud Run</span></div>
+          <h3>ShopSense <em>Search that knows “close enough” isn’t a match</em></h3>
+          <p class="project__what">Product search over 48,862 Amazon products, scored against human relevance labels on quality, speed and cost per query.</p>
+          <details class="expand">
+            <summary><span class="expand__more">Why &amp; how</span><span class="expand__less">Show less</span></summary>
+            <div class="expand__body">
+            <ul class="bullets">
+              <li>Built to test whether an LLM re-ranker earns its cost in real search, not just in a demo.</li>
+              <li>Keyword (BM25) and semantic search, re-ranked by a cross-encoder, lift NDCG@10 from <b>0.468</b> to <b>0.574</b>.</li>
+              <li>Gemini re-ranking scored higher (0.600) but took about 50 s per query, so the cross-encoder ships live: a FastAPI service on Cloud Run with 189 tests.</li>
+            </ul>
+            </div>
+          </details>
           <div class="project__links">
             <a href="https://shopsense-819934511305.us-central1.run.app" target="_blank" rel="noopener">Live ↗</a>
             <a href="https://github.com/anoopsachdev/shopsense" target="_blank" rel="noopener">Code ↗</a>
@@ -185,22 +193,56 @@
 
         <article class="project" data-tags="ds ml">
           <div class="project__meta"><span class="tag">Data science · ML</span><span class="stack">Python · SQL · statsmodels · scikit-learn</span></div>
-          <h3>Answer Gap <em>Predicting unanswered questions</em></h3>
-          <p>Predicts which new Stack Overflow questions go unanswered for 24 hours, using 1.26M questions and leakage-safe SQL features. The title-word model ranks a 5% review queue at <b>69.5% precision</b> against a 40.9% base rate. The project also includes hypothesis tests and a designed follow-up A/B test.</p>
-          <div class="project__links"><a href="https://github.com/anoopsachdev/answer-gap-24h" target="_blank" rel="noopener">Code ↗</a></div>
+          <h3>Answer Gap <em>Finding the questions nobody will answer, before they go cold</em></h3>
+          <p class="project__what">Predicts which new Stack Overflow questions will still be unanswered after 24 hours, across 1.26M questions.</p>
+          <details class="expand">
+            <summary><span class="expand__more">Why &amp; how</span><span class="expand__less">Show less</span></summary>
+            <div class="expand__body">
+            <ul class="bullets">
+              <li>Expert attention is limited: if reviewers can check only 5% of new questions, they should check the ones most likely to be ignored.</li>
+              <li>The title-word model fills that 5% queue with truly unanswered questions <b>69.5%</b> of the time, against a 40.9% base rate.</li>
+              <li>Code blocks are linked to a 3.5-point higher answer rate. Because that’s a correlation, I designed the A/B test that would prove it rather than claiming cause.</li>
+            </ul>
+            </div>
+          </details>
+          <div class="project__links">
+            <a href="https://github.com/anoopsachdev/answer-gap-24h" target="_blank" rel="noopener">Code ↗</a>
+          </div>
         </article>
 
         <article class="project" data-tags="ds ml">
           <div class="project__meta"><span class="tag">Data science · ML</span><span class="stack">Pandas · LightGBM · SHAP</span></div>
-          <h3>Dropout Early-Warning <em>with a fairness audit</em></h3>
-          <p>A pipeline over 32,593 registrations and 10.6M platform records. LightGBM on a time-based split reached <b>0.722 PR-AUC</b> and 35.5% recall within a 20% outreach budget. A SHAP audit of false-negative rates across demographic groups found a 0.13 socioeconomic gap.</p>
-          <div class="project__links"><a href="https://github.com/anoopsachdev/student-dropout-early-warning" target="_blank" rel="noopener">Code ↗</a></div>
+          <h3>Dropout Early-Warning <em>Who to call first, and who the list leaves out</em></h3>
+          <p class="project__what">Flags students likely to fail or withdraw while there’s still time for a tutor to step in.</p>
+          <details class="expand">
+            <summary><span class="expand__more">Why &amp; how</span><span class="expand__less">Show less</span></summary>
+            <div class="expand__body">
+            <ul class="bullets">
+              <li>Tutors can reach only about 20% of a class, so the list has to be both accurate and fair.</li>
+              <li>Built on snapshots that can’t see the future, trained on 2013 and tested on 2014: <b>0.722 PR-AUC</b>, finding 1.8× more at-risk students than random picks.</li>
+              <li>SHAP explains each prediction, and a fairness audit found a 0.13 gap in missed students by socioeconomic band.</li>
+            </ul>
+            </div>
+          </details>
+          <div class="project__links">
+            <a href="https://github.com/anoopsachdev/student-dropout-early-warning" target="_blank" rel="noopener">Code ↗</a>
+          </div>
         </article>
 
         <article class="project" data-tags="ml cloud">
           <div class="project__meta"><span class="tag">Deep learning · Cloud</span><span class="stack">PyTorch · YOLOv8 · ONNX · FastAPI · Docker · Cloud Run</span></div>
-          <h3>BeanSight <em>Coffee-bean defect detection</em></h3>
-          <p>Classifies green coffee beans into <b>17 defect categories</b> (EfficientNet-B0) and detects defects in roasted beans (YOLOv8), turning manual quality inspection into a single image upload. Both models are exported to ONNX for CPU inference behind a Dockerised FastAPI backend, deployed to Cloud Run through GitHub Actions CI/CD.</p>
+          <h3>BeanSight <em>A coffee grader in a single upload</em></h3>
+          <p class="project__what">Identifies a bean’s roast level, then finds defects: <b>17 types</b> for green beans, or a bean-by-bean detector for roasted ones.</p>
+          <details class="expand">
+            <summary><span class="expand__more">Why &amp; how</span><span class="expand__less">Show less</span></summary>
+            <div class="expand__body">
+            <ul class="bullets">
+              <li>Turns slow, inconsistent grading by eye into one photo upload.</li>
+              <li>EfficientNet-B0 and YOLOv8 models are exported to ONNX for plain-CPU inference, shrinking the server image from about 4.2 GB to about 320 MB.</li>
+              <li>Deploys to Cloud Run automatically through GitHub Actions, with no stored cloud keys.</li>
+            </ul>
+            </div>
+          </details>
           <div class="project__links">
             <a href="https://coffee-bean-analyzer-876034946934.us-central1.run.app" target="_blank" rel="noopener">Live ↗</a>
             <a href="https://github.com/anoopsachdev/BeanSight" target="_blank" rel="noopener">Code ↗</a>
@@ -209,8 +251,18 @@
 
         <article class="project" data-tags="swe">
           <div class="project__meta"><span class="tag">Software engineering</span><span class="stack">React · Node · Express · MongoDB</span></div>
-          <h3>Project Camp <em>Collaborative Kanban</em></h3>
-          <p>A team project-management app with Kanban boards, shared notes and role-based access control. Includes JWT access and refresh tokens, email verification and password reset via Nodemailer, plus Cloudinary file storage.</p>
+          <h3>Project Camp <em>Trello’s idea, built from the ground up</em></h3>
+          <p class="project__what">A team project manager with Kanban boards, subtasks, shared notes and three permission levels.</p>
+          <details class="expand">
+            <summary><span class="expand__more">Why &amp; how</span><span class="expand__less">Show less</span></summary>
+            <div class="expand__body">
+            <ul class="bullets">
+              <li>Built to own every layer of a real collaborative app, especially secure sign-in and who-can-do-what permissions.</li>
+              <li>JWT sign-in, email verification and password reset, plus Cloudinary file uploads.</li>
+              <li>Frontend on Vercel, backend on Render, with every button tagged so automated browser tests can find it.</li>
+            </ul>
+            </div>
+          </details>
           <div class="project__links">
             <a href="https://project-camp-kanban.vercel.app" target="_blank" rel="noopener">Live ↗</a>
             <a href="https://github.com/anoopsachdev/Project-Camp" target="_blank" rel="noopener">Code ↗</a>
