@@ -106,8 +106,7 @@ document.querySelectorAll(".project").forEach((card) => {
 });
 
 // Xebia track: hovering a month plays its scene below, leaving the card closes it,
-// and a click or tap always toggles. With a mouse the scene always opens below every month,
-// so an opening scene never pushes a month out from under the cursor.
+// and a click or tap always toggles. In one column the scene opens under its month.
 const now = document.querySelector(".now");
 if (now) {
   const monthBtns = [...now.querySelectorAll(".track__btn")];
