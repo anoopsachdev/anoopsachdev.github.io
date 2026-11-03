@@ -186,8 +186,7 @@ p, dd, .skills p { text-wrap: pretty; }
   border: 1px solid color-mix(in srgb, var(--x-ink) 16%, var(--line));
 }
 .scene figcaption { margin: 0; font: 16px/1.65 var(--sans); }
-.scene figcaption span { display: block; font: 500 11px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--x-ink); }
-.scene figcaption ul { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 6px; }
+.scene figcaption ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .scene figcaption li { position: relative; padding-left: 16px; font-size: 14px; line-height: 1.45; color: var(--ink); }
 .scene figcaption li::before { content: ""; position: absolute; left: 2px; top: .58em; width: 5px; height: 5px; border-radius: 50%; background: var(--x-ink); opacity: .7; }
 
@@ -589,7 +588,7 @@ html.study-open { overflow: hidden; }
 
 
   .track { grid-template-columns: 1fr; gap: 18px; }
-  .scene { grid-template-columns: 1fr; gap: 14px; }
+  .scene { grid-template-columns: 1fr; gap: 14px; padding-bottom: 12px; }
   /* One column: the scene opens right under the month that was tapped */
   .track > li:nth-child(1) { order: 1; }
   .track > li:nth-child(2) { order: 3; }
