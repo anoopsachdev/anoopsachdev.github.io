@@ -53,6 +53,19 @@ b, strong { font-weight: 600; }
   border: 1px solid var(--line); background: var(--surface); color: var(--ink);
   width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; cursor: pointer;
 }
+/* The icon shows the theme you'd switch to: a moon in light mode, a sun in dark mode */
+.theme-toggle svg { grid-area: 1 / 1; transition: transform .5s cubic-bezier(.22,1,.36,1), opacity .3s ease; }
+.theme-toggle .icon-sun { color: var(--accent); opacity: 0; transform: rotate(-90deg) scale(.4); }
+.theme-toggle:hover .icon-moon { transform: rotate(-15deg); }
+:root[data-theme="dark"] .theme-toggle .icon-moon { opacity: 0; transform: rotate(90deg) scale(.4); }
+:root[data-theme="dark"] .theme-toggle .icon-sun { opacity: 1; transform: none; }
+:root[data-theme="dark"] .theme-toggle:hover .icon-sun { transform: rotate(45deg); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .icon-moon { opacity: 0; transform: rotate(90deg) scale(.4); }
+  :root:not([data-theme="light"]) .theme-toggle .icon-sun { opacity: 1; transform: none; }
+  :root:not([data-theme="light"]) .theme-toggle:hover .icon-sun { transform: rotate(45deg); }
+}
+@media (prefers-reduced-motion: reduce) { .theme-toggle svg { transition: none; } }
 
 main { max-width: var(--max); margin: 0 auto; padding: 0 16px; }
 
@@ -480,9 +493,9 @@ html.study-open { overflow: hidden; }
 .project.is-open .project__card { box-shadow: 0 24px 48px -30px rgb(0 0 0 / .4); border-color: var(--accent); }
 .project.is-open .project__arrow { transform: rotate(90deg); }
 @media (hover: hover) {
-  .project:hover .project__more { grid-template-rows: 1fr; opacity: 1; transition: grid-template-rows .5s cubic-bezier(.22,1,.36,1), opacity .4s ease .06s; }
-  .project:hover .project__card { transform: translateY(-3px); box-shadow: 0 24px 48px -30px rgb(0 0 0 / .4); }
-  .project:hover .project__arrow { transform: rotate(90deg); }
+  .project:hover:not(.is-shut) .project__more { grid-template-rows: 1fr; opacity: 1; transition: grid-template-rows .5s cubic-bezier(.22,1,.36,1), opacity .4s ease .06s; }
+  .project:hover:not(.is-shut) .project__card { transform: translateY(-3px); box-shadow: 0 24px 48px -30px rgb(0 0 0 / .4); }
+  .project:hover:not(.is-shut) .project__arrow { transform: rotate(90deg); }
 }
 @media (prefers-reduced-motion: reduce) { .project__card, .project__more { transition: none; } }
 .project--feature { grid-column: 1 / -1; }

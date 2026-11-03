@@ -96,13 +96,19 @@ function connectPanel(card, panel, frameEl = card) {
 const capstone = document.getElementById("capstone");
 if (capstone) connectPanel(capstone, document.getElementById("capstone-study"));
 // Project cards: tap or click (or Enter on the title) expands the card in place; hover does the same on mouse devices
+// A click on a card that hover has opened closes it, and it stays shut until the pointer leaves
+const hoverable = matchMedia("(hover: hover)");
 document.querySelectorAll(".project").forEach((card) => {
   const btn = card.querySelector(".project__open");
   card.addEventListener("click", (e) => {
     if (e.target.closest("a")) return;
-    const open = card.classList.toggle("is-open");
-    btn.setAttribute("aria-expanded", String(open));
+    const shown = card.classList.contains("is-open") ||
+      (hoverable.matches && card.matches(":hover") && !card.classList.contains("is-shut"));
+    card.classList.toggle("is-open", !shown);
+    card.classList.toggle("is-shut", shown);
+    btn.setAttribute("aria-expanded", String(!shown));
   });
+  card.addEventListener("mouseleave", () => card.classList.remove("is-shut"));
 });
 
 // Xebia track: hovering a month plays its scene below, leaving the card closes it,
