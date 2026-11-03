@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=29">
+  <link rel="stylesheet" href="styles.css?v=31">
 </head>
 <body>
   <header class="nav">
@@ -75,8 +75,8 @@
       <h2>Forward Deployed Engineer Launchpad</h2>
       <p class="now__lede">Xebia's programme for taking engineers from <em>“can code”</em> to <em>“can ship”</em>: building, deploying and defending a real AI-powered product, the way Xebia's Forward Deployed Engineers do for clients.</p>
       <ol class="track" aria-label="Programme progress">
-        <li class="is-now"><span>October · now</span><b>Code to cloud</b><small>FastAPI on AWS: Docker, ECR, EC2, auto scaling</small></li>
-        <li><span>November</span><b>AI engineering</b><small>RAG, agents, evals and guardrails</small></li>
+        <li class="is-done"><span>October · done</span><b>Code to cloud</b><small>FastAPI on AWS: Docker, ECR, EC2, auto scaling</small></li>
+        <li class="is-now"><span>November · now</span><b>AI engineering</b><small>RAG, agents, evals and guardrails</small></li>
         <li><span>December</span><b>Production &amp; capstone</b><small>Hardening, monitoring, panel defence</small></li>
       </ol>
     </section>
@@ -151,8 +151,8 @@
         </div>
       </article>
 
-      <dialog class="study" id="capstone-study" aria-labelledby="study-title">
-        <button class="study__close" type="button" aria-label="Close the study">×</button>
+      <dialog class="panel study" id="capstone-study" aria-labelledby="study-title">
+        <button class="panel__close" type="button" aria-label="Close the study">×</button>
         <div class="study__head">
           <p class="kicker"><span class="dot"></span> Capstone research · Thapar Institute</p>
           <span class="research__badge">Ongoing · team of 5</span>
@@ -181,6 +181,35 @@
             </ul>
           </div>
         </div>
+        <section class="study__more" aria-label="Method and results">
+          <h3>How we measured it</h3>
+          <ol class="steps">
+            <li><b>Sources</b><span>DOTA and xView (satellite); VisDrone and UAVid (drone)</span></li>
+            <li><b>Crops</b><span>300 labelled object crops per category and view</span></li>
+            <li><b>Encoders</b><span>CLIP, RemoteCLIP and a CLIP fine-tuned on drone images</span></li>
+            <li><b>Embeddings</b><span>a centre and spread for every category in each view</span></li>
+            <li><b>Evaluation</b><span>drift, text alignment and crop classification, with permutation tests</span></li>
+          </ol>
+          <div class="charts">
+            <figure class="chart">
+              <figcaption><b>Drift relative to CLIP</b><span>Raw distance between satellite and drone centres. CLIP = 100; lower means less drift.</span></figcaption>
+              <div class="chart__row"><span class="chart__label">Small vehicle</span><div class="chart__bars"><div class="bar bar--remote" style="--v:77"><i></i><em>77</em></div><div class="bar bar--tuned" style="--v:64"><i></i><em>64</em></div></div></div>
+              <div class="chart__row"><span class="chart__label">Large vehicle</span><div class="chart__bars"><div class="bar bar--remote" style="--v:88"><i></i><em>88</em></div><div class="bar bar--tuned" style="--v:37"><i></i><em>37</em></div></div></div>
+              <div class="chart__row"><span class="chart__label">Car</span><div class="chart__bars"><div class="bar bar--remote" style="--v:85"><i></i><em>85</em></div></div></div>
+              <div class="chart__row"><span class="chart__label">Bus</span><div class="chart__bars"><div class="bar bar--remote" style="--v:86"><i></i><em>86</em></div></div></div>
+              <div class="chart__row"><span class="chart__label">Truck</span><div class="chart__bars"><div class="bar bar--remote" style="--v:83"><i></i><em>83</em></div></div></div>
+              <div class="chart__row"><span class="chart__label">Building</span><div class="chart__bars"><div class="bar bar--remote" style="--v:70"><i></i><em>70</em></div></div></div>
+              <p class="chart__key"><span class="key key--remote"></span>RemoteCLIP <span class="key key--tuned"></span>Fine-tuned CLIP</p>
+            </figure>
+            <figure class="chart">
+              <figcaption><b>Recognition accuracy</b><span>Four-category crop classification. Less drift did not mean better recognition.</span></figcaption>
+              <div class="chart__row"><span class="chart__label">Satellite</span><div class="chart__bars"><div class="bar bar--clip" style="--v:32.9"><i></i><em>32.9%</em></div><div class="bar bar--remote" style="--v:27.3"><i></i><em>27.3%</em></div></div></div>
+              <div class="chart__row"><span class="chart__label">Drone</span><div class="chart__bars"><div class="bar bar--clip" style="--v:60.2"><i></i><em>60.2%</em></div><div class="bar bar--remote" style="--v:51.8"><i></i><em>51.8%</em></div></div></div>
+              <p class="chart__key"><span class="key key--clip"></span>CLIP <span class="key key--remote"></span>RemoteCLIP</p>
+            </figure>
+          </div>
+          <p class="study__takeaway"><b>What it shows:</b> a model can drift less and still recognise worse, so stability and meaning have to be evaluated together.</p>
+        </section>
         <p class="research__stack">CLIP · RemoteCLIP · fine-tuned CLIP · PyTorch · OpenCLIP · DOTA · xView · VisDrone · UAVid</p>
       </dialog>
 
@@ -193,104 +222,177 @@
       </div>
 
       <div class="projects">
-        <article class="project project--feature" data-tags="ml cloud swe">
+        <article class="project project--feature" data-tags="ml cloud swe" data-panel="p-shopsense">
           <div class="project__meta"><span class="tag">ML · Cloud · SWE</span><span class="stack">Python · FastAPI · Vertex AI · Docker · Cloud Run</span></div>
-          <h3>ShopSense <em>Search that knows “close enough” isn’t a match</em></h3>
+          <h3><button class="project__open" type="button" aria-haspopup="dialog" aria-controls="p-shopsense">ShopSense</button> <em>Search that knows “close enough” isn’t a match</em></h3>
           <p class="project__what">Product search over 48,862 Amazon products, scored against human relevance labels on quality, speed and cost per query.</p>
-          <details class="expand">
-            <summary><span class="expand__more">Why &amp; how</span><span class="expand__less">Show less</span></summary>
-            <div class="expand__body">
-            <ul class="bullets">
-              <li>Built to test whether an LLM re-ranker earns its cost in real search, not just in a demo.</li>
-              <li>Keyword (BM25) and semantic search, re-ranked by a cross-encoder, lift NDCG@10 from <b>0.468</b> to <b>0.574</b>.</li>
-              <li>Gemini re-ranking scored higher (0.600) but took about 50 s per query, so the cross-encoder ships live: a FastAPI service on Cloud Run with 189 tests.</li>
-            </ul>
-            </div>
-          </details>
-          <div class="project__links">
+          <div class="project__foot">
+            <span class="project__cue" aria-hidden="true">Why &amp; how <span class="project__arrow">→</span></span>
+            <div class="project__links">
             <a href="https://shopsense-819934511305.us-central1.run.app" target="_blank" rel="noopener">Live ↗</a>
             <a href="https://github.com/anoopsachdev/shopsense" target="_blank" rel="noopener">Code ↗</a>
+            </div>
           </div>
         </article>
 
-        <article class="project" data-tags="ds ml">
+        <article class="project" data-tags="ds ml" data-panel="p-answer-gap">
           <div class="project__meta"><span class="tag">Data science · ML</span><span class="stack">Python · SQL · statsmodels · scikit-learn</span></div>
-          <h3>Answer Gap <em>Finding the questions nobody will answer, before they go cold</em></h3>
+          <h3><button class="project__open" type="button" aria-haspopup="dialog" aria-controls="p-answer-gap">Answer Gap</button> <em>Finding the questions nobody will answer, before they go cold</em></h3>
           <p class="project__what">Predicts which new Stack Overflow questions will still be unanswered after 24 hours, across 1.26M questions.</p>
-          <details class="expand">
-            <summary><span class="expand__more">Why &amp; how</span><span class="expand__less">Show less</span></summary>
-            <div class="expand__body">
-            <ul class="bullets">
-              <li>Expert attention is limited: if reviewers can check only 5% of new questions, they should check the ones most likely to be ignored.</li>
-              <li>The title-word model fills that 5% queue with truly unanswered questions <b>69.5%</b> of the time, against a 40.9% base rate.</li>
-              <li>Code blocks are linked to a 3.5-point higher answer rate. Because that’s a correlation, I designed the A/B test that would prove it rather than claiming cause.</li>
-            </ul>
-            </div>
-          </details>
-          <div class="project__links">
+          <div class="project__foot">
+            <span class="project__cue" aria-hidden="true">Why &amp; how <span class="project__arrow">→</span></span>
+            <div class="project__links">
             <a href="https://github.com/anoopsachdev/answer-gap-24h" target="_blank" rel="noopener">Code ↗</a>
+            </div>
           </div>
         </article>
 
-        <article class="project" data-tags="ds ml">
+        <article class="project" data-tags="ds ml" data-panel="p-dropout">
           <div class="project__meta"><span class="tag">Data science · ML</span><span class="stack">Pandas · LightGBM · SHAP</span></div>
-          <h3>Dropout Early-Warning <em>Who to call first, and who the list leaves out</em></h3>
+          <h3><button class="project__open" type="button" aria-haspopup="dialog" aria-controls="p-dropout">Dropout Early-Warning</button> <em>Who to call first, and who the list leaves out</em></h3>
           <p class="project__what">Flags students likely to fail or withdraw while there’s still time for a tutor to step in.</p>
-          <details class="expand">
-            <summary><span class="expand__more">Why &amp; how</span><span class="expand__less">Show less</span></summary>
-            <div class="expand__body">
-            <ul class="bullets">
-              <li>Tutors can reach only about 20% of a class, so the list has to be both accurate and fair.</li>
-              <li>Built on snapshots that can’t see the future, trained on 2013 and tested on 2014: <b>0.722 PR-AUC</b>, finding 1.8× more at-risk students than random picks.</li>
-              <li>SHAP explains each prediction, and a fairness audit found a 0.13 gap in missed students by socioeconomic band.</li>
-            </ul>
-            </div>
-          </details>
-          <div class="project__links">
+          <div class="project__foot">
+            <span class="project__cue" aria-hidden="true">Why &amp; how <span class="project__arrow">→</span></span>
+            <div class="project__links">
             <a href="https://github.com/anoopsachdev/student-dropout-early-warning" target="_blank" rel="noopener">Code ↗</a>
+            </div>
           </div>
         </article>
 
-        <article class="project" data-tags="ml cloud">
+        <article class="project" data-tags="ml cloud" data-panel="p-beansight">
           <div class="project__meta"><span class="tag">Deep learning · Cloud</span><span class="stack">PyTorch · YOLOv8 · ONNX · FastAPI · Docker · Cloud Run</span></div>
-          <h3>BeanSight <em>A coffee grader in a single upload</em></h3>
+          <h3><button class="project__open" type="button" aria-haspopup="dialog" aria-controls="p-beansight">BeanSight</button> <em>A coffee grader in a single upload</em></h3>
           <p class="project__what">Identifies a bean’s roast level, then finds defects: <b>17 types</b> for green beans, or a bean-by-bean detector for roasted ones.</p>
-          <details class="expand">
-            <summary><span class="expand__more">Why &amp; how</span><span class="expand__less">Show less</span></summary>
-            <div class="expand__body">
-            <ul class="bullets">
-              <li>Turns slow, inconsistent grading by eye into one photo upload.</li>
-              <li>EfficientNet-B0 and YOLOv8 models are exported to ONNX for plain-CPU inference, shrinking the server image from about 4.2 GB to about 320 MB.</li>
-              <li>Deploys to Cloud Run automatically through GitHub Actions, with no stored cloud keys.</li>
-            </ul>
-            </div>
-          </details>
-          <div class="project__links">
+          <div class="project__foot">
+            <span class="project__cue" aria-hidden="true">Why &amp; how <span class="project__arrow">→</span></span>
+            <div class="project__links">
             <a href="https://coffee-bean-analyzer-876034946934.us-central1.run.app" target="_blank" rel="noopener">Live ↗</a>
             <a href="https://github.com/anoopsachdev/BeanSight" target="_blank" rel="noopener">Code ↗</a>
+            </div>
           </div>
         </article>
 
-        <article class="project" data-tags="swe">
+        <article class="project" data-tags="swe" data-panel="p-project-camp">
           <div class="project__meta"><span class="tag">Software engineering</span><span class="stack">React · Node · Express · MongoDB</span></div>
-          <h3>Project Camp <em>Trello’s idea, built from the ground up</em></h3>
+          <h3><button class="project__open" type="button" aria-haspopup="dialog" aria-controls="p-project-camp">Project Camp</button> <em>Trello’s idea, built from the ground up</em></h3>
           <p class="project__what">A team project manager with Kanban boards, subtasks, shared notes and three permission levels.</p>
-          <details class="expand">
-            <summary><span class="expand__more">Why &amp; how</span><span class="expand__less">Show less</span></summary>
-            <div class="expand__body">
-            <ul class="bullets">
-              <li>Built to own every layer of a real collaborative app, especially secure sign-in and who-can-do-what permissions.</li>
-              <li>JWT sign-in, email verification and password reset, plus Cloudinary file uploads.</li>
-              <li>Frontend on Vercel, backend on Render, with every button tagged so automated browser tests can find it.</li>
-            </ul>
-            </div>
-          </details>
-          <div class="project__links">
+          <div class="project__foot">
+            <span class="project__cue" aria-hidden="true">Why &amp; how <span class="project__arrow">→</span></span>
+            <div class="project__links">
             <a href="https://project-camp-kanban.vercel.app" target="_blank" rel="noopener">Live ↗</a>
             <a href="https://github.com/anoopsachdev/Project-Camp" target="_blank" rel="noopener">Code ↗</a>
+            </div>
           </div>
         </article>
       </div>
+
+      <dialog class="panel" id="p-shopsense" aria-labelledby="p-shopsense-title">
+        <button class="panel__close" type="button" aria-label="Close ShopSense">×</button>
+        <div class="project__meta"><span class="tag">ML · Cloud · SWE</span><span class="stack">Python · FastAPI · Vertex AI · Docker · Cloud Run</span></div>
+        <h2 id="p-shopsense-title">ShopSense</h2>
+        <p class="panel__tagline">Search that knows “close enough” isn’t a match</p>
+        <ul class="panel__numbers">
+          <li><b>0.468 → 0.574</b><span>NDCG@10 over keyword search</span></li>
+          <li><b>0.600</b><span>with Gemini, at ~50 s per query</span></li>
+          <li><b>189</b><span>tests behind the live service</span></li>
+        </ul>
+        <p class="panel__lead">Product search over 48,862 Amazon products, scored against human relevance labels on quality, speed and cost per query.</p>
+        <p class="panel__why">Built to test whether an LLM re-ranker earns its cost in real search, not just in a demo.</p>
+        <ul class="bullets">
+          <li>Keyword (BM25) and semantic search, re-ranked by a cross-encoder, lift NDCG@10 from <b>0.468</b> to <b>0.574</b>.</li>
+          <li>Gemini re-ranking scored higher (0.600) but took about 50 s per query, so the cross-encoder ships live: a FastAPI service on Cloud Run with 189 tests.</li>
+        </ul>
+        <div class="project__links panel__links">
+          <a href="https://shopsense-819934511305.us-central1.run.app" target="_blank" rel="noopener">Live ↗</a>
+          <a href="https://github.com/anoopsachdev/shopsense" target="_blank" rel="noopener">Code ↗</a>
+        </div>
+      </dialog>
+
+      <dialog class="panel" id="p-answer-gap" aria-labelledby="p-answer-gap-title">
+        <button class="panel__close" type="button" aria-label="Close Answer Gap">×</button>
+        <div class="project__meta"><span class="tag">Data science · ML</span><span class="stack">Python · SQL · statsmodels · scikit-learn</span></div>
+        <h2 id="p-answer-gap-title">Answer Gap</h2>
+        <p class="panel__tagline">Finding the questions nobody will answer, before they go cold</p>
+        <ul class="panel__numbers">
+          <li><b>69.5%</b><span>precision in a 5% review queue</span></li>
+          <li><b>40.9%</b><span>base rate it beats</span></li>
+          <li><b>1.26M</b><span>questions analysed</span></li>
+        </ul>
+        <p class="panel__lead">Predicts which new Stack Overflow questions will still be unanswered after 24 hours, across 1.26M questions.</p>
+        <p class="panel__why">Expert attention is limited: if reviewers can check only 5% of new questions, they should check the ones most likely to be ignored.</p>
+        <ul class="bullets">
+          <li>The title-word model fills that 5% queue with truly unanswered questions <b>69.5%</b> of the time, against a 40.9% base rate.</li>
+          <li>Code blocks are linked to a 3.5-point higher answer rate. Because that’s a correlation, I designed the A/B test that would prove it rather than claiming cause.</li>
+        </ul>
+        <div class="project__links panel__links">
+          <a href="https://github.com/anoopsachdev/answer-gap-24h" target="_blank" rel="noopener">Code ↗</a>
+        </div>
+      </dialog>
+
+      <dialog class="panel" id="p-dropout" aria-labelledby="p-dropout-title">
+        <button class="panel__close" type="button" aria-label="Close Dropout Early-Warning">×</button>
+        <div class="project__meta"><span class="tag">Data science · ML</span><span class="stack">Pandas · LightGBM · SHAP</span></div>
+        <h2 id="p-dropout-title">Dropout Early-Warning</h2>
+        <p class="panel__tagline">Who to call first, and who the list leaves out</p>
+        <ul class="panel__numbers">
+          <li><b>0.722</b><span>PR-AUC on a later year</span></li>
+          <li><b>1.8×</b><span>more at-risk students than random</span></li>
+          <li><b>0.13</b><span>socioeconomic gap, measured</span></li>
+        </ul>
+        <p class="panel__lead">Flags students likely to fail or withdraw while there’s still time for a tutor to step in.</p>
+        <p class="panel__why">Tutors can reach only about 20% of a class, so the list has to be both accurate and fair.</p>
+        <ul class="bullets">
+          <li>Built on snapshots that can’t see the future, trained on 2013 and tested on 2014: <b>0.722 PR-AUC</b>, finding 1.8× more at-risk students than random picks.</li>
+          <li>SHAP explains each prediction, and a fairness audit found a 0.13 gap in missed students by socioeconomic band.</li>
+        </ul>
+        <div class="project__links panel__links">
+          <a href="https://github.com/anoopsachdev/student-dropout-early-warning" target="_blank" rel="noopener">Code ↗</a>
+        </div>
+      </dialog>
+
+      <dialog class="panel" id="p-beansight" aria-labelledby="p-beansight-title">
+        <button class="panel__close" type="button" aria-label="Close BeanSight">×</button>
+        <div class="project__meta"><span class="tag">Deep learning · Cloud</span><span class="stack">PyTorch · YOLOv8 · ONNX · FastAPI · Docker · Cloud Run</span></div>
+        <h2 id="p-beansight-title">BeanSight</h2>
+        <p class="panel__tagline">A coffee grader in a single upload</p>
+        <ul class="panel__numbers">
+          <li><b>17</b><span>green-bean defect types</span></li>
+          <li><b>4.2 GB → 320 MB</b><span>server image after ONNX</span></li>
+          <li><b>3</b><span>models in one CPU container</span></li>
+        </ul>
+        <p class="panel__lead">Identifies a bean’s roast level, then finds defects: <b>17 types</b> for green beans, or a bean-by-bean detector for roasted ones.</p>
+        <p class="panel__why">Turns slow, inconsistent grading by eye into one photo upload.</p>
+        <ul class="bullets">
+          <li>EfficientNet-B0 and YOLOv8 models are exported to ONNX for plain-CPU inference, shrinking the server image from about 4.2 GB to about 320 MB.</li>
+          <li>Deploys to Cloud Run automatically through GitHub Actions, with no stored cloud keys.</li>
+        </ul>
+        <div class="project__links panel__links">
+          <a href="https://coffee-bean-analyzer-876034946934.us-central1.run.app" target="_blank" rel="noopener">Live ↗</a>
+          <a href="https://github.com/anoopsachdev/BeanSight" target="_blank" rel="noopener">Code ↗</a>
+        </div>
+      </dialog>
+
+      <dialog class="panel" id="p-project-camp" aria-labelledby="p-project-camp-title">
+        <button class="panel__close" type="button" aria-label="Close Project Camp">×</button>
+        <div class="project__meta"><span class="tag">Software engineering</span><span class="stack">React · Node · Express · MongoDB</span></div>
+        <h2 id="p-project-camp-title">Project Camp</h2>
+        <p class="panel__tagline">Trello’s idea, built from the ground up</p>
+        <ul class="panel__numbers">
+          <li><b>3</b><span>permission levels</span></li>
+          <li><b>JWT</b><span>access and refresh tokens</span></li>
+          <li><b>Live</b><span>on Vercel and Render</span></li>
+        </ul>
+        <p class="panel__lead">A team project manager with Kanban boards, subtasks, shared notes and three permission levels.</p>
+        <p class="panel__why">Built to own every layer of a real collaborative app, especially secure sign-in and who-can-do-what permissions.</p>
+        <ul class="bullets">
+          <li>JWT sign-in, email verification and password reset, plus Cloudinary file uploads.</li>
+          <li>Frontend on Vercel, backend on Render, with every button tagged so automated browser tests can find it.</li>
+        </ul>
+        <div class="project__links panel__links">
+          <a href="https://project-camp-kanban.vercel.app" target="_blank" rel="noopener">Live ↗</a>
+          <a href="https://github.com/anoopsachdev/Project-Camp" target="_blank" rel="noopener">Code ↗</a>
+        </div>
+      </dialog>
 
       <h3 class="subhead">More on GitHub</h3>
       <ul class="mini">
@@ -329,7 +431,7 @@
         <figure class="g4"><img src="assets/img/thapar-library.jpg" alt="Multi-level atrium of the Thapar library with glass roof and staircases" loading="lazy"><figcaption>The library</figcaption></figure>
         <figure class="g5"><img src="assets/img/thapar-campus.jpg" alt="Red sandstone campus buildings at Thapar at dusk" loading="lazy"><figcaption>Around campus</figcaption></figure>
         <figure class="g1"><img src="assets/img/dps-sharjah.jpg" alt="Front of Delhi Private School, Sharjah, with school buses parked outside" loading="lazy"><figcaption>Delhi Private School, Sharjah</figcaption></figure>
-        <figure class="g2"><img src="assets/img/dps-sharjah-entrance.jpg" alt="Entrance of Delhi Private School with its name in English and Arabic" loading="lazy"><figcaption>Class X &amp; XII, 2021–23</figcaption></figure>
+        <figure class="g2"><img src="assets/img/dps-sharjah-entrance.jpg" alt="Entrance of Delhi Private School with its name in English and Arabic" loading="lazy"><figcaption>Class 4–12, 2014–23</figcaption></figure>
       </div>
 
       <ol class="timeline">
@@ -379,6 +481,6 @@
     </nav>
   </footer>
 
-  <script src="script.js?v=14"></script>
+  <script src="script.js?v=16"></script>
 </body>
 </html>
