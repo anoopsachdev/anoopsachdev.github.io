@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=34">
+  <link rel="stylesheet" href="styles.css?v=35">
 </head>
 <body>
   <header class="nav">
@@ -246,99 +246,104 @@
           </div>
         </article>
 
-        <article class="project" data-tags="ds ml">
-          <div class="project__card">
-            <div class="project__meta"><span class="tag">Data science · ML</span><span class="stack">Python · SQL · statsmodels · scikit-learn</span></div>
-            <h3><button class="project__open" type="button" aria-expanded="false" aria-controls="p-answer-gap-more">Answer Gap</button> <em>Finding the questions nobody will answer, before they go cold</em></h3>
-            <p class="project__what">Predicts which new Stack Overflow questions will still be unanswered after 24 hours, across 1.26M questions.</p>
-            <div class="project__more" id="p-answer-gap-more">
-              <div>
-                <p class="project__why">Expert attention is limited: if reviewers can check only 5% of new questions, they should check the ones most likely to be ignored.</p>
-                <ul class="bullets">
-                  <li>The title-word model fills that 5% queue with truly unanswered questions <b>69.5%</b> of the time, against a 40.9% base rate.</li>
-                  <li>Code blocks are linked to a 3.5-point higher answer rate. Because that’s a correlation, I designed the A/B test that would prove it rather than claiming cause.</li>
-                </ul>
+        <div class="projects__cols">
+          <div class="projects__col">
+            <article class="project" data-tags="ds ml">
+              <div class="project__card">
+                <div class="project__meta"><span class="tag">Data science · ML</span><span class="stack">Python · SQL · statsmodels · scikit-learn</span></div>
+                <h3><button class="project__open" type="button" aria-expanded="false" aria-controls="p-answer-gap-more">Answer Gap</button> <em>Finding the questions nobody will answer, before they go cold</em></h3>
+                <p class="project__what">Predicts which new Stack Overflow questions will still be unanswered after 24 hours, across 1.26M questions.</p>
+                <div class="project__more" id="p-answer-gap-more">
+                  <div>
+                    <p class="project__why">Expert attention is limited: if reviewers can check only 5% of new questions, they should check the ones most likely to be ignored.</p>
+                    <ul class="bullets">
+                      <li>The title-word model fills that 5% queue with truly unanswered questions <b>69.5%</b> of the time, against a 40.9% base rate.</li>
+                      <li>Code blocks are linked to a 3.5-point higher answer rate. Because that’s a correlation, I designed the A/B test that would prove it rather than claiming cause.</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="project__foot">
+                  <span class="project__cue" aria-hidden="true">Explore the project <span class="project__arrow">→</span></span>
+                  <div class="project__links">
+                    <a href="https://github.com/anoopsachdev/answer-gap-24h" target="_blank" rel="noopener">Code ↗</a>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="project__foot">
-              <span class="project__cue" aria-hidden="true">Explore the project <span class="project__arrow">→</span></span>
-              <div class="project__links">
-                <a href="https://github.com/anoopsachdev/answer-gap-24h" target="_blank" rel="noopener">Code ↗</a>
-              </div>
-            </div>
-          </div>
-        </article>
+            </article>
 
-        <article class="project" data-tags="ds ml">
-          <div class="project__card">
-            <div class="project__meta"><span class="tag">Data science · ML</span><span class="stack">Pandas · LightGBM · SHAP</span></div>
-            <h3><button class="project__open" type="button" aria-expanded="false" aria-controls="p-dropout-more">Dropout Early-Warning</button> <em>Who to call first, and who the list leaves out</em></h3>
-            <p class="project__what">Flags students likely to fail or withdraw while there’s still time for a tutor to step in.</p>
-            <div class="project__more" id="p-dropout-more">
-              <div>
-                <p class="project__why">Tutors can reach only about 20% of a class, so the list has to be both accurate and fair.</p>
-                <ul class="bullets">
-                  <li>Built on snapshots that can’t see the future, trained on 2013 and tested on 2014: <b>0.722 PR-AUC</b>, finding 1.8× more at-risk students than random picks.</li>
-                  <li>SHAP explains each prediction, and a fairness audit found a 0.13 gap in missed students by socioeconomic band.</li>
-                </ul>
+            <article class="project" data-tags="ml cloud">
+              <div class="project__card">
+                <div class="project__meta"><span class="tag">Deep learning · Cloud</span><span class="stack">PyTorch · YOLOv8 · ONNX · FastAPI · Docker · Cloud Run</span></div>
+                <h3><button class="project__open" type="button" aria-expanded="false" aria-controls="p-beansight-more">BeanSight</button> <em>A coffee grader in a single upload</em></h3>
+                <p class="project__what">Identifies a bean’s roast level, then finds defects: <b>17 types</b> for green beans, or a bean-by-bean detector for roasted ones.</p>
+                <div class="project__more" id="p-beansight-more">
+                  <div>
+                    <p class="project__why">Turns slow, inconsistent grading by eye into one photo upload.</p>
+                    <ul class="bullets">
+                      <li>EfficientNet-B0 and YOLOv8 models are exported to ONNX for plain-CPU inference, shrinking the server image from about 4.2 GB to about 320 MB.</li>
+                      <li>Deploys to Cloud Run automatically through GitHub Actions, with no stored cloud keys.</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="project__foot">
+                  <span class="project__cue" aria-hidden="true">Explore the project <span class="project__arrow">→</span></span>
+                  <div class="project__links">
+                    <a href="https://coffee-bean-analyzer-876034946934.us-central1.run.app" target="_blank" rel="noopener">Live ↗</a>
+                    <a href="https://github.com/anoopsachdev/BeanSight" target="_blank" rel="noopener">Code ↗</a>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="project__foot">
-              <span class="project__cue" aria-hidden="true">Explore the project <span class="project__arrow">→</span></span>
-              <div class="project__links">
-                <a href="https://github.com/anoopsachdev/student-dropout-early-warning" target="_blank" rel="noopener">Code ↗</a>
-              </div>
-            </div>
+            </article>
           </div>
-        </article>
+          <div class="projects__col">
+            <article class="project" data-tags="ds ml">
+              <div class="project__card">
+                <div class="project__meta"><span class="tag">Data science · ML</span><span class="stack">Pandas · LightGBM · SHAP</span></div>
+                <h3><button class="project__open" type="button" aria-expanded="false" aria-controls="p-dropout-more">Dropout Early-Warning</button> <em>Who to call first, and who the list leaves out</em></h3>
+                <p class="project__what">Flags students likely to fail or withdraw while there’s still time for a tutor to step in.</p>
+                <div class="project__more" id="p-dropout-more">
+                  <div>
+                    <p class="project__why">Tutors can reach only about 20% of a class, so the list has to be both accurate and fair.</p>
+                    <ul class="bullets">
+                      <li>Built on snapshots that can’t see the future, trained on 2013 and tested on 2014: <b>0.722 PR-AUC</b>, finding 1.8× more at-risk students than random picks.</li>
+                      <li>SHAP explains each prediction, and a fairness audit found a 0.13 gap in missed students by socioeconomic band.</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="project__foot">
+                  <span class="project__cue" aria-hidden="true">Explore the project <span class="project__arrow">→</span></span>
+                  <div class="project__links">
+                    <a href="https://github.com/anoopsachdev/student-dropout-early-warning" target="_blank" rel="noopener">Code ↗</a>
+                  </div>
+                </div>
+              </div>
+            </article>
 
-        <article class="project" data-tags="ml cloud">
-          <div class="project__card">
-            <div class="project__meta"><span class="tag">Deep learning · Cloud</span><span class="stack">PyTorch · YOLOv8 · ONNX · FastAPI · Docker · Cloud Run</span></div>
-            <h3><button class="project__open" type="button" aria-expanded="false" aria-controls="p-beansight-more">BeanSight</button> <em>A coffee grader in a single upload</em></h3>
-            <p class="project__what">Identifies a bean’s roast level, then finds defects: <b>17 types</b> for green beans, or a bean-by-bean detector for roasted ones.</p>
-            <div class="project__more" id="p-beansight-more">
-              <div>
-                <p class="project__why">Turns slow, inconsistent grading by eye into one photo upload.</p>
-                <ul class="bullets">
-                  <li>EfficientNet-B0 and YOLOv8 models are exported to ONNX for plain-CPU inference, shrinking the server image from about 4.2 GB to about 320 MB.</li>
-                  <li>Deploys to Cloud Run automatically through GitHub Actions, with no stored cloud keys.</li>
-                </ul>
+            <article class="project" data-tags="swe">
+              <div class="project__card">
+                <div class="project__meta"><span class="tag">Software engineering</span><span class="stack">React · Node · Express · MongoDB</span></div>
+                <h3><button class="project__open" type="button" aria-expanded="false" aria-controls="p-project-camp-more">Project Camp</button> <em>Trello’s idea, built from the ground up</em></h3>
+                <p class="project__what">A team project manager with Kanban boards, subtasks, shared notes and three permission levels.</p>
+                <div class="project__more" id="p-project-camp-more">
+                  <div>
+                    <p class="project__why">Built to own every layer of a real collaborative app, especially secure sign-in and who-can-do-what permissions.</p>
+                    <ul class="bullets">
+                      <li>JWT sign-in, email verification and password reset, plus Cloudinary file uploads.</li>
+                      <li>Frontend on Vercel, backend on Render, with every button tagged so automated browser tests can find it.</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="project__foot">
+                  <span class="project__cue" aria-hidden="true">Explore the project <span class="project__arrow">→</span></span>
+                  <div class="project__links">
+                    <a href="https://project-camp-kanban.vercel.app" target="_blank" rel="noopener">Live ↗</a>
+                    <a href="https://github.com/anoopsachdev/Project-Camp" target="_blank" rel="noopener">Code ↗</a>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="project__foot">
-              <span class="project__cue" aria-hidden="true">Explore the project <span class="project__arrow">→</span></span>
-              <div class="project__links">
-                <a href="https://coffee-bean-analyzer-876034946934.us-central1.run.app" target="_blank" rel="noopener">Live ↗</a>
-                <a href="https://github.com/anoopsachdev/BeanSight" target="_blank" rel="noopener">Code ↗</a>
-              </div>
-            </div>
+            </article>
           </div>
-        </article>
-
-        <article class="project" data-tags="swe">
-          <div class="project__card">
-            <div class="project__meta"><span class="tag">Software engineering</span><span class="stack">React · Node · Express · MongoDB</span></div>
-            <h3><button class="project__open" type="button" aria-expanded="false" aria-controls="p-project-camp-more">Project Camp</button> <em>Trello’s idea, built from the ground up</em></h3>
-            <p class="project__what">A team project manager with Kanban boards, subtasks, shared notes and three permission levels.</p>
-            <div class="project__more" id="p-project-camp-more">
-              <div>
-                <p class="project__why">Built to own every layer of a real collaborative app, especially secure sign-in and who-can-do-what permissions.</p>
-                <ul class="bullets">
-                  <li>JWT sign-in, email verification and password reset, plus Cloudinary file uploads.</li>
-                  <li>Frontend on Vercel, backend on Render, with every button tagged so automated browser tests can find it.</li>
-                </ul>
-              </div>
-            </div>
-            <div class="project__foot">
-              <span class="project__cue" aria-hidden="true">Explore the project <span class="project__arrow">→</span></span>
-              <div class="project__links">
-                <a href="https://project-camp-kanban.vercel.app" target="_blank" rel="noopener">Live ↗</a>
-                <a href="https://github.com/anoopsachdev/Project-Camp" target="_blank" rel="noopener">Code ↗</a>
-              </div>
-            </div>
-          </div>
-        </article>
+        </div>
       </div>
 
       <h3 class="subhead">More on GitHub</h3>

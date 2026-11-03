@@ -332,6 +332,9 @@ html.study-open { overflow: hidden; }
 .filters button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 .project[hidden] { display: none; }
 .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; align-items: start; }
+/* Two independent stacks, so expanding a card only moves the cards below it in the same column */
+.projects__cols { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+.projects__col { display: flex; flex-direction: column; gap: 20px; }
 .project__card {
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
   padding: 28px; display: flex; flex-direction: column; transform-origin: 50% 0;
@@ -459,6 +462,12 @@ html.study-open { overflow: hidden; }
 
   .track { grid-template-columns: 1fr; gap: 18px; }
   .projects, .skills { grid-template-columns: 1fr; }
+  .projects__cols { grid-template-columns: 1fr; }
+  .projects__col { display: contents; }
+  .projects__col:first-child > .project:nth-child(1) { order: 1; }
+  .projects__col:last-child > .project:nth-child(1) { order: 2; }
+  .projects__col:first-child > .project:nth-child(2) { order: 3; }
+  .projects__col:last-child > .project:nth-child(2) { order: 4; }
   .mini, .certs { grid-template-columns: 1fr 1fr; }
   .gallery { grid-template-columns: 1fr 1fr; grid-template-rows: 260px 200px 200px; }
   .g1, .g2, .g3, .g4, .g5 { grid-column: span 1; }
