@@ -150,7 +150,7 @@ p, dd, .skills p { text-wrap: pretty; }
 .track > li:not(.is-now):not(.is-done) b { color: var(--muted); }
 @keyframes now-pulse { 50% { box-shadow: 0 0 0 8px color-mix(in srgb, #e05bef 0%, transparent); } }
 
-/* October and November are buttons: hover or tap plays that month's scene below */
+/* October and November are buttons: a click or tap plays that month's scene below */
 .track__btn {
   display: block; width: 100%; padding: 0; border: 0; background: none;
   font: inherit; color: inherit; text-align: left; cursor: pointer;
@@ -158,19 +158,15 @@ p, dd, .skills p { text-wrap: pretty; }
 .track__btn b { display: inline; background: linear-gradient(var(--x-ink), var(--x-ink)) 0 100% / 0 1.5px no-repeat; transition: background-size .35s ease, color .2s; }
 .track__btn:hover b, .track__btn[aria-expanded="true"] b { background-size: 100% 1.5px; color: var(--x-ink); }
 .track__btn:focus-visible { outline: 2px solid var(--x-ink); outline-offset: 4px; border-radius: 6px; }
-.track__play {
-  position: relative; display: inline-block; width: 22px; height: 22px; margin-left: 8px; vertical-align: 1px; border-radius: 50%;
-  border: 1.5px solid color-mix(in srgb, var(--x-ink) 45%, transparent);
-  transition: transform .35s cubic-bezier(.22,1,.36,1), background .3s, border-color .3s;
+.track__cue {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 8px;
+  font: 500 12px var(--mono); font-style: normal; color: var(--x-ink); opacity: .8; transition: opacity .25s;
 }
-.track__play::after {
-  content: ""; position: absolute; top: 50%; left: 50%; margin: -4px 0 0 -2px;
-  border-left: 7px solid var(--x-ink); border-top: 4px solid transparent; border-bottom: 4px solid transparent;
-  transition: border-color .3s;
-}
-.track__btn:hover .track__play { transform: scale(1.08); }
-.track__btn[aria-expanded="true"] .track__play { transform: rotate(90deg); background: var(--x-grad); border-color: transparent; }
-.track__btn[aria-expanded="true"] .track__play::after { border-left-color: #fff; }
+.track__arrow { display: inline-block; font-style: normal; transition: transform .35s cubic-bezier(.22,1,.36,1); }
+.track__btn:hover .track__cue { opacity: 1; }
+.track__btn:hover .track__arrow { transform: translateX(3px); }
+.track__btn[aria-expanded="true"] .track__cue { opacity: 1; }
+.track__btn[aria-expanded="true"] .track__arrow { transform: rotate(90deg); }
 
 /* The stage the scenes play on; collapsed until a month is chosen */
 .track > li.now__stage { grid-column: 1 / -1; margin-top: -16px; padding: 0; border: 0; }
@@ -191,7 +187,9 @@ p, dd, .skills p { text-wrap: pretty; }
 }
 .scene figcaption { margin: 0; font: 16px/1.65 var(--sans); }
 .scene figcaption span { display: block; font: 500 11px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--x-ink); }
-.scene figcaption p { margin: 6px 0 0; font-size: 14px; line-height: 1.6; color: var(--muted); }
+.scene figcaption ul { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 6px; }
+.scene figcaption li { position: relative; padding-left: 16px; font-size: 14px; line-height: 1.45; color: var(--ink); }
+.scene figcaption li::before { content: ""; position: absolute; left: 2px; top: .58em; width: 5px; height: 5px; border-radius: 50%; background: var(--x-ink); opacity: .7; }
 
 /* Scene parts */
 .scene svg * { transform-box: fill-box; transform-origin: center; }
@@ -200,10 +198,10 @@ p, dd, .skills p { text-wrap: pretty; }
 .s-ln { fill: color-mix(in srgb, var(--x-ink) 32%, transparent); transform-origin: left; }
 .s-flow { fill: none; stroke: var(--x-ink); stroke-width: 2; stroke-dasharray: 4 6; opacity: .6; }
 .s-lane { fill: none; stroke: color-mix(in srgb, var(--x-ink) 30%, transparent); stroke-width: 1.5; stroke-dasharray: 3 5; }
-.s-whale, .o-boxes rect { fill: #2496ed; }
+.s-whale, .o-boxes rect { fill: color-mix(in srgb, #2496ed 78%, var(--surface)); }
 .o-boxes rect { stroke: var(--surface); stroke-width: 1.5; }
 .s-eye { fill: var(--surface); }
-.s-wave { fill: none; stroke: #2496ed; stroke-width: 1.6; opacity: .45; }
+.s-wave { fill: none; stroke: #2496ed; stroke-width: 1.4; opacity: .3; }
 .s-vm { fill: var(--x-ink); opacity: .85; transform-origin: bottom; }
 .s-pkt rect { fill: var(--x-ink); }
 .s-pkt--back rect { fill: #e05bef; }

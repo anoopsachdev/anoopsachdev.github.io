@@ -105,13 +105,14 @@ document.querySelectorAll(".project").forEach((card) => {
   });
 });
 
-// Xebia track: hovering a month plays its scene below; a click or tap pins it open
+// Xebia track: a click or tap plays that month's scene below; clicking it again closes it.
+// Hover only nudges the cue, since opening on hover moved the months under the cursor.
 const now = document.querySelector(".now");
 if (now) {
   const monthBtns = [...now.querySelectorAll(".track__btn")];
-  const canHover = matchMedia("(hover: hover)").matches;
-  let pinned = null;
+  let current = null;
   const show = (id) => {
+    current = id;
     now.classList.toggle("is-showing", Boolean(id));
     if (id) now.dataset.scene = id;
     monthBtns.forEach((b) => b.setAttribute("aria-expanded", String(b.getAttribute("aria-controls") === id)));
@@ -119,10 +120,8 @@ if (now) {
   };
   monthBtns.forEach((b) => {
     const id = b.getAttribute("aria-controls");
-    if (canHover) b.addEventListener("mouseenter", () => show(id));
-    b.addEventListener("click", () => { pinned = pinned === id ? null : id; show(pinned); });
+    b.addEventListener("click", () => show(current === id ? null : id));
   });
-  if (canHover) now.addEventListener("mouseleave", () => show(pinned));
 }
 
 // Fade sections in as they scroll into view
