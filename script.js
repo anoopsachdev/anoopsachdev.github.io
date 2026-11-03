@@ -39,9 +39,9 @@ const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const EASE = "cubic-bezier(.22, 1, .36, 1)";
 let openPanel = null;
 
-function connectPanel(card, panel) {
+function connectPanel(card, panel, frameEl = card) {
   const cardFrame = () => {
-    const from = card.getBoundingClientRect(), to = panel.getBoundingClientRect();
+    const from = frameEl.getBoundingClientRect(), to = panel.getBoundingClientRect();
     const w = Math.min(from.width, to.width), h = Math.min(from.height, to.height);
     const x = (to.width - w) / 2, y = (to.height - h) / 2;
     const dx = from.left + from.width / 2 - (to.left + to.width / 2);
@@ -97,8 +97,30 @@ const capstone = document.getElementById("capstone");
 if (capstone) connectPanel(capstone, document.getElementById("capstone-study"));
 document.querySelectorAll(".project[data-panel]").forEach((card) => {
   const panel = document.getElementById(card.dataset.panel);
-  if (panel) connectPanel(card, panel);
+  if (panel) connectPanel(card, panel, card.querySelector(".project__card"));
 });
+
+// Project hover-expand: each card keeps its resting footprint while its inner card floats and grows on hover
+const projectGrid = document.querySelector(".projects");
+const canHover = matchMedia("(hover: hover) and (min-width: 601px)");
+function layoutProjects() {
+  if (!projectGrid) return;
+  const items = [...projectGrid.querySelectorAll(".project")];
+  if (!canHover.matches) {
+    projectGrid.classList.remove("is-floating");
+    items.forEach((a) => (a.style.height = ""));
+    return;
+  }
+  projectGrid.classList.add("is-floating");
+  items.forEach((a) => {
+    const inner = a.querySelector(".project__card"), more = a.querySelector(".project__more");
+    a.style.height = inner.offsetHeight - more.offsetHeight + "px";
+  });
+}
+layoutProjects();
+canHover.addEventListener("change", layoutProjects);
+if (projectGrid) new ResizeObserver(layoutProjects).observe(projectGrid);
+document.fonts && document.fonts.ready.then(layoutProjects);
 
 // Fade sections in as they scroll into view
 const revealables = document.querySelectorAll(".now, .research, .section__head, .project, .about__grid, .skills, .gallery, .timeline, .stats");
