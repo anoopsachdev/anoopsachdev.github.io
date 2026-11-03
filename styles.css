@@ -215,7 +215,6 @@ p, dd, .skills p { text-wrap: pretty; }
   background: linear-gradient(135deg, color-mix(in srgb, var(--p-tint) 80%, var(--surface)), var(--surface) 55%) var(--surface);
   box-shadow: 0 40px 80px -30px rgb(0 0 0 / .5);
 }
-.panel:not(.study) { width: min(720px, calc(100vw - 32px)); }
 .study { --p-ink: var(--t-ink); --p-tint: var(--t-tint); --p-grad: var(--t-grad); }
 .panel::before { content: ""; position: absolute; inset: 0 0 auto; height: 4px; background: var(--p-grad); }
 .panel::backdrop { background: rgb(12 10 8 / .55); backdrop-filter: blur(4px); }
@@ -228,16 +227,6 @@ p, dd, .skills p { text-wrap: pretty; }
 }
 .panel__close:hover { border-color: var(--p-ink); color: var(--p-ink); transform: rotate(90deg); }
 .panel__close:focus-visible { outline: 2px solid var(--p-ink); outline-offset: 2px; }
-.panel__tagline { margin: 6px 0 0; font: italic 400 18px var(--serif); color: var(--muted); }
-.panel__numbers { list-style: none; margin: 20px 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.panel__numbers li { padding-top: 10px; border-top: 2px solid color-mix(in srgb, var(--p-ink) 40%, var(--line)); }
-.panel__numbers b { display: block; font: 400 22px/1.2 var(--serif); color: var(--p-ink); }
-.panel__numbers span { display: block; font-size: 13px; line-height: 1.45; color: var(--muted); margin-top: 4px; }
-.panel__lead { margin: 0; font-size: 17px; }
-.panel__why { margin: 10px 0 0; color: var(--muted); }
-.panel .bullets { margin: 14px 0 0; }
-.panel__links { margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--line); }
-.panel .project__meta { margin-bottom: 4px; }
 
 /* Capstone panel content */
 .study__head { padding-right: 8px; }
@@ -294,7 +283,7 @@ html.study-open { overflow: hidden; }
   .research, .research__arrow { transition: none; }
 }
 
-/* Project cards open into a panel: whole card is clickable, links stay clickable on top */
+/* Project cards: whole card toggles the extra detail; links stay clickable on top */
 .project { position: relative; cursor: pointer; }
 .project__open { all: unset; cursor: pointer; }
 .project__card { position: relative; }
@@ -304,8 +293,7 @@ html.study-open { overflow: hidden; }
 .project__foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .project__foot .project__links { margin-top: 0; padding-top: 0; position: relative; z-index: 1; }
 .project__cue { display: inline-flex; gap: 6px; font: 500 12.5px var(--mono); color: var(--accent); }
-.project__arrow { transition: transform .25s ease; }
-.project:hover .project__arrow { transform: translateX(4px); }
+.project__arrow { display: inline-block; transition: transform .35s cubic-bezier(.22,1,.36,1); }
 
 /* SECTIONS */
 .section { padding: 100px 0 0; }
@@ -350,18 +338,22 @@ html.study-open { overflow: hidden; }
   transition: transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s cubic-bezier(.22,1,.36,1), border-color .3s ease;
 }
 .project:hover .project__card { border-color: var(--accent); }
-/* Hover-expand (mouse devices): the card floats, widens slightly and the rest of the story slides in over the content below */
-.project__more { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .5s cubic-bezier(.22,1,.36,1), opacity .35s ease; }
+/* Expand in place: hover (mouse) or tap/Enter (any device) reveals the rest; cards below move down to make room */
+.project__more {
+  display: grid; grid-template-rows: 0fr; opacity: 0;
+  transition: grid-template-rows .45s cubic-bezier(.22,1,.36,1) .12s, opacity .3s ease .12s;
+}
 .project__more > div { overflow: hidden; min-height: 0; }
 .project__why { margin: 0 0 10px !important; }
 .project__more .bullets { margin: 0 0 16px; }
-.projects.is-floating .project { z-index: 0; transition: z-index 0s .5s; }
-.projects.is-floating .project__card { position: absolute; inset: 0 0 auto 0; }
-.projects.is-floating .project:is(:hover, :focus-within) { z-index: 5; transition: z-index 0s; }
-.projects.is-floating .project:is(:hover, :focus-within) .project__card {
-  transform: scale(1.035); box-shadow: 0 34px 70px -34px rgb(0 0 0 / .45);
+.project.is-open .project__more { grid-template-rows: 1fr; opacity: 1; transition: grid-template-rows .5s cubic-bezier(.22,1,.36,1), opacity .4s ease .06s; }
+.project.is-open .project__card { box-shadow: 0 24px 48px -30px rgb(0 0 0 / .4); border-color: var(--accent); }
+.project.is-open .project__arrow { transform: rotate(90deg); }
+@media (hover: hover) {
+  .project:hover .project__more { grid-template-rows: 1fr; opacity: 1; transition: grid-template-rows .5s cubic-bezier(.22,1,.36,1), opacity .4s ease .06s; }
+  .project:hover .project__card { transform: translateY(-3px); box-shadow: 0 24px 48px -30px rgb(0 0 0 / .4); }
+  .project:hover .project__arrow { transform: rotate(90deg); }
 }
-.projects.is-floating .project:is(:hover, :focus-within) .project__more { grid-template-rows: 1fr; opacity: 1; transition: grid-template-rows .5s cubic-bezier(.22,1,.36,1), opacity .4s ease .08s; }
 @media (prefers-reduced-motion: reduce) { .project__card, .project__more { transition: none; } }
 .project--feature { grid-column: 1 / -1; }
 .project--feature h3 { font-size: 40px; }
@@ -475,8 +467,7 @@ html.study-open { overflow: hidden; }
 @media (max-width: 600px) {
   .research { grid-template-columns: 1fr; }
   .research__visual { max-width: 210px; }
-  .panel, .panel:not(.study) { width: 100vw; max-height: 92vh; margin: auto 0 0; padding: 26px 18px 22px; border-radius: 18px 18px 0 0; }
-  .panel__numbers { grid-template-columns: 1fr; gap: 10px; }
+  .panel { width: 100vw; max-height: 92vh; margin: auto 0 0; padding: 26px 18px 22px; border-radius: 18px 18px 0 0; }
   .steps { grid-template-columns: 1fr; }
   .research__stats { grid-template-columns: 1fr; gap: 12px; }
   /* Phones: photo stack sits under the intro, centred */
