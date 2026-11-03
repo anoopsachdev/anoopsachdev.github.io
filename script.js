@@ -105,12 +105,14 @@ document.querySelectorAll(".project").forEach((card) => {
   });
 });
 
-// Xebia track: a click or tap plays that month's scene below; clicking it again closes it.
-// Hover only nudges the cue, since opening on hover moved the months under the cursor.
+// Xebia track: hovering a month plays its scene below, leaving the card closes it,
+// and a click or tap always toggles. Hover only opens while the months sit side by side,
+// so an opening scene never pushes a month out from under the cursor.
 const now = document.querySelector(".now");
 if (now) {
   const monthBtns = [...now.querySelectorAll(".track__btn")];
-  let current = null;
+  const sideBySide = matchMedia("(hover: hover) and (min-width: 901px)");
+  let current = null, timer;
   const show = (id) => {
     current = id;
     now.classList.toggle("is-showing", Boolean(id));
@@ -118,10 +120,15 @@ if (now) {
     monthBtns.forEach((b) => b.setAttribute("aria-expanded", String(b.getAttribute("aria-controls") === id)));
     now.querySelectorAll(".scene").forEach((s) => s.classList.toggle("is-on", s.id === id));
   };
+  const after = (ms, fn) => { clearTimeout(timer); timer = setTimeout(fn, ms); };
   monthBtns.forEach((b) => {
     const id = b.getAttribute("aria-controls");
-    b.addEventListener("click", () => show(current === id ? null : id));
+    b.addEventListener("mouseenter", () => { if (sideBySide.matches) after(120, () => show(id)); });
+    b.addEventListener("mouseleave", () => { if (current !== id) clearTimeout(timer); });
+    b.addEventListener("click", () => { clearTimeout(timer); show(current === id ? null : id); });
   });
+  now.addEventListener("mouseenter", () => clearTimeout(timer));
+  now.addEventListener("mouseleave", () => { if (sideBySide.matches) after(250, () => show(null)); });
 }
 
 // Fade sections in as they scroll into view

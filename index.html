@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=41">
+  <link rel="stylesheet" href="styles.css?v=43">
 </head>
 <body>
   <header class="nav">
@@ -92,46 +92,49 @@
         <li class="now__stage" role="none">
         <div>
           <figure class="scene" id="scene-oct">
-            <svg viewBox="0 0 600 140" role="img" aria-label="Code is packed into a Docker container, shipped to an auto-scaling cloud, and talks to the Gemini API with GET and POST requests">
-              <defs>
-                <linearGradient id="x-grad" x1="0" x2="1"><stop offset="0" stop-color="#ff6d73"/><stop offset=".55" stop-color="#e05bef"/><stop offset="1" stop-color="#6a00ff"/></linearGradient>
-              </defs>
-              <g class="o-code">
-                <rect class="s-box" x="20" y="40" width="80" height="56" rx="8"/>
-                <circle class="s-dot" cx="31" cy="49" r="2.5"/><circle class="s-dot" cx="39" cy="49" r="2.5"/><circle class="s-dot" cx="47" cy="49" r="2.5"/>
-                <rect class="s-ln" x="30" y="60" width="44" height="5" rx="2.5"/>
-                <rect class="s-ln" x="38" y="70" width="36" height="5" rx="2.5"/>
-                <rect class="s-ln" x="38" y="80" width="50" height="5" rx="2.5"/>
-              </g>
-              <path class="s-flow" d="M108 68 H150"/>
-              <g class="o-whale">
-                <g class="o-boxes">
-                  <rect x="176" y="60" width="11" height="11" rx="1.5"/><rect x="189" y="60" width="11" height="11" rx="1.5"/><rect x="202" y="60" width="11" height="11" rx="1.5"/><rect x="215" y="60" width="11" height="11" rx="1.5"/>
-                  <rect x="189" y="47" width="11" height="11" rx="1.5"/><rect x="202" y="47" width="11" height="11" rx="1.5"/>
-                  <rect x="202" y="34" width="11" height="11" rx="1.5"/>
+            <div class="scene__frame">
+              <b class="scene__tab">Learned in October</b>
+              <svg viewBox="0 0 600 140" role="img" aria-label="Code is packed into a Docker container, shipped to an auto-scaling cloud, and talks to the Gemini API with GET and POST requests">
+                <defs>
+                  <linearGradient id="x-grad" x1="0" x2="1"><stop offset="0" stop-color="#ff6d73"/><stop offset=".55" stop-color="#e05bef"/><stop offset="1" stop-color="#6a00ff"/></linearGradient>
+                </defs>
+                <g class="o-code">
+                  <rect class="s-box" x="20" y="40" width="80" height="56" rx="8"/>
+                  <circle class="s-dot" cx="31" cy="49" r="2.5"/><circle class="s-dot" cx="39" cy="49" r="2.5"/><circle class="s-dot" cx="47" cy="49" r="2.5"/>
+                  <rect class="s-ln" x="30" y="60" width="44" height="5" rx="2.5"/>
+                  <rect class="s-ln" x="38" y="70" width="36" height="5" rx="2.5"/>
+                  <rect class="s-ln" x="38" y="80" width="50" height="5" rx="2.5"/>
                 </g>
-                <path class="s-whale" d="M164 73 H250 C256 73 260 68 261 61 C265 65 270 65 275 61 C273 68 268 72 262 74 C260 92 240 104 206 104 C180 104 164 92 164 73 Z"/>
-                <circle class="s-eye" cx="180" cy="84" r="2.5"/>
-              </g>
-              <path class="s-wave" d="M146 114 q10 -6 20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0"/>
-              <path class="s-flow" d="M282 68 H322"/>
-              <g class="o-cloud">
-                <path class="s-box" d="M338 98 a18 18 0 0 1 2 -36 a26 26 0 0 1 48 -10 a20 20 0 0 1 22 32 a14 14 0 0 1 -6 14 z"/>
-                <rect class="s-vm" x="350" y="70" width="14" height="20" rx="2"/>
-                <rect class="s-vm s-vm2" x="368" y="70" width="14" height="20" rx="2"/>
-                <rect class="s-vm s-vm3" x="386" y="70" width="14" height="20" rx="2"/>
-              </g>
-              <path class="s-lane" d="M424 58 H512"/>
-              <path class="s-lane" d="M424 80 H512"/>
-              <g class="s-pkt o-get"><rect x="424" y="51" width="32" height="14" rx="7"/><text x="440" y="61.5">GET</text></g>
-              <g class="s-pkt o-post"><rect x="424" y="51" width="36" height="14" rx="7"/><text x="442" y="61.5">POST</text></g>
-              <g class="s-pkt s-pkt--back o-json"><rect x="480" y="73" width="32" height="14" rx="7"/><text x="496" y="83.5">{ }</text></g>
-              <path class="o-star" d="M552 38 C555 58 560 65 580 68 C560 71 555 78 552 98 C549 78 544 71 524 68 C544 65 549 58 552 38 Z" fill="url(#x-grad)"/>
-              <text class="s-lbl" x="60" y="132">FastAPI</text>
-              <text class="s-lbl" x="216" y="132">Docker · ECR</text>
-              <text class="s-lbl" x="375" y="132">EC2 · scaling</text>
-              <text class="s-lbl" x="552" y="132">Gemini API</text>
-            </svg>
+                <path class="s-flow" d="M108 68 H150"/>
+                <g class="o-whale">
+                  <g class="o-boxes">
+                    <rect x="176" y="60" width="11" height="11" rx="1.5"/><rect x="189" y="60" width="11" height="11" rx="1.5"/><rect x="202" y="60" width="11" height="11" rx="1.5"/><rect x="215" y="60" width="11" height="11" rx="1.5"/>
+                    <rect x="189" y="47" width="11" height="11" rx="1.5"/><rect x="202" y="47" width="11" height="11" rx="1.5"/>
+                    <rect x="202" y="34" width="11" height="11" rx="1.5"/>
+                  </g>
+                  <path class="s-whale" d="M164 73 H250 C256 73 260 68 261 61 C265 65 270 65 275 61 C273 68 268 72 262 74 C260 92 240 104 206 104 C180 104 164 92 164 73 Z"/>
+                  <circle class="s-eye" cx="180" cy="84" r="2.5"/>
+                </g>
+                <path class="s-wave" d="M146 114 q10 -6 20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0"/>
+                <path class="s-flow" d="M282 68 H322"/>
+                <g class="o-cloud">
+                  <path class="s-box" d="M338 98 a18 18 0 0 1 2 -36 a26 26 0 0 1 48 -10 a20 20 0 0 1 22 32 a14 14 0 0 1 -6 14 z"/>
+                  <rect class="s-vm" x="350" y="70" width="14" height="20" rx="2"/>
+                  <rect class="s-vm s-vm2" x="368" y="70" width="14" height="20" rx="2"/>
+                  <rect class="s-vm s-vm3" x="386" y="70" width="14" height="20" rx="2"/>
+                </g>
+                <path class="s-lane" d="M424 58 H512"/>
+                <path class="s-lane" d="M424 80 H512"/>
+                <g class="s-pkt o-get"><rect x="424" y="51" width="32" height="14" rx="7"/><text x="440" y="61.5">GET</text></g>
+                <g class="s-pkt o-post"><rect x="424" y="51" width="36" height="14" rx="7"/><text x="442" y="61.5">POST</text></g>
+                <g class="s-pkt s-pkt--back o-json"><rect x="480" y="73" width="32" height="14" rx="7"/><text x="496" y="83.5">{ }</text></g>
+                <path class="o-star" d="M552 38 C555 58 560 65 580 68 C560 71 555 78 552 98 C549 78 544 71 524 68 C544 65 549 58 552 38 Z" fill="url(#x-grad)"/>
+                <text class="s-lbl" x="60" y="132">FastAPI</text>
+                <text class="s-lbl" x="216" y="132">Docker · ECR</text>
+                <text class="s-lbl" x="375" y="132">EC2 · scaling</text>
+                <text class="s-lbl" x="552" y="132">Gemini API</text>
+              </svg>
+            </div>
             <figcaption>
               <ul>
                 <li>Packaged a FastAPI app with Docker, pushed to ECR</li>
@@ -143,50 +146,53 @@
           </figure>
 
           <figure class="scene" id="scene-nov">
-            <svg viewBox="0 0 600 140" role="img" aria-label="A camera at a vacant home spots an unknown visitor, an AI model flags and explains it, and the alert reaches the owner's phone abroad, who decides to send a guard">
-              <defs>
-                <linearGradient id="n-cone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e05bef" stop-opacity=".45"/><stop offset="1" stop-color="#e05bef" stop-opacity="0"/></linearGradient>
-              </defs>
-              <g class="o-house">
-                <path class="s-box" d="M26 62 L70 28 L114 62"/>
-                <rect class="s-box" x="34" y="60" width="72" height="46" rx="2"/>
-                <rect class="s-ln" x="42" y="70" width="14" height="12" rx="1.5"/>
-                <rect class="s-box" x="62" y="80" width="16" height="26" rx="1.5"/>
-                <rect class="s-cam" x="104" y="54" width="12" height="7" rx="2"/>
-              </g>
-              <path class="o-cone" d="M108 60 L84 112 L124 112 Z" fill="url(#n-cone)"/>
-              <g class="o-visitor">
-                <circle cx="96" cy="86" r="4"/>
-                <path d="M89 106 C89 96 92 92 96 92 C100 92 103 96 103 106 Z"/>
-              </g>
-              <rect class="o-detect" x="86" y="79" width="20" height="30" rx="2"/>
-              <path class="s-lane" d="M126 72 H172"/>
-              <path class="o-ping" pathLength="100" d="M126 72 H172"/>
-              <g class="o-ai">
-                <rect class="s-box" x="178" y="44" width="56" height="56" rx="12"/>
-                <text class="s-ai" x="206" y="78">AI</text>
-                <rect class="o-rank o-rank1" x="190" y="88" width="32" height="3" rx="1.5"/>
-              </g>
-              <path class="s-lane" d="M240 60 C 320 -4, 420 -4, 488 46"/>
-              <path class="o-arc" pathLength="100" d="M240 60 C 320 -4, 420 -4, 488 46"/>
-              <g class="o-phone">
-                <rect class="s-box" x="494" y="24" width="56" height="96" rx="10"/>
-                <g class="o-note">
-                  <rect class="s-note" x="500" y="36" width="44" height="22" rx="4"/>
-                  <circle class="s-alert" cx="507" cy="47" r="3"/>
-                  <rect class="s-ln" x="513" y="42" width="26" height="3.5" rx="1.75"/>
-                  <rect class="s-ln" x="513" y="49" width="18" height="3.5" rx="1.75"/>
+            <div class="scene__frame">
+              <b class="scene__tab">Learned in November</b>
+              <svg viewBox="0 0 600 140" role="img" aria-label="A camera at a vacant home spots an unknown visitor, an AI model flags and explains it, and the alert reaches the owner's phone abroad, who decides to send a guard">
+                <defs>
+                  <linearGradient id="n-cone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e05bef" stop-opacity=".45"/><stop offset="1" stop-color="#e05bef" stop-opacity="0"/></linearGradient>
+                </defs>
+                <g class="o-house">
+                  <path class="s-box" d="M26 62 L70 28 L114 62"/>
+                  <rect class="s-box" x="34" y="60" width="72" height="46" rx="2"/>
+                  <rect class="s-ln" x="42" y="70" width="14" height="12" rx="1.5"/>
+                  <rect class="s-box" x="62" y="80" width="16" height="26" rx="1.5"/>
+                  <rect class="s-cam" x="104" y="54" width="12" height="7" rx="2"/>
                 </g>
-                <g class="o-acts">
-                  <rect class="s-btn" x="500" y="64" width="44" height="12" rx="6"/>
-                  <rect class="s-btn s-btn--go" x="500" y="80" width="44" height="12" rx="6"/>
-                  <circle class="o-tap" cx="522" cy="86" r="7"/>
+                <path class="o-cone" d="M108 60 L84 112 L124 112 Z" fill="url(#n-cone)"/>
+                <g class="o-visitor">
+                  <circle cx="96" cy="86" r="4"/>
+                  <path d="M89 106 C89 96 92 92 96 92 C100 92 103 96 103 106 Z"/>
                 </g>
-              </g>
-              <text class="s-lbl" x="70" y="132">Camera</text>
-              <text class="s-lbl" x="206" y="132">AI flags it</text>
-              <text class="s-lbl" x="522" y="132">Owner decides</text>
-            </svg>
+                <rect class="o-detect" x="86" y="79" width="20" height="30" rx="2"/>
+                <path class="s-lane" d="M126 72 H172"/>
+                <path class="o-ping" pathLength="100" d="M126 72 H172"/>
+                <g class="o-ai">
+                  <rect class="s-box" x="178" y="44" width="56" height="56" rx="12"/>
+                  <text class="s-ai" x="206" y="78">AI</text>
+                  <rect class="o-rank o-rank1" x="190" y="88" width="32" height="3" rx="1.5"/>
+                </g>
+                <path class="s-lane" d="M240 60 C 320 -4, 420 -4, 488 46"/>
+                <path class="o-arc" pathLength="100" d="M240 60 C 320 -4, 420 -4, 488 46"/>
+                <g class="o-phone">
+                  <rect class="s-box" x="494" y="24" width="56" height="96" rx="10"/>
+                  <g class="o-note">
+                    <rect class="s-note" x="500" y="36" width="44" height="22" rx="4"/>
+                    <circle class="s-alert" cx="507" cy="47" r="3"/>
+                    <rect class="s-ln" x="513" y="42" width="26" height="3.5" rx="1.75"/>
+                    <rect class="s-ln" x="513" y="49" width="18" height="3.5" rx="1.75"/>
+                  </g>
+                  <g class="o-acts">
+                    <rect class="s-btn" x="500" y="64" width="44" height="12" rx="6"/>
+                    <rect class="s-btn s-btn--go" x="500" y="80" width="44" height="12" rx="6"/>
+                    <circle class="o-tap" cx="522" cy="86" r="7"/>
+                  </g>
+                </g>
+                <text class="s-lbl" x="70" y="132">Camera</text>
+                <text class="s-lbl" x="206" y="132">AI flags it</text>
+                <text class="s-lbl" x="522" y="132">Owner decides</text>
+              </svg>
+            </div>
             <figcaption>
               <ul>
                 <li>Client brief → user stories, MVP scope, architecture</li>
@@ -553,6 +559,6 @@
     </nav>
   </footer>
 
-  <script src="script.js?v=21"></script>
+  <script src="script.js?v=22"></script>
 </body>
 </html>
