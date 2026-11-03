@@ -105,6 +105,26 @@ document.querySelectorAll(".project").forEach((card) => {
   });
 });
 
+// Xebia track: hovering a month plays its scene below; a click or tap pins it open
+const now = document.querySelector(".now");
+if (now) {
+  const monthBtns = [...now.querySelectorAll(".track__btn")];
+  const canHover = matchMedia("(hover: hover)").matches;
+  let pinned = null;
+  const show = (id) => {
+    now.classList.toggle("is-showing", Boolean(id));
+    if (id) now.dataset.scene = id;
+    monthBtns.forEach((b) => b.setAttribute("aria-expanded", String(b.getAttribute("aria-controls") === id)));
+    now.querySelectorAll(".scene").forEach((s) => s.classList.toggle("is-on", s.id === id));
+  };
+  monthBtns.forEach((b) => {
+    const id = b.getAttribute("aria-controls");
+    if (canHover) b.addEventListener("mouseenter", () => show(id));
+    b.addEventListener("click", () => { pinned = pinned === id ? null : id; show(pinned); });
+  });
+  if (canHover) now.addEventListener("mouseleave", () => show(pinned));
+}
+
 // Fade sections in as they scroll into view
 const revealables = document.querySelectorAll(".now, .research, .section__head, .project, .about__grid, .skills, .gallery, .timeline, .stats");
 const io = new IntersectionObserver((entries) => {
