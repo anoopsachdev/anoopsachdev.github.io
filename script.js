@@ -278,3 +278,60 @@ document.querySelectorAll("section[id]").forEach((s) => spy.observe(s));
 new IntersectionObserver(([e]) => {
   if (e.isIntersecting) links.forEach((a) => a.classList.remove("active"));
 }, { rootMargin: "-45% 0px -50% 0px" }).observe(document.querySelector(".hero"));
+
+// Page progress: reading the page is a training run. A loss curve runs down the right edge,
+// the dot descends it as you scroll, and each section in the nav is an epoch you can jump to
+const rail = document.querySelector(".rail"), topbar = document.querySelector(".topbar");
+if (rail && topbar) {
+  const svgNS = "http://www.w3.org/2000/svg";
+  const line = rail.querySelector(".rail__line"), track = rail.querySelector(".rail__track");
+  const dot = rail.querySelector(".rail__dot"), read = rail.querySelector(".rail__read");
+  const epochs = links.map((a) => ({ el: document.querySelector(a.getAttribute("href")), name: a.textContent.trim().toLowerCase(), href: a.getAttribute("href") }))
+    .filter((e) => e.el);
+  const n = epochs.length;
+  const ticks = epochs.map((e, i) => {
+    const t = document.createElement("a");
+    t.className = "rail__tick"; t.href = e.href;
+    t.innerHTML = `<span>epoch ${i + 1}/${n} · ${e.name}</span>`;
+    t.setAttribute("aria-label", `Go to ${e.name}`);
+    return rail.appendChild(t);
+  });
+  const bars = epochs.map(() => topbar.appendChild(document.createElement("b")));
+  let W = 0, H = 0, len = 0, frame = 0, idle = 0;
+  // Loss falls fast at first, then flattens: x drifts from the outer edge toward the page as the run goes on
+  const xAt = (t) => 6 + (W - 12) * Math.exp(-3.2 * t);
+  const layout = () => {
+    W = rail.clientWidth; H = rail.clientHeight;
+    let d = "";
+    for (let k = 0; k <= 40; k++) { const t = k / 40; d += `${k ? "L" : "M"}${xAt(t).toFixed(1)} ${(t * H).toFixed(1)} `; }
+    track.setAttribute("d", d); line.setAttribute("d", d);
+    len = line.getTotalLength(); line.style.strokeDasharray = len;
+    draw();
+  };
+  const draw = () => {
+    frame = 0;
+    const max = document.documentElement.scrollHeight - innerHeight;
+    const p = max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0;
+    const fracs = epochs.map((e) => Math.min(1, Math.max(0, (e.el.getBoundingClientRect().top + scrollY - innerHeight * 0.35) / max)));
+    // A section counts as reached once its top passes a third of the way down the screen
+    let cur = -1;
+    fracs.forEach((f, i) => { if (p >= f - 0.002) cur = i; });
+    if (W) {
+      line.style.strokeDashoffset = len * (1 - p);
+      dot.style.transform = `translate(${xAt(p)}px, ${p * H}px)`;
+      read.style.left = `${xAt(p)}px`; read.style.top = `${p * H}px`;
+      read.textContent = cur < 0 ? `epoch 0/${n} · init` : `epoch ${cur + 1}/${n} · ${epochs[cur].name}`;
+      ticks.forEach((t, i) => { t.style.left = `${xAt(fracs[i])}px`; t.style.top = `${fracs[i] * H}px`; t.classList.toggle("is-hit", i <= cur); });
+    }
+    topbar.style.setProperty("--p", p);
+    bars.forEach((b, i) => { b.style.left = `${fracs[i] * 100}%`; b.classList.toggle("is-hit", i <= cur); });
+  };
+  addEventListener("scroll", () => {
+    if (!frame) frame = requestAnimationFrame(draw);
+    rail.classList.add("is-moving");
+    clearTimeout(idle); idle = setTimeout(() => rail.classList.remove("is-moving"), 1200);
+  }, { passive: true });
+  addEventListener("resize", layout);
+  addEventListener("load", layout);
+  layout();
+}

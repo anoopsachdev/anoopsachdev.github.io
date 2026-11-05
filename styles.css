@@ -774,6 +774,36 @@ html.story-open { overflow: hidden; }
   .kv-card, .pv-dot { animation: none !important; }
 }
 
+/* PAGE PROGRESS — a loss curve on the right edge (wide screens) or a thin bar on top (smaller ones) */
+.rail { position: fixed; right: 14px; top: 50%; z-index: 9; width: 44px; height: min(56vh, 520px); transform: translateY(-50%); display: none; }
+.rail__svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.rail__track { fill: none; stroke: var(--line); stroke-width: 1.5; stroke-dasharray: 2 4; stroke-linecap: round; }
+.rail__line { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; }
+.rail__dot {
+  position: absolute; left: 0; top: 0; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%;
+  background: var(--accent); box-shadow: 0 0 0 3px var(--bg), 0 0 0 4px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+.rail__read {
+  position: absolute; left: 0; top: 0; transform: translate(calc(-100% - 14px), -50%); white-space: nowrap; pointer-events: none;
+  font: 500 10.5px var(--mono); color: var(--muted); padding: 2px 6px; border-radius: 6px; background: var(--bg);
+  opacity: .0; transition: opacity .35s ease;
+}
+.rail.is-moving .rail__read, .rail:hover .rail__read { opacity: 1; }
+.rail__tick { position: absolute; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; display: grid; place-items: center; text-decoration: none; }
+.rail__tick::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--bg); border: 1.5px solid var(--muted); transition: background .3s, border-color .3s; }
+.rail__tick.is-hit::before { background: var(--accent); border-color: var(--accent); }
+.rail__tick span {
+  position: absolute; right: 20px; top: 50%; transform: translateY(-50%); white-space: nowrap; font: 500 10.5px var(--mono); color: var(--ink);
+  padding: 2px 6px; border-radius: 6px; background: var(--surface); border: 1px solid var(--line); opacity: 0; pointer-events: none; transition: opacity .2s;
+}
+.rail__tick:hover span, .rail__tick:focus-visible span { opacity: 1; }
+.rail__tick:focus-visible::before { outline: 2px solid var(--accent); outline-offset: 2px; }
+.topbar { position: fixed; left: 0; right: 0; top: 0; z-index: 11; height: 2px; pointer-events: none; }
+.topbar i { display: block; height: 100%; width: calc(var(--p, 0) * 100%); background: var(--accent); }
+.topbar b { position: absolute; top: 0; width: 2px; height: 4px; background: var(--muted); opacity: .6; }
+.topbar b.is-hit { background: var(--accent); opacity: 1; }
+@media (min-width: 1200px) { .rail { display: block; } .topbar { display: none; } }
+
 /* RESPONSIVE */
 @media (max-width: 900px) {
   .hero { gap: 32px; padding-top: 40px; }
