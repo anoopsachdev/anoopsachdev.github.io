@@ -99,6 +99,13 @@ if (capstone) connectPanel(capstone, document.getElementById("capstone-study"));
 // Project stories: the card lifts, a side sheet slides in, and a loss curve down its edge
 // draws as you read, lighting each part of the story as it arrives
 const SVG_NS = "http://www.w3.org/2000/svg";
+// Stories a visitor has opened are remembered in their browser, so those cards stop hinting on later visits
+const readStories = () => { try { return JSON.parse(localStorage.getItem("storiesRead")) || []; } catch { return []; } };
+const markStoryRead = (id) => {
+  const read = readStories();
+  if (read.includes(id)) return;
+  try { localStorage.setItem("storiesRead", JSON.stringify([...read, id])); } catch {}
+};
 const hoverable = matchMedia("(hover: hover)");
 const pointer = { x: -1, y: -1 };
 addEventListener("pointermove", (e) => { pointer.x = e.clientX; pointer.y = e.clientY; }, { passive: true });
@@ -154,6 +161,7 @@ function connectStory(cue, sheet) {
   };
   const open = () => {
     if (sheet.open) return;
+    markStoryRead(sheet.id);
     card.classList.add("is-lifted", "is-open");
     html.classList.add("story-open");
     sheet.showModal();
@@ -257,11 +265,16 @@ if (now) {
   now.addEventListener("mouseleave", () => { if (canHover.matches) after(250, () => show(null)); });
 }
 
-// Cue hints play once per page load, the first time a card is mostly on screen
+// Cue hints play once per page load, the first time a card is mostly on screen;
+// a project whose story the visitor has already opened doesn't hint again
 const cueWatch = new IntersectionObserver((entries) => {
   for (const e of entries) if (e.isIntersecting) { e.target.classList.add("cue-play"); cueWatch.unobserve(e.target); }
 }, { threshold: 0.6 });
-document.querySelectorAll(".project, .now").forEach((el) => cueWatch.observe(el));
+const alreadyRead = readStories();
+document.querySelectorAll(".project, .now").forEach((el) => {
+  const story = el.querySelector("[data-story]");
+  if (!story || !alreadyRead.includes(story.dataset.story)) cueWatch.observe(el);
+});
 
 // Fade sections in as they scroll into view
 const revealables = document.querySelectorAll(".now, .research, .section__head, .project, .about__grid, .skills, .gallery, .timeline, .stats");
