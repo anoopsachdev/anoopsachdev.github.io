@@ -99,12 +99,12 @@ if (capstone) connectPanel(capstone, document.getElementById("capstone-study"));
 // Project stories: the card lifts, a side sheet slides in, and a loss curve down its edge
 // draws as you read, lighting each part of the story as it arrives
 const SVG_NS = "http://www.w3.org/2000/svg";
-// Stories a visitor has opened are remembered in their browser, so those cards stop hinting on later visits
-const readStories = () => { try { return JSON.parse(localStorage.getItem("storiesRead")) || []; } catch { return []; } };
+// Stories opened in this tab are remembered until it closes (reloads keep it), so those cards stop hinting
+const readStories = () => { try { return JSON.parse(sessionStorage.getItem("storiesRead")) || []; } catch { return []; } };
 const markStoryRead = (id) => {
   const read = readStories();
   if (read.includes(id)) return;
-  try { localStorage.setItem("storiesRead", JSON.stringify([...read, id])); } catch {}
+  try { sessionStorage.setItem("storiesRead", JSON.stringify([...read, id])); } catch {}
 };
 const hoverable = matchMedia("(hover: hover)");
 const pointer = { x: -1, y: -1 };
