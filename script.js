@@ -95,13 +95,140 @@ function connectPanel(card, panel, frameEl = card) {
 
 const capstone = document.getElementById("capstone");
 if (capstone) connectPanel(capstone, document.getElementById("capstone-study"));
+
+// Project stories: the card lifts, its title glides into a side sheet, and a loss curve
+// down the sheet's edge draws as you read, lighting each beat of the story as it arrives
+const SVG_NS = "http://www.w3.org/2000/svg";
+function connectStory(cue, sheet) {
+  const html = document.documentElement;
+  const card = cue.closest(".project");
+  const cardTitle = card.querySelector(".project__open");
+  const scroller = sheet.querySelector(".story__scroll");
+  const body = sheet.querySelector(".story__body");
+  const svg = sheet.querySelector(".story__curve");
+  const track = svg.querySelector(".story__track"), line = svg.querySelector(".story__line");
+  const beats = [...sheet.querySelectorAll(".beat")];
+  const title = sheet.querySelector(".story__title");
+  const fromBelow = matchMedia("(max-width: 600px)");
+  let nodes = [], marks = [], len = 0, frame = 0;
+
+  // One point per beat; x is the beat's "loss", so the line spikes where it got hard and settles as it resolves
+  const layout = () => {
+    const w = svg.clientWidth, top = body.getBoundingClientRect().top;
+    const pts = beats.map((b) => [4 + (w - 8) * Number(b.dataset.loss), b.getBoundingClientRect().top - top + 9]);
+    let d = `M${pts[0][0]} ${pts[0][1]}`;
+    for (let i = 1; i < pts.length; i++) {
+      const [x0, y0] = pts[i - 1], [x1, y1] = pts[i], my = (y0 + y1) / 2;
+      d += ` C${x0} ${my} ${x1} ${my} ${x1} ${y1}`;
+    }
+    track.setAttribute("d", d);
+    line.setAttribute("d", d);
+    len = line.getTotalLength();
+    line.style.strokeDasharray = len;
+    nodes.forEach((n) => n.remove());
+    nodes = pts.map(([x, y]) => {
+      const c = document.createElementNS(SVG_NS, "circle");
+      c.setAttribute("class", "node"); c.setAttribute("cx", x); c.setAttribute("cy", y); c.setAttribute("r", 5);
+      return svg.appendChild(c);
+    });
+    marks = pts.map(([, y]) => lengthAt(y));
+  };
+  // The path only ever moves down, so the length at a given height can be found by bisection
+  const lengthAt = (y) => {
+    let lo = 0, hi = len;
+    for (let i = 0; i < 18; i++) { const mid = (lo + hi) / 2; if (line.getPointAtLength(mid).y < y) lo = mid; else hi = mid; }
+    return hi;
+  };
+  // The reading line sits 60% down the sheet; reaching the bottom finishes the curve
+  const draw = () => {
+    frame = 0;
+    const atEnd = scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight - 4;
+    const readY = scroller.clientHeight * 0.6 - (body.getBoundingClientRect().top - scroller.getBoundingClientRect().top);
+    const l = atEnd ? len : Math.min(len, Math.max(0, lengthAt(readY)));
+    line.style.strokeDashoffset = len - l;
+    marks.forEach((m, i) => { if (l >= m - 1) { nodes[i].classList.add("is-hit"); beats[i].classList.add("is-in"); } });
+  };
+  const backdrop = (from, to, duration) => {
+    try { sheet.animate([{ opacity: from }, { opacity: to }], { duration, easing: "ease", pseudoElement: "::backdrop", fill: "forwards" }); } catch (e) {}
+  };
+  // A popover sits in the top layer above the sheet, so the title can fly from the card into it
+  const glide = (from, fromSize) => {
+    const to = title.getBoundingClientRect(), toSize = parseFloat(getComputedStyle(title).fontSize);
+    const ghost = document.createElement("div");
+    if (!ghost.showPopover) return;
+    ghost.popover = "manual";
+    ghost.className = "story-glide";
+    ghost.textContent = title.textContent;
+    ghost.style.cssText = `left:${to.left}px;top:${to.top}px;font-size:${toSize}px;line-height:${getComputedStyle(title).lineHeight};letter-spacing:${getComputedStyle(title).letterSpacing}`;
+    document.body.appendChild(ghost);
+    ghost.showPopover();
+    title.style.visibility = "hidden";
+    cardTitle.style.visibility = "hidden";
+    const k = fromSize / toSize;
+    ghost.animate([{ transform: `translate(${from.left - to.left}px, ${from.top - to.top}px) scale(${k})` }, { transform: "none" }],
+      { duration: 640, easing: EASE }).onfinish = () => { title.style.visibility = ""; ghost.remove(); };
+  };
+
+  const open = () => {
+    if (sheet.open) return;
+    html.style.setProperty("--story-oy", `${scrollY + innerHeight / 2}px`);
+    const from = cardTitle.getBoundingClientRect(), fromSize = parseFloat(getComputedStyle(cardTitle).fontSize);
+    card.classList.add("is-lifted");
+    html.classList.add("story-open");
+    sheet.showModal();
+    scroller.scrollTop = 0;
+    beats.forEach((b) => b.classList.remove("is-in"));
+    layout();
+    line.style.transition = "none";
+    line.style.strokeDashoffset = len;
+    line.getBoundingClientRect();
+    line.style.transition = "stroke-dashoffset .9s cubic-bezier(.22, 1, .36, 1)";
+    if (calm) { line.style.transition = "none"; return draw(); }
+    glide(from, fromSize);
+    backdrop(0, 1, 420);
+    sheet.animate([{ transform: fromBelow.matches ? "translateY(100%)" : "translateX(100%)" }, { transform: "none" }],
+      { duration: 620, easing: EASE });
+    setTimeout(draw, 380);
+  };
+  const close = () => {
+    if (!sheet.open || sheet.dataset.closing) return;
+    const done = () => {
+      sheet.close(); delete sheet.dataset.closing;
+      sheet.getAnimations().forEach((an) => an.cancel());
+      card.classList.remove("is-lifted");
+      cardTitle.style.visibility = ""; title.style.visibility = "";
+      html.classList.remove("story-open");
+    };
+    if (calm) return done();
+    sheet.dataset.closing = "1";
+    html.classList.remove("story-open");
+    backdrop(1, 0, 380);
+    cardTitle.style.visibility = "";
+    sheet.animate([{ transform: "none" }, { transform: fromBelow.matches ? "translateY(100%)" : "translateX(100%)" }],
+      { duration: 420, easing: "cubic-bezier(.5, 0, .75, 0)", fill: "forwards" }).onfinish = done;
+  };
+
+  cue.addEventListener("click", (e) => { e.stopPropagation(); open(); });
+  sheet.querySelector(".story__close").addEventListener("click", close);
+  sheet.addEventListener("cancel", (e) => { e.preventDefault(); close(); });
+  sheet.addEventListener("click", (e) => {
+    const r = sheet.getBoundingClientRect();
+    if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) close();
+  });
+  scroller.addEventListener("scroll", () => { if (!frame) frame = requestAnimationFrame(draw); }, { passive: true });
+  addEventListener("resize", () => { if (sheet.open) { layout(); line.style.transition = "none"; draw(); } });
+}
+document.querySelectorAll("[data-story]").forEach((cue) => {
+  const sheet = document.getElementById(cue.dataset.story);
+  if (sheet) connectStory(cue, sheet);
+});
 // Project cards: tap or click (or Enter on the title) expands the card in place; hover does the same on mouse devices
 // A click on a card that hover has opened closes it, and it stays shut until the pointer leaves
 const hoverable = matchMedia("(hover: hover)");
 document.querySelectorAll(".project").forEach((card) => {
   const btn = card.querySelector(".project__open");
   card.addEventListener("click", (e) => {
-    if (e.target.closest("a")) return;
+    if (e.target.closest("a, [data-story]")) return;
     const shown = card.classList.contains("is-open") ||
       (hoverable.matches && card.matches(":hover") && !card.classList.contains("is-shut"));
     card.classList.toggle("is-open", !shown);
