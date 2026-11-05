@@ -99,6 +99,9 @@ if (capstone) connectPanel(capstone, document.getElementById("capstone-study"));
 // Project stories: the card lifts, a side sheet slides in, and a loss curve down its edge
 // draws as you read, lighting each part of the story as it arrives
 const SVG_NS = "http://www.w3.org/2000/svg";
+const hoverable = matchMedia("(hover: hover)");
+const pointer = { x: -1, y: -1 };
+addEventListener("pointermove", (e) => { pointer.x = e.clientX; pointer.y = e.clientY; }, { passive: true });
 function connectStory(cue, sheet) {
   const html = document.documentElement;
   const card = cue.closest(".project");
@@ -151,7 +154,7 @@ function connectStory(cue, sheet) {
   };
   const open = () => {
     if (sheet.open) return;
-    card.classList.add("is-lifted");
+    card.classList.add("is-lifted", "is-open");
     html.classList.add("story-open");
     sheet.showModal();
     scroller.scrollTop = 0;
@@ -173,6 +176,10 @@ function connectStory(cue, sheet) {
       sheet.close(); delete sheet.dataset.closing;
       sheet.getAnimations().forEach((an) => an.cancel());
       card.classList.remove("is-lifted");
+      // The preview stays expanded only if the pointer is still on the card when the sheet closes
+      const r = card.getBoundingClientRect();
+      const onCard = pointer.x >= r.left && pointer.x <= r.right && pointer.y >= r.top && pointer.y <= r.bottom;
+      if (!(hoverable.matches && onCard)) card.classList.remove("is-open");
       html.classList.remove("story-open");
     };
     if (calm) return done();
@@ -184,6 +191,7 @@ function connectStory(cue, sheet) {
   };
 
   cue.addEventListener("click", (e) => { e.stopPropagation(); open(); });
+  card.addEventListener("mouseleave", () => { if (!sheet.open) card.classList.remove("is-open"); });
   sheet.querySelector(".story__close").addEventListener("click", close);
   sheet.addEventListener("cancel", (e) => { e.preventDefault(); close(); });
   sheet.addEventListener("click", (e) => {
@@ -199,7 +207,6 @@ document.querySelectorAll("[data-story]").forEach((cue) => {
 });
 // Project cards: tap or click (or Enter on the title) expands the card in place; hover does the same on mouse devices
 // A click on a card that hover has opened closes it, and it stays shut until the pointer leaves
-const hoverable = matchMedia("(hover: hover)");
 // Cards with a story open it from a click or tap anywhere on the card (the title's overlay covers it);
 // hover still previews on mouse devices
 document.querySelectorAll(".project").forEach((card) => {

@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=50">
+  <link rel="stylesheet" href="styles.css?v=52">
 </head>
 <body>
   <header class="nav">
@@ -558,6 +558,17 @@
         <ol class="story__beats">
           <li class="beat" data-loss=".8">
             <span class="beat__tag">Why I built it</span>
+            <figure class="beat__chart why-viz" role="img" aria-label="A search for red running shoes: the exact match starts fifth in the results and moves up to first">
+              <div class="wv-search"><span class="wv-icon" aria-hidden="true"></span><span class="wv-q">red running shoes</span></div>
+              <ol class="wv-list" aria-hidden="true">
+                <li style="--r:0"><i></i><span></span></li>
+                <li style="--r:1"><i></i><span></span></li>
+                <li style="--r:2"><i></i><span></span></li>
+                <li style="--r:3"><i></i><span></span></li>
+                <li class="wv-hit" style="--r:4"><i></i><span></span><em>exact match</em></li>
+              </ol>
+              <figcaption>Most people never scroll past the first few. The job is getting the right one to the top.</figcaption>
+            </figure>
             <p>Most online shops live or die on search. If what you want isn’t in the first few results, you scroll a bit, get bored, and leave. I wanted to know whether an LLM can actually fix that, or whether it only looks good in a demo.</p>
             <p>So I used Amazon’s ESCI data: real shopping queries over <b>48,862 products</b>, where people had labelled each result as an exact match, a substitute, a complement or irrelevant. That let me score every idea the same way, on quality, speed and cost per search.</p>
           </li>
@@ -624,6 +635,6 @@
     </nav>
   </footer>
 
-  <script src="script.js?v=29"></script>
+  <script src="script.js?v=30"></script>
 </body>
 </html>
