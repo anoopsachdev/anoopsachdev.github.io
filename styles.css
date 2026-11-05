@@ -804,6 +804,23 @@ html.story-open { overflow: hidden; }
 .topbar b.is-hit { background: var(--accent); opacity: 1; }
 @media (min-width: 1200px) { .rail { display: block; } .topbar { display: none; } }
 
+/* CUE HINTS — when a card scrolls into view, its "Read the story" / "See it" cue gets one soft sweep of
+   light and its arrow nudges twice, so readers know there's more behind it. The sweep only darkens toward
+   the text colour in light mode and brightens toward it in dark mode, so contrast never drops. */
+.project .project__cue, .now .track__cue {
+  background: linear-gradient(100deg, currentColor 0 40%, var(--ink) 50%, currentColor 60% 100%) 100% 0 / 300% 100%;
+  -webkit-background-clip: text; background-clip: text;
+}
+.project.in .project__cue, .now.in .track__cue { animation: cue-sweep 1.4s ease .9s 1 both; }
+.now.in .track > li:nth-child(2) .track__cue { animation-delay: 1.3s; }
+.project.in .project__cue .project__arrow, .now.in .track__cue .track__arrow { animation: cue-nudge 1.1s ease-in-out 1.1s 2; }
+.now.in .track > li:nth-child(2) .track__arrow { animation-delay: 1.5s; }
+@keyframes cue-sweep { from { background-position: 100% 0; -webkit-text-fill-color: transparent; } 99% { background-position: 0 0; -webkit-text-fill-color: transparent; } to { -webkit-text-fill-color: currentColor; } }
+@keyframes cue-nudge { 0%, 100% { translate: 0; } 40% { translate: 5px; } 70% { translate: 1px; } }
+@media (prefers-reduced-motion: reduce) {
+  .project.in .project__cue, .now.in .track__cue, .project.in .project__cue .project__arrow, .now.in .track__cue .track__arrow { animation: none; }
+}
+
 /* RESPONSIVE */
 @media (max-width: 900px) {
   .hero { gap: 32px; padding-top: 40px; }
