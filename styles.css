@@ -804,21 +804,29 @@ html.story-open { overflow: hidden; }
 .topbar b.is-hit { background: var(--accent); opacity: 1; }
 @media (min-width: 1200px) { .rail { display: block; } .topbar { display: none; } }
 
-/* CUE HINTS — when a card scrolls into view, its "Read the story" / "See it" cue gets one soft sweep of
-   light and its arrow nudges twice, so readers know there's more behind it. The sweep only darkens toward
-   the text colour in light mode and brightens toward it in dark mode, so contrast never drops. */
+/* CUE HINTS — each time a card comes into view, its "Read the story" / "See it" cue gets one soft sweep of
+   light and its arrow nudges twice, so readers know there's more behind it. The sweep moves toward the text
+   colour (darker in light mode, brighter in dark mode), so contrast never drops. */
 .project .project__cue, .now .track__cue {
-  background: linear-gradient(100deg, currentColor 0 40%, var(--ink) 50%, currentColor 60% 100%) 100% 0 / 300% 100%;
+  background: linear-gradient(100deg, currentColor 0 38%, var(--ink) 50%, currentColor 62% 100%) 100% 0 / 300% 100%;
   -webkit-background-clip: text; background-clip: text;
 }
-.project.in .project__cue, .now.in .track__cue { animation: cue-sweep 1.4s ease .9s 1 both; }
-.now.in .track > li:nth-child(2) .track__cue { animation-delay: 1.3s; }
-.project.in .project__cue .project__arrow, .now.in .track__cue .track__arrow { animation: cue-nudge 1.1s ease-in-out 1.1s 2; }
-.now.in .track > li:nth-child(2) .track__arrow { animation-delay: 1.5s; }
+.project.cue-play .project__cue, .now.cue-play .track__cue { animation: cue-sweep 1.8s ease .35s 1 both; }
+.now.cue-play .track > li:nth-child(2) .track__cue { animation-delay: .9s; }
+.project.cue-play .project__cue .project__arrow, .now.cue-play .track__cue .track__arrow { animation: cue-nudge 1s ease-in-out .6s 2; }
+.now.cue-play .track > li:nth-child(2) .track__arrow { animation-delay: 1.15s; }
 @keyframes cue-sweep { from { background-position: 100% 0; -webkit-text-fill-color: transparent; } 99% { background-position: 0 0; -webkit-text-fill-color: transparent; } to { -webkit-text-fill-color: currentColor; } }
-@keyframes cue-nudge { 0%, 100% { translate: 0; } 40% { translate: 5px; } 70% { translate: 1px; } }
+.project .project__cue, .now .track__cue { position: relative; }
+.project .project__cue::after, .now .track__cue::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1.5px; border-radius: 1px;
+  background: currentColor; -webkit-text-fill-color: initial; transform: scaleX(0); transform-origin: left; opacity: 0;
+}
+.project.cue-play .project__cue::after, .now.cue-play .track__cue::after { animation: cue-line 2.2s cubic-bezier(.22,1,.36,1) .35s 1 both; }
+.now.cue-play .track > li:nth-child(2) .track__cue::after { animation-delay: .9s; }
+@keyframes cue-line { 0% { transform: scaleX(0); opacity: 1; } 45% { transform: scaleX(1); opacity: 1; } 80% { opacity: 1; } 100% { transform: scaleX(1); opacity: 0; } }
+@keyframes cue-nudge { 0%, 100% { translate: 0; } 40% { translate: 6px; } 70% { translate: 1px; } }
 @media (prefers-reduced-motion: reduce) {
-  .project.in .project__cue, .now.in .track__cue, .project.in .project__cue .project__arrow, .now.in .track__cue .track__arrow { animation: none; }
+  .project.cue-play .project__cue, .now.cue-play .track__cue, .project.cue-play .project__cue .project__arrow, .now.cue-play .track__cue .track__arrow, .project.cue-play .project__cue::after, .now.cue-play .track__cue::after { animation: none; }
 }
 
 /* RESPONSIVE */

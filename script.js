@@ -257,6 +257,12 @@ if (now) {
   now.addEventListener("mouseleave", () => { if (canHover.matches) after(250, () => show(null)); });
 }
 
+// Cue hints replay each time a card is mostly on screen, and reset once it leaves
+const cueWatch = new IntersectionObserver((entries) => {
+  for (const e of entries) e.target.classList.toggle("cue-play", e.isIntersecting);
+}, { threshold: 0.6 });
+document.querySelectorAll(".project, .now").forEach((el) => cueWatch.observe(el));
+
 // Fade sections in as they scroll into view
 const revealables = document.querySelectorAll(".now, .research, .section__head, .project, .about__grid, .skills, .gallery, .timeline, .stats");
 const io = new IntersectionObserver((entries) => {
