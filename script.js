@@ -257,9 +257,9 @@ if (now) {
   now.addEventListener("mouseleave", () => { if (canHover.matches) after(250, () => show(null)); });
 }
 
-// Cue hints replay each time a card is mostly on screen, and reset once it leaves
+// Cue hints play once per page load, the first time a card is mostly on screen
 const cueWatch = new IntersectionObserver((entries) => {
-  for (const e of entries) e.target.classList.toggle("cue-play", e.isIntersecting);
+  for (const e of entries) if (e.isIntersecting) { e.target.classList.add("cue-play"); cueWatch.unobserve(e.target); }
 }, { threshold: 0.6 });
 document.querySelectorAll(".project, .now").forEach((el) => cueWatch.observe(el));
 
