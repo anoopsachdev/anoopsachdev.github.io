@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=52">
+  <link rel="stylesheet" href="styles.css?v=54">
 </head>
 <body>
   <header class="nav">
@@ -372,7 +372,7 @@
             <article class="project" data-tags="ds ml">
               <div class="project__card">
                 <div class="project__meta"><span class="tag">Data science · ML</span><span class="stack">Python · SQL · statsmodels · scikit-learn</span></div>
-                <h3><button class="project__open" type="button" aria-expanded="false" aria-controls="p-answer-gap-more">Answer Gap</button> <em>Finding the questions nobody will answer, before they go cold</em></h3>
+                <h3><button class="project__open" type="button" aria-haspopup="dialog" aria-controls="story-answer-gap">Answer Gap</button> <em>Finding the questions nobody will answer, before they go cold</em></h3>
                 <p class="project__what">Predicts which new Stack Overflow questions will still be unanswered after 24 hours, across 1.26M questions.</p>
                 <div class="project__more" id="p-answer-gap-more">
                   <div>
@@ -384,7 +384,7 @@
                   </div>
                 </div>
                 <div class="project__foot">
-                  <span class="project__cue" aria-hidden="true">Explore the project <span class="project__arrow">→</span></span>
+                  <button class="project__cue" type="button" data-story="story-answer-gap" aria-haspopup="dialog">Read the story <span class="project__arrow">→</span></button>
                   <div class="project__links">
                     <a href="https://github.com/anoopsachdev/answer-gap-24h" target="_blank" rel="noopener">Code ↗</a>
                   </div>
@@ -395,7 +395,7 @@
             <article class="project" data-tags="ml cloud">
               <div class="project__card">
                 <div class="project__meta"><span class="tag">Deep learning · Cloud</span><span class="stack">PyTorch · YOLOv8 · ONNX · FastAPI · Docker · Cloud Run</span></div>
-                <h3><button class="project__open" type="button" aria-expanded="false" aria-controls="p-beansight-more">BeanSight</button> <em>A coffee grader in a single upload</em></h3>
+                <h3><button class="project__open" type="button" aria-haspopup="dialog" aria-controls="story-beansight">BeanSight</button> <em>A coffee grader in a single upload</em></h3>
                 <p class="project__what">Identifies a bean’s roast level, then finds defects: <b>17 types</b> for green beans, or a bean-by-bean detector for roasted ones.</p>
                 <div class="project__more" id="p-beansight-more">
                   <div>
@@ -407,7 +407,7 @@
                   </div>
                 </div>
                 <div class="project__foot">
-                  <span class="project__cue" aria-hidden="true">Explore the project <span class="project__arrow">→</span></span>
+                  <button class="project__cue" type="button" data-story="story-beansight" aria-haspopup="dialog">Read the story <span class="project__arrow">→</span></button>
                   <div class="project__links">
                     <a href="https://coffee-bean-analyzer-876034946934.us-central1.run.app" target="_blank" rel="noopener">Live ↗</a>
                     <a href="https://github.com/anoopsachdev/BeanSight" target="_blank" rel="noopener">Code ↗</a>
@@ -420,7 +420,7 @@
             <article class="project" data-tags="ds ml">
               <div class="project__card">
                 <div class="project__meta"><span class="tag">Data science · ML</span><span class="stack">Pandas · LightGBM · SHAP</span></div>
-                <h3><button class="project__open" type="button" aria-expanded="false" aria-controls="p-dropout-more">Dropout Early-Warning</button> <em>Who to call first, and who the list leaves out</em></h3>
+                <h3><button class="project__open" type="button" aria-haspopup="dialog" aria-controls="story-dropout">Dropout Early-Warning</button> <em>Who to call first, and who the list leaves out</em></h3>
                 <p class="project__what">Flags students likely to fail or withdraw while there’s still time for a tutor to step in.</p>
                 <div class="project__more" id="p-dropout-more">
                   <div>
@@ -432,7 +432,7 @@
                   </div>
                 </div>
                 <div class="project__foot">
-                  <span class="project__cue" aria-hidden="true">Explore the project <span class="project__arrow">→</span></span>
+                  <button class="project__cue" type="button" data-story="story-dropout" aria-haspopup="dialog">Read the story <span class="project__arrow">→</span></button>
                   <div class="project__links">
                     <a href="https://github.com/anoopsachdev/student-dropout-early-warning" target="_blank" rel="noopener">Code ↗</a>
                   </div>
@@ -443,7 +443,7 @@
             <article class="project" data-tags="swe">
               <div class="project__card">
                 <div class="project__meta"><span class="tag">Software engineering</span><span class="stack">React · Node · Express · MongoDB</span></div>
-                <h3><button class="project__open" type="button" aria-expanded="false" aria-controls="p-project-camp-more">Project Camp</button> <em>Trello’s idea, built from the ground up</em></h3>
+                <h3><button class="project__open" type="button" aria-haspopup="dialog" aria-controls="story-project-camp">Project Camp</button> <em>Trello’s idea, built from the ground up</em></h3>
                 <p class="project__what">A team project manager with Kanban boards, subtasks, shared notes and three permission levels.</p>
                 <div class="project__more" id="p-project-camp-more">
                   <div>
@@ -455,7 +455,7 @@
                   </div>
                 </div>
                 <div class="project__foot">
-                  <span class="project__cue" aria-hidden="true">Explore the project <span class="project__arrow">→</span></span>
+                  <button class="project__cue" type="button" data-story="story-project-camp" aria-haspopup="dialog">Read the story <span class="project__arrow">→</span></button>
                   <div class="project__links">
                     <a href="https://project-camp-kanban.vercel.app" target="_blank" rel="noopener">Live ↗</a>
                     <a href="https://github.com/anoopsachdev/Project-Camp" target="_blank" rel="noopener">Code ↗</a>
@@ -621,6 +621,265 @@
       <footer class="story__foot">
         <a href="https://shopsense-819934511305.us-central1.run.app" target="_blank" rel="noopener">Try it live ↗</a>
         <a href="https://github.com/anoopsachdev/shopsense" target="_blank" rel="noopener">Read the code ↗</a>
+      </footer>
+    </div>
+  </dialog>
+
+  <dialog class="story" id="story-answer-gap" aria-labelledby="story-answer-gap-title">
+    <div class="story__scroll">
+      <header class="story__head">
+        <p class="story__kicker">Data science · ML</p>
+        <h2 class="story__title" id="story-answer-gap-title">Answer Gap</h2>
+        <p class="story__sub">Finding the questions nobody will answer, before they go cold</p>
+        <button class="story__close" type="button" aria-label="Close">×</button>
+      </header>
+      <div class="story__body">
+        <svg class="story__curve" aria-hidden="true"><path class="story__track"/><path class="story__line"/></svg>
+        <ol class="story__beats">
+          <li class="beat" data-loss=".8">
+            <span class="beat__tag">Why I built it</span>
+            <figure class="beat__chart why-viz qv" role="img" aria-label="Five new questions: three get answered, two are still waiting a day later">
+              <ol class="qv-list" aria-hidden="true">
+                <li><i>?</i><span></span><em class="qv-ok">answered</em></li>
+                <li class="qv-stuck"><i>?</i><span></span><em>24 h · no answer</em></li>
+                <li><i>?</i><span></span><em class="qv-ok">answered</em></li>
+                <li><i>?</i><span></span><em class="qv-ok">answered</em></li>
+                <li class="qv-stuck"><i>?</i><span></span><em>24 h · no answer</em></li>
+              </ol>
+              <figcaption>By 2016, about 4 in 10 new questions still had no answer a day later.</figcaption>
+            </figure>
+            <p>Stack Overflow runs on volunteers, and their time is limited. Most questions get answered in minutes, but a growing share never do. I wanted to spot those early, so someone could step in before they went cold.</p>
+          </li>
+          <li class="beat" data-loss=".68">
+            <span class="beat__tag">How it works</span>
+            <p>I looked at <b>1.26M questions</b> from 2008 to 2016. A question counts as stuck if nobody else answers it within 24 hours. I trained on older questions, tested on newer ones, and compared a simple rule, logistic regression, tree models and the words in the title.</p>
+            <figure class="beat__chart">
+              <div class="ladder" style="--lo:0.3;--span:0.4">
+                <div><span>Random pick</span><i style="--v:0.409"></i><b>40.9%</b></div>
+                <div><span>Simple rule</span><i style="--v:0.562"></i><b>56.2%</b></div>
+                <div><span>Logistic regression</span><i style="--v:0.59"></i><b>59.0%</b></div>
+                <div><span>Gradient boosting</span><i style="--v:0.608"></i><b>60.8%</b></div>
+                <div class="ladder__top"><span>Title words</span><i style="--v:0.695"></i><b>69.5%</b></div>
+              </div>
+              <figcaption>How often the top 5% flagged really went unanswered</figcaption>
+            </figure>
+          </li>
+          <li class="beat" data-loss=".95">
+            <span class="beat__tag">Where it fought back</span>
+            <p>Questions with a code block got answered more often. But the data stores each post as last edited, so the code might have been added after someone asked for it.</p>
+            <p class="beat__fix">So I re-ran the test without edited posts. The gap held at <b>+3.65 points</b>, so it’s real, though I still call it a link, not a cause.</p>
+          </li>
+          <li class="beat" data-loss=".5">
+            <span class="beat__tag">One more snag</span>
+            <p>Between my validation and test periods, the unanswered rate jumped from <b>34% to 41%</b>, so the predicted odds stopped matching reality.</p>
+            <p class="beat__fix">The ranking still held up, so the model orders a review queue instead of promising exact odds.</p>
+          </li>
+          <li class="beat beat--result" data-loss=".12">
+            <span class="beat__tag">Where it landed</span>
+            <div class="beat__stats">
+              <div><b>69.5%</b><span>of flagged questions really went unanswered (vs 40.9%)</span></div>
+              <div><b>~6,500</b><span>stuck questions caught by a top-5% queue, vs ~3,900 at random</span></div>
+              <div><b>1.26M</b><span>questions analysed</span></div>
+            </div>
+            <p>The surprise: the words in a title beat every structural feature. Questions about <b>oauth</b>, <b>plugins</b> or <b>bluetooth</b> are the ones that go quiet.</p>
+          </li>
+        </ol>
+      </div>
+      <footer class="story__foot">
+        <a href="https://github.com/anoopsachdev/answer-gap-24h" target="_blank" rel="noopener">Read the code ↗</a>
+      </footer>
+    </div>
+  </dialog>
+
+  <dialog class="story" id="story-dropout" aria-labelledby="story-dropout-title">
+    <div class="story__scroll">
+      <header class="story__head">
+        <p class="story__kicker">Data science · ML</p>
+        <h2 class="story__title" id="story-dropout-title">Dropout Early-Warning</h2>
+        <p class="story__sub">Who to call first, and who the list leaves out</p>
+        <button class="story__close" type="button" aria-label="Close">×</button>
+      </header>
+      <div class="story__body">
+        <svg class="story__curve" aria-hidden="true"><path class="story__track"/><path class="story__line"/></svg>
+        <ol class="story__beats">
+          <li class="beat" data-loss=".8">
+            <span class="beat__tag">Why I built it</span>
+            <figure class="beat__chart why-viz dv" role="img" aria-label="Twenty students, nine at risk. A tutor can call four; at random about two would be at risk, the model's list finds about three">
+              <div class="dv-grid" aria-hidden="true"><i class="r p"></i><i class=""></i><i class=""></i><i class="r"></i><i class=""></i><i class="r"></i><i class="r"></i><i class=""></i><i class="r p"></i><i class=""></i><i class=""></i><i class="r"></i><i class=""></i><i class="p"></i><i class=""></i><i class="r"></i><i class=""></i><i class="r p"></i><i class=""></i><i class="r"></i></div>
+              <p class="dv-key" aria-hidden="true"><span class="dv-k1"></span>at risk <span class="dv-k2"></span>on the call list</p>
+              <figcaption>A tutor can call 4 in 20. At random, about 2 would be at risk; the model’s list finds about 3.</figcaption>
+            </figure>
+            <p>Online universities lose a lot of students quietly. Tutors can only reach a fraction of them, so the real question is who to call first, and whether that list leaves anyone out.</p>
+          </li>
+          <li class="beat" data-loss=".68">
+            <span class="beat__tag">How it works</span>
+            <p>I used the Open University’s data: <b>32,593 registrations</b> with clicks and assignment scores. I took snapshots at days 0, 14, 28, 56 and 84, using only what was known by that day, and ranked students inside each module so one hard course can’t eat the whole call budget.</p>
+            <figure class="beat__chart">
+              <div class="ladder" style="--lo:0.6;--span:0.2">
+                <div><span>Day 0</span><i style="--v:0.675"></i><b>0.675</b></div>
+                <div><span>Day 14</span><i style="--v:0.67"></i><b>0.670</b></div>
+                <div><span>Day 28</span><i style="--v:0.722"></i><b>0.722</b></div>
+                <div><span>Day 56</span><i style="--v:0.764"></i><b>0.764</b></div>
+                <div class="ladder__top"><span>Day 84</span><i style="--v:0.79"></i><b>0.790</b></div>
+              </div>
+              <figcaption>Ranking quality (PR-AUC) as the course goes on</figcaption>
+            </figure>
+          </li>
+          <li class="beat" data-loss=".95">
+            <span class="beat__tag">Where it fought back</span>
+            <p>A random train/test split scored <b>0.778</b>, which looked great, but it had already seen every course run.</p>
+            <p class="beat__fix">So I trained on 2013 and tested on 2014, the way it would really be used. <b>0.722</b> is the number I trust.</p>
+          </li>
+          <li class="beat" data-loss=".5">
+            <span class="beat__tag">One more snag</span>
+            <p>I checked who the list misses: by socioeconomic status, disability, age and gender. On day 0 it missed at-risk students from poorer areas far more often.</p>
+            <p class="beat__fix">Once a few weeks of activity come in, that gap shrinks to less than half (<b>0.284 → 0.131</b> by day 28), so day 28 is when the list is fair enough to act on.</p>
+          </li>
+          <li class="beat beat--result" data-loss=".12">
+            <span class="beat__tag">Where it landed</span>
+            <div class="beat__stats">
+              <div><b>1.8×</b><span>more at-risk students reached than a random list</span></div>
+              <div><b>0.722</b><span>PR-AUC on the next year’s students</span></div>
+              <div><b>35.5%</b><span>of at-risk students reached with 20% of calls</span></div>
+            </div>
+            <p>Logistic regression came within a whisker of LightGBM, which told me the features were doing the heavy lifting.</p>
+          </li>
+        </ol>
+      </div>
+      <footer class="story__foot">
+        <a href="https://github.com/anoopsachdev/student-dropout-early-warning" target="_blank" rel="noopener">Read the code ↗</a>
+      </footer>
+    </div>
+  </dialog>
+
+  <dialog class="story" id="story-beansight" aria-labelledby="story-beansight-title">
+    <div class="story__scroll">
+      <header class="story__head">
+        <p class="story__kicker">Deep learning · Cloud</p>
+        <h2 class="story__title" id="story-beansight-title">BeanSight</h2>
+        <p class="story__sub">A coffee grader in a single upload</p>
+        <button class="story__close" type="button" aria-label="Close">×</button>
+      </header>
+      <div class="story__body">
+        <svg class="story__curve" aria-hidden="true"><path class="story__track"/><path class="story__line"/></svg>
+        <ol class="story__beats">
+          <li class="beat" data-loss=".8">
+            <span class="beat__tag">Why I built it</span>
+            <figure class="beat__chart why-viz bv" role="img" aria-label="A tray of green coffee beans; two defective beans get flagged">
+              <div class="bv-tray" aria-hidden="true"><i class=""></i><i class=""></i><i class=""></i><i class="b"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="b"></i><i class=""></i></div>
+              <figcaption>Catch the bad beans before roasting, not in the customer’s bag.</figcaption>
+            </figure>
+            <p>I got into coffee in my sixth semester, and defects are the one thing nobody wants to find in their bag. I wanted a tool you could point at beans before roasting, so the bad ones never reach the customer.</p>
+          </li>
+          <li class="beat" data-loss=".68">
+            <span class="beat__tag">How it works</span>
+            <figure class="beat__chart rv" role="img" aria-label="A photo goes to the roast model; green beans go to a 17-class defect classifier, roasted beans go to a YOLO detector">
+              <div class="rv-flow" aria-hidden="true">
+                <span class="rv-node">Photo</span><b class="rv-arrow"></b>
+                <span class="rv-node rv-node--key">Roast level</span><b class="rv-arrow"></b>
+                <div class="rv-split">
+                  <span class="rv-node"><small>green</small>17 defect types</span>
+                  <span class="rv-node"><small>roasted</small>boxes on each bean</span>
+                </div>
+              </div>
+              <figcaption>One upload, routed to the model that fits the bean</figcaption>
+            </figure>
+            <p>A first model reads the roast level. Green beans go to a classifier that knows <b>17 defect types</b>; roasted beans go to a YOLO detector that boxes every bean as normal, broken, quaker or scorched.</p>
+          </li>
+          <li class="beat" data-loss=".95">
+            <span class="beat__tag">Where it fought back</span>
+            <p>The data came from <b>three different sources</b> with three label styles: roast level, single green beans, and boxes drawn around roasted ones. Making them fit one app was the real design work.</p>
+            <p class="beat__fix">So the roast model routes each photo to the right defect model, and you can switch it yourself if it guesses wrong.</p>
+          </li>
+          <li class="beat" data-loss=".5">
+            <span class="beat__tag">One more snag</span>
+            <p>The first container was <b>4.2 GB</b> and took 12 to 18 seconds to start, and loading three models at once blocked Cloud Run’s health check.</p>
+            <p class="beat__fix">I exported the models to ONNX and load them in the background. Now it starts in under 1.2 s and answers in about 150 ms.</p>
+            <figure class="beat__chart">
+              <div class="ladder" style="--lo:0;--span:4.2">
+                <div><span>PyTorch image</span><i style="--v:4.2"></i><b>4.2 GB</b></div>
+                <div class="ladder__top"><span>ONNX image</span><i style="--v:0.32"></i><b>320 MB</b></div>
+              </div>
+              <figcaption>Container size, before and after</figcaption>
+            </figure>
+          </li>
+          <li class="beat beat--result" data-loss=".12">
+            <span class="beat__tag">Where it landed</span>
+            <div class="beat__stats">
+              <div><b>92%</b><span>smaller container</span></div>
+              <div><b>~150 ms</b><span>per prediction on a CPU</span></div>
+              <div><b>17</b><span>green-bean defect types</span></div>
+            </div>
+            <p>It’s live on Cloud Run, deploys itself from GitHub on every push, and logs each analysis so the app can show recent results.</p>
+          </li>
+        </ol>
+      </div>
+      <footer class="story__foot">
+        <a href="https://coffee-bean-analyzer-876034946934.us-central1.run.app" target="_blank" rel="noopener">Try it live ↗</a>
+        <a href="https://github.com/anoopsachdev/BeanSight" target="_blank" rel="noopener">Read the code ↗</a>
+      </footer>
+    </div>
+  </dialog>
+
+  <dialog class="story" id="story-project-camp" aria-labelledby="story-project-camp-title">
+    <div class="story__scroll">
+      <header class="story__head">
+        <p class="story__kicker">Software engineering</p>
+        <h2 class="story__title" id="story-project-camp-title">Project Camp</h2>
+        <p class="story__sub">Trello’s idea, built from the ground up</p>
+        <button class="story__close" type="button" aria-label="Close">×</button>
+      </header>
+      <div class="story__body">
+        <svg class="story__curve" aria-hidden="true"><path class="story__track"/><path class="story__line"/></svg>
+        <ol class="story__beats">
+          <li class="beat" data-loss=".8">
+            <span class="beat__tag">Why I built it</span>
+            <figure class="beat__chart why-viz kv" role="img" aria-label="A task card moves across a Kanban board from To do to In progress to Done">
+              <div class="kv-board" aria-hidden="true">
+                <div class="kv-col"><small>To do</small><i></i><i></i></div>
+                <div class="kv-col"><small>In progress</small><i></i></div>
+                <div class="kv-col"><small>Done</small><i></i></div>
+                <i class="kv-card"></i>
+              </div>
+              <figcaption>The board is the easy part to see. The interesting part is everything behind it.</figcaption>
+            </figure>
+            <p>By my fifth semester I knew React and a fair bit of front end. What I didn’t know was the backend, so I built a project manager from scratch: boards, tasks, teams and roles. It sounds simple, but the backend behind it is a proper design problem.</p>
+          </li>
+          <li class="beat" data-loss=".68">
+            <span class="beat__tag">How it works</span>
+            <figure class="beat__chart pv" role="img" aria-label="A request passes through the route, auth middleware, validation and a controller before reaching MongoDB">
+              <div class="pv-flow" aria-hidden="true">
+                <span>Route</span><span>Auth</span><span>Validate</span><span>Controller</span><span>MongoDB</span>
+                <b class="pv-dot"></b>
+              </div>
+              <figcaption>Every request passes the same checks before any work happens</figcaption>
+            </figure>
+            <p>Each request goes through a route, then middleware for login and validation, then a controller that does the work against MongoDB. On top sit <b>three roles</b>, admin, project admin and member, each with its own permissions.</p>
+          </li>
+          <li class="beat" data-loss=".95">
+            <span class="beat__tag">Where it fought back</span>
+            <p>Async JavaScript. Database calls, emails and file uploads all return promises, and getting them to run in the right order, and fail cleanly, took me a while.</p>
+            <p class="beat__fix">I wrapped every route in one async handler with a shared error type, so failures come back the same way every time.</p>
+          </li>
+          <li class="beat" data-loss=".5">
+            <span class="beat__tag">One more snag</span>
+            <p>Working out what belongs in middleware and what belongs in a controller.</p>
+            <p class="beat__fix">Login and role checks became middleware, and controllers only do the work. That split made the whole codebase easier to follow.</p>
+          </li>
+          <li class="beat beat--result" data-loss=".12">
+            <span class="beat__tag">Where it landed</span>
+            <div class="beat__stats">
+              <div><b>3</b><span>roles with their own permissions</span></div>
+              <div><b>JWT</b><span>sign-in with refresh tokens</span></div>
+              <div><b>Email</b><span>verification and password reset</span></div>
+            </div>
+            <p>It’s live on Vercel: create a project, invite your team, and move tasks across the board.</p>
+          </li>
+        </ol>
+      </div>
+      <footer class="story__foot">
+        <a href="https://project-camp-kanban.vercel.app" target="_blank" rel="noopener">Try it live ↗</a>
+        <a href="https://github.com/anoopsachdev/Project-Camp" target="_blank" rel="noopener">Read the code ↗</a>
       </footer>
     </div>
   </dialog>
