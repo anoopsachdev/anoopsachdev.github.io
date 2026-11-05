@@ -175,16 +175,10 @@ p, dd, .skills p { text-wrap: pretty; }
   display: inline-flex; align-items: center; gap: 6px; margin-top: 8px;
   font: 500 12px var(--mono); font-style: normal; color: var(--x-ink); opacity: .8; transition: opacity .25s;
 }
-/* A small chevron: down while closed (the scene opens below), flipping up once it's open */
-.track__arrow {
-  display: inline-block; width: 6px; height: 6px; margin: -3px 2px 0;
-  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
-  transform: rotate(45deg); transition: transform .4s cubic-bezier(.22,1,.36,1);
-}
-.track__btn:hover .track__cue { opacity: 1; }
-.track__btn:hover .track__arrow { transform: translateY(2px) rotate(45deg); }
-.track__btn[aria-expanded="true"] .track__cue { opacity: 1; }
-.track__btn[aria-expanded="true"] .track__arrow { transform: translateY(3px) rotate(225deg); }
+/* Same arrow as "Read the story" and "Explore the study": it points right and nudges on hover */
+.track__arrow { display: inline-block; font-style: normal; transition: transform .3s cubic-bezier(.22,1,.36,1); }
+.track__btn:hover .track__cue, .track__btn[aria-expanded="true"] .track__cue { opacity: 1; }
+.track__btn:hover .track__arrow, .track__btn[aria-expanded="true"] .track__arrow { transform: translateX(4px); }
 
 /* The stage the scenes play on; collapsed until a month is chosen */
 .track > li.now__stage { grid-column: 1 / -1; margin-top: -16px; padding: 0; border: 0; }
