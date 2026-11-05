@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=49">
+  <link rel="stylesheet" href="styles.css?v=50">
 </head>
 <body>
   <header class="nav">
@@ -358,7 +358,7 @@
               </div>
             </div>
             <div class="project__foot">
-              <button class="project__cue" type="button" data-story="story-shopsense" aria-haspopup="dialog">Explore the project <span class="project__arrow">→</span></button>
+              <button class="project__cue" type="button" data-story="story-shopsense" aria-haspopup="dialog">Read the story <span class="project__arrow">→</span></button>
               <div class="project__links">
                 <a href="https://shopsense-819934511305.us-central1.run.app" target="_blank" rel="noopener">Live ↗</a>
                 <a href="https://github.com/anoopsachdev/shopsense" target="_blank" rel="noopener">Code ↗</a>
@@ -556,14 +556,28 @@
       <div class="story__body">
         <svg class="story__curve" aria-hidden="true"><path class="story__track"/><path class="story__line"/></svg>
         <ol class="story__beats">
-          <li class="beat" data-loss=".78">
-            <span class="beat__tag">Why</span>
-            <p>Search is where shops win or lose. If the right product isn’t in the first few results, people leave.</p>
+          <li class="beat" data-loss=".8">
+            <span class="beat__tag">Why I built it</span>
+            <p>Most online shops live or die on search. If what you want isn’t in the first few results, you scroll a bit, get bored, and leave. I wanted to know whether an LLM can actually fix that, or whether it only looks good in a demo.</p>
+            <p>So I used Amazon’s ESCI data: real shopping queries over <b>48,862 products</b>, where people had labelled each result as an exact match, a substitute, a complement or irrelevant. That let me score every idea the same way, on quality, speed and cost per search.</p>
           </li>
-          <li class="beat" data-loss=".92">
-            <span class="beat__tag">Got hard</span>
-            <p>Gemini ranked best, <b>0.600</b>, but each search took about <b>50 seconds</b>.</p>
-            <p class="beat__fix">So Gemini stays offline as the benchmark, and a cross-encoder re-ranks live in under two seconds.</p>
+          <li class="beat" data-loss=".68">
+            <span class="beat__tag">How it works</span>
+            <p>Search runs in two steps. First, cast a wide net: <b>keyword search</b> catches the exact words, <b>semantic search</b> catches the meaning, and I blend the two. Then a <b>cross-encoder</b> reads the query and each top product together and re-orders them.</p>
+            <figure class="beat__chart">
+              <div class="ladder">
+                <div><span>Keyword (BM25)</span><i style="--v:.468"></i><b>0.468</b></div>
+                <div><span>Semantic</span><i style="--v:.506"></i><b>0.506</b></div>
+                <div><span>Blend of both</span><i style="--v:.520"></i><b>0.520</b></div>
+                <div class="ladder__top"><span>+ cross-encoder</span><i style="--v:.574"></i><b>0.574</b></div>
+              </div>
+              <figcaption>Search quality (NDCG@10) as each step is added</figcaption>
+            </figure>
+          </li>
+          <li class="beat" data-loss=".95">
+            <span class="beat__tag">Where it fought back</span>
+            <p>Gemini as the re-ranker scored best, <b>0.600</b>. Then I timed it: about <b>50 seconds</b> a search, and roughly a quarter of the calls failed and fell back. Nobody waits 50 seconds for a pair of shoes.</p>
+            <p class="beat__fix">So Gemini stays offline as my benchmark, and the cross-encoder runs live in under two seconds. It keeps most of the gain for a fraction of the wait.</p>
             <figure class="beat__chart">
               <svg viewBox="0 0 336 146" role="img" aria-label="Search quality against wait per search: keyword, dense and hybrid search are fast but score 0.47 to 0.52; the cross-encoders score 0.56 to 0.57 in about a second; Gemini scores 0.60 but takes about 50 seconds">
                 <g class="ax"><path d="M34 14 V118 H312"/><text x="34" y="134">10 ms</text><text x="184" y="134">1 s</text><text x="312" y="134">50 s</text><text x="28" y="25" class="ax__y">0.60</text><text x="28" y="121" class="ax__y">0.45</text></g>
@@ -578,17 +592,18 @@
             </figure>
           </li>
           <li class="beat" data-loss=".5">
-            <span class="beat__tag">Got hard</span>
-            <p>After going idle, the first search could wait <b>a minute and a half</b> while the models loaded.</p>
-            <p class="beat__fix">A scheduler pings it every 10 minutes, so it’s usually warm.</p>
+            <span class="beat__tag">One more snag</span>
+            <p>To keep costs near zero, the service sleeps when nobody is using it. The catch: the first search after a quiet spell waited up to <b>a minute and a half</b> while the models loaded.</p>
+            <p class="beat__fix">Now the page opens straight away with a short “warming up” note, and a scheduler pings the service every 10 minutes, so it’s usually awake.</p>
           </li>
           <li class="beat beat--result" data-loss=".12">
-            <span class="beat__tag">Result</span>
+            <span class="beat__tag">Where it landed</span>
             <div class="beat__stats">
-              <div><b>0.468 → 0.574</b><span>NDCG@10 over keyword search</span></div>
-              <div><b>48,862</b><span>products searched</span></div>
+              <div><b>0.468 → 0.574</b><span>search quality over plain keyword search</span></div>
+              <div><b>&lt; 2 s</b><span>per search, live</span></div>
               <div><b>189</b><span>tests behind the API</span></div>
             </div>
+            <p>It’s live on Google Cloud Run as a FastAPI service. Try something like “red shoes” and watch the re-ranked results.</p>
           </li>
         </ol>
       </div>
@@ -609,6 +624,6 @@
     </nav>
   </footer>
 
-  <script src="script.js?v=28"></script>
+  <script src="script.js?v=29"></script>
 </body>
 </html>

@@ -96,19 +96,17 @@ function connectPanel(card, panel, frameEl = card) {
 const capstone = document.getElementById("capstone");
 if (capstone) connectPanel(capstone, document.getElementById("capstone-study"));
 
-// Project stories: the card lifts, its title glides into a side sheet, and a loss curve
-// down the sheet's edge draws as you read, lighting each beat of the story as it arrives
+// Project stories: the card lifts, a side sheet slides in, and a loss curve down its edge
+// draws as you read, lighting each part of the story as it arrives
 const SVG_NS = "http://www.w3.org/2000/svg";
 function connectStory(cue, sheet) {
   const html = document.documentElement;
   const card = cue.closest(".project");
-  const cardTitle = card.querySelector(".project__open");
   const scroller = sheet.querySelector(".story__scroll");
   const body = sheet.querySelector(".story__body");
   const svg = sheet.querySelector(".story__curve");
   const track = svg.querySelector(".story__track"), line = svg.querySelector(".story__line");
   const beats = [...sheet.querySelectorAll(".beat")];
-  const title = sheet.querySelector(".story__title");
   const fromBelow = matchMedia("(max-width: 600px)");
   let nodes = [], marks = [], len = 0, frame = 0;
 
@@ -151,28 +149,8 @@ function connectStory(cue, sheet) {
   const backdrop = (from, to, duration) => {
     try { sheet.animate([{ opacity: from }, { opacity: to }], { duration, easing: "ease", pseudoElement: "::backdrop", fill: "forwards" }); } catch (e) {}
   };
-  // A popover sits in the top layer above the sheet, so the title can fly from the card into it
-  const glide = (from, fromSize) => {
-    const to = title.getBoundingClientRect(), toSize = parseFloat(getComputedStyle(title).fontSize);
-    const ghost = document.createElement("div");
-    if (!ghost.showPopover) return;
-    ghost.popover = "manual";
-    ghost.className = "story-glide";
-    ghost.textContent = title.textContent;
-    ghost.style.cssText = `left:${to.left}px;top:${to.top}px;font-size:${toSize}px;line-height:${getComputedStyle(title).lineHeight};letter-spacing:${getComputedStyle(title).letterSpacing}`;
-    document.body.appendChild(ghost);
-    ghost.showPopover();
-    title.style.visibility = "hidden";
-    cardTitle.style.visibility = "hidden";
-    const k = fromSize / toSize;
-    ghost.animate([{ transform: `translate(${from.left - to.left}px, ${from.top - to.top}px) scale(${k})` }, { transform: "none" }],
-      { duration: 640, easing: EASE }).onfinish = () => { title.style.visibility = ""; ghost.remove(); };
-  };
-
   const open = () => {
     if (sheet.open) return;
-    html.style.setProperty("--story-oy", `${scrollY + innerHeight / 2}px`);
-    const from = cardTitle.getBoundingClientRect(), fromSize = parseFloat(getComputedStyle(cardTitle).fontSize);
     card.classList.add("is-lifted");
     html.classList.add("story-open");
     sheet.showModal();
@@ -184,7 +162,6 @@ function connectStory(cue, sheet) {
     line.getBoundingClientRect();
     line.style.transition = "stroke-dashoffset .9s cubic-bezier(.22, 1, .36, 1)";
     if (calm) { line.style.transition = "none"; return draw(); }
-    glide(from, fromSize);
     backdrop(0, 1, 420);
     sheet.animate([{ transform: fromBelow.matches ? "translateY(100%)" : "translateX(100%)" }, { transform: "none" }],
       { duration: 620, easing: EASE });
@@ -196,14 +173,12 @@ function connectStory(cue, sheet) {
       sheet.close(); delete sheet.dataset.closing;
       sheet.getAnimations().forEach((an) => an.cancel());
       card.classList.remove("is-lifted");
-      cardTitle.style.visibility = ""; title.style.visibility = "";
       html.classList.remove("story-open");
     };
     if (calm) return done();
     sheet.dataset.closing = "1";
     html.classList.remove("story-open");
     backdrop(1, 0, 380);
-    cardTitle.style.visibility = "";
     sheet.animate([{ transform: "none" }, { transform: fromBelow.matches ? "translateY(100%)" : "translateX(100%)" }],
       { duration: 420, easing: "cubic-bezier(.5, 0, .75, 0)", fill: "forwards" }).onfinish = done;
   };
