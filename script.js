@@ -225,10 +225,14 @@ document.querySelectorAll("[data-story]").forEach((cue) => {
 // Project cards: tap or click (or Enter on the title) expands the card in place; hover does the same on mouse devices
 // A click on a card that hover has opened closes it, and it stays shut until the pointer leaves
 const hoverable = matchMedia("(hover: hover)");
+// Cards with a story open it from a click or tap anywhere on the card (the title's overlay covers it);
+// hover still previews on mouse devices
 document.querySelectorAll(".project").forEach((card) => {
   const btn = card.querySelector(".project__open");
+  const story = card.querySelector("[data-story]");
   card.addEventListener("click", (e) => {
     if (e.target.closest("a, [data-story]")) return;
+    if (story) return story.click();
     const shown = card.classList.contains("is-open") ||
       (hoverable.matches && card.matches(":hover") && !card.classList.contains("is-shut"));
     card.classList.toggle("is-open", !shown);
