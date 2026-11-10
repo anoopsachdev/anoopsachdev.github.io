@@ -423,7 +423,7 @@ html.study-open { overflow: hidden; }
 }
 
 /* Project cards: whole card toggles the extra detail; links stay clickable on top */
-.project { position: relative; cursor: pointer; }
+.project { position: relative; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .project__open { all: unset; cursor: pointer; }
 .project__card { position: relative; }
 .project__open::after { content: ""; position: absolute; inset: 0; border-radius: var(--radius); }
@@ -819,6 +819,7 @@ html.story-open { overflow: hidden; }
 }
 .project.cue-play .project__cue::after, .now.cue-play .track__cue::after { animation: cue-line 2.2s cubic-bezier(.22,1,.36,1) .35s 1 both; }
 @keyframes cue-line { 0% { transform: scaleX(0); opacity: 1; } 45% { transform: scaleX(1); opacity: 1; } 80% { opacity: 1; } 100% { transform: scaleX(1); opacity: 0; } }
+.project.cue-static .project__cue::after { transform: scaleX(1); opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
   .project.cue-play .project__cue, .now.cue-play .track__cue, .project.cue-play .project__cue::after, .now.cue-play .track__cue::after { animation: none; }
 }

@@ -109,6 +109,21 @@ const markStoryRead = (id) => {
 const hoverable = matchMedia("(hover: hover)");
 const pointer = { x: -1, y: -1 };
 addEventListener("pointermove", (e) => { pointer.x = e.clientX; pointer.y = e.clientY; }, { passive: true });
+// Restart a card's cue highlight (sweep + underline). With reduced motion it shows a static underline for a moment instead
+const playCue = (el) => {
+  el.classList.remove("cue-play", "cue-static");
+  void el.offsetWidth;
+  if (calm) { el.classList.add("cue-static"); setTimeout(() => el.classList.remove("cue-static"), 2600); return; }
+  el.classList.add("cue-play");
+};
+const storyUnread = (card) => { const s = card.querySelector("[data-story]"); return Boolean(s) && !readStories().includes(s.dataset.story); };
+// On touch devices (no hover) one project is expanded at a time, and it stays so until a tap elsewhere
+const setCardOpen = (card, on) => {
+  card.classList.toggle("is-open", on);
+  const t = card.querySelector(".project__open");
+  if (t) t.setAttribute("aria-expanded", String(on));
+};
+const collapseOthers = (keep) => document.querySelectorAll(".project.is-open").forEach((c) => { if (c !== keep) setCardOpen(c, false); });
 function connectStory(cue, sheet) {
   const html = document.documentElement;
   const card = cue.closest(".project");
@@ -162,6 +177,7 @@ function connectStory(cue, sheet) {
   const open = () => {
     if (sheet.open) return;
     markStoryRead(sheet.id);
+    if (!hoverable.matches) collapseOthers(card);
     card.classList.add("is-lifted", "is-open");
     html.classList.add("story-open");
     sheet.showModal();
@@ -187,7 +203,8 @@ function connectStory(cue, sheet) {
       // The preview stays expanded only if the pointer is still on the card when the sheet closes
       const r = card.getBoundingClientRect();
       const onCard = pointer.x >= r.left && pointer.x <= r.right && pointer.y >= r.top && pointer.y <= r.bottom;
-      if (!(hoverable.matches && onCard)) card.classList.remove("is-open");
+      // On touch devices the card stays expanded until the visitor taps elsewhere
+      if (hoverable.matches && !onCard) card.classList.remove("is-open");
       html.classList.remove("story-open");
     };
     if (calm) return done();
@@ -199,7 +216,7 @@ function connectStory(cue, sheet) {
   };
 
   cue.addEventListener("click", (e) => { e.stopPropagation(); open(); });
-  card.addEventListener("mouseleave", () => { if (!sheet.open) card.classList.remove("is-open"); });
+  card.addEventListener("mouseleave", () => { if (hoverable.matches && !sheet.open) card.classList.remove("is-open"); });
   sheet.querySelector(".story__close").addEventListener("click", close);
   sheet.addEventListener("cancel", (e) => { e.preventDefault(); close(); });
   sheet.addEventListener("click", (e) => {
@@ -217,19 +234,48 @@ document.querySelectorAll("[data-story]").forEach((cue) => {
 // A click on a card that hover has opened closes it, and it stays shut until the pointer leaves
 // Cards with a story open it from a click or tap anywhere on the card (the title's overlay covers it);
 // hover still previews on mouse devices
+const tapHinted = new Set();
 document.querySelectorAll(".project").forEach((card) => {
   const btn = card.querySelector(".project__open");
   const story = card.querySelector("[data-story]");
   card.addEventListener("click", (e) => {
     if (e.target.closest("a, [data-story]")) return;
-    if (story) return story.click();
+    if (story) {
+      // Mouse: a click opens the story. Touch: the first tap expands the preview, the next one opens the story
+      if (hoverable.matches || card.classList.contains("is-open")) return story.click();
+      collapseOthers(card); setCardOpen(card, true);
+      if (storyUnread(card) && !tapHinted.has(card)) { tapHinted.add(card); playCue(card); }
+      return;
+    }
     const shown = card.classList.contains("is-open") ||
       (hoverable.matches && card.matches(":hover") && !card.classList.contains("is-shut"));
+    if (!shown && !hoverable.matches) collapseOthers(card);
     card.classList.toggle("is-open", !shown);
     card.classList.toggle("is-shut", shown);
     btn.setAttribute("aria-expanded", String(!shown));
   });
   card.addEventListener("mouseleave", () => card.classList.remove("is-shut"));
+});
+// Touch: a tap outside every project (and outside an open story) collapses the expanded card
+document.addEventListener("click", (e) => {
+  if (hoverable.matches || e.target.closest(".project, dialog")) return;
+  collapseOthers(null);
+});
+// Mouse: the first time the pointer rests on a project whose story is unread, its cue plays the highlight once per page load
+const hoverHinted = new Set();
+document.querySelectorAll(".project").forEach((card) => {
+  const cue = card.querySelector(".project__cue");
+  if (!cue) return;
+  let t = 0;
+  card.addEventListener("mouseenter", () => {
+    if (!hoverable.matches || hoverHinted.has(card)) return;
+    t = setTimeout(() => {
+      if (!storyUnread(card)) return;
+      hoverHinted.add(card);
+      if (!cue.getAnimations().some((a) => a.playState === "running")) playCue(card);
+    }, 200);
+  });
+  card.addEventListener("mouseleave", () => clearTimeout(t));
 });
 
 // Xebia track: hovering a month plays its scene below, leaving the card closes it,
@@ -268,7 +314,7 @@ if (now) {
 // Cue hints play once per page load, the first time a card is mostly on screen;
 // a project whose story the visitor has already opened doesn't hint again
 const cueWatch = new IntersectionObserver((entries) => {
-  for (const e of entries) if (e.isIntersecting) { e.target.classList.add("cue-play"); cueWatch.unobserve(e.target); }
+  for (const e of entries) if (e.isIntersecting) { playCue(e.target); cueWatch.unobserve(e.target); }
 }, { threshold: 0.6 });
 const alreadyRead = readStories();
 document.querySelectorAll(".project, .now").forEach((el) => {
