@@ -106,9 +106,19 @@ const markStoryRead = (id) => {
   if (read.includes(id)) return;
   try { sessionStorage.setItem("storiesRead", JSON.stringify([...read, id])); } catch {}
 };
-const hoverable = matchMedia("(hover: hover)");
+// Mouse or touch is decided by the pointer the visitor is actually using, because some phones
+// (many Android ones) report that they can hover. The media query is only the guess before any input.
+const hoverQuery = matchMedia("(hover: hover)");
+let lastPointer = null;
+const hoverable = { get matches() { return lastPointer ? lastPointer === "mouse" : hoverQuery.matches; } };
 const pointer = { x: -1, y: -1 };
-addEventListener("pointermove", (e) => { pointer.x = e.clientX; pointer.y = e.clientY; }, { passive: true });
+const notePointer = (e) => {
+  if (e.pointerType === lastPointer) return;
+  lastPointer = e.pointerType;
+  document.documentElement.classList.toggle("is-touch", lastPointer !== "mouse");
+};
+addEventListener("pointerdown", notePointer, { capture: true, passive: true });
+addEventListener("pointermove", (e) => { notePointer(e); pointer.x = e.clientX; pointer.y = e.clientY; }, { capture: true, passive: true });
 // Restart a card's cue highlight (sweep + underline). With reduced motion it shows a static underline for a moment instead
 const playCue = (el) => {
   el.classList.remove("cue-play", "cue-static");
@@ -283,7 +293,7 @@ document.querySelectorAll(".project").forEach((card) => {
 const now = document.querySelector(".now");
 if (now) {
   const monthBtns = [...now.querySelectorAll(".track__btn")];
-  const canHover = matchMedia("(hover: hover)");
+  const canHover = hoverable;
   let current = null, timer;
   const show = (id) => {
     current = id;

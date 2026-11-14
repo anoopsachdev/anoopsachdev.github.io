@@ -479,7 +479,7 @@ html.study-open { overflow: hidden; }
   padding: 28px; display: flex; flex-direction: column; transform-origin: 50% 0;
   transition: transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s cubic-bezier(.22,1,.36,1), border-color .3s ease;
 }
-.project:hover .project__card { border-color: var(--accent); }
+html:not(.is-touch) .project:hover .project__card { border-color: var(--accent); }
 /* Expand in place: hover (mouse) or tap/Enter (any device) reveals the rest; cards below move down to make room */
 .project__more {
   display: grid; grid-template-rows: 0fr; opacity: 0;
@@ -492,9 +492,9 @@ html.study-open { overflow: hidden; }
 .project.is-open .project__card { box-shadow: 0 24px 48px -30px rgb(0 0 0 / .4); border-color: var(--accent); }
 .project.is-open .project__arrow { transform: rotate(90deg); }
 @media (hover: hover) {
-  .project:hover:not(.is-shut) .project__more { grid-template-rows: 1fr; opacity: 1; transition: grid-template-rows .5s cubic-bezier(.22,1,.36,1), opacity .4s ease .06s; }
-  .project:hover:not(.is-shut) .project__card { transform: translateY(-3px); box-shadow: 0 24px 48px -30px rgb(0 0 0 / .4); }
-  .project:hover:not(.is-shut) .project__arrow { transform: rotate(90deg); }
+  html:not(.is-touch) .project:hover:not(.is-shut) .project__more { grid-template-rows: 1fr; opacity: 1; transition: grid-template-rows .5s cubic-bezier(.22,1,.36,1), opacity .4s ease .06s; }
+  html:not(.is-touch) .project:hover:not(.is-shut) .project__card { transform: translateY(-3px); box-shadow: 0 24px 48px -30px rgb(0 0 0 / .4); }
+  html:not(.is-touch) .project:hover:not(.is-shut) .project__arrow { transform: rotate(90deg); }
 }
 @media (prefers-reduced-motion: reduce) { .project__card, .project__more { transition: none; } }
 .project--feature { grid-column: 1 / -1; }
